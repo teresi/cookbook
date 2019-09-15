@@ -1,0 +1,91 @@
+% family cookbook using 'xcookybooky'
+% authors: Michael Teresi
+
+\documentclass[]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage{lmodern}
+\usepackage[ngerman, english]{babel}
+\usepackage{tikz} % for creating the lines for the hint
+\usepackage{graphicx}
+\usepackage{xcolor}
+%\usepackage[clock, misc, weather]{ifsym} % Symbolpackage e.g. \Interval, \Wecker etc
+\usepackage{cookingsymbols} % Cookings symbols e.g. \Oven, \Dish etc
+\usepackage{wrapfig} % To wrap the tabular with the ingredients
+\usepackage{ifthen}
+\usepackage{xkeyval}
+\usepackage{lettrine} % numbering the preparation steps
+\usepackage{fancyhdr}
+\usepackage{units}
+\usepackage{eso-pic} % for background pictures
+\usepackage{picture} % for modfifying the position of the bg pictures
+\usepackage{tabularx} % line breaks in tabular
+\usepackage{tikz}
+\usepackage{nicefrac}
+
+\usepackage[nowarnings]{xcookybooky}
+
+\usepackage{blindtext}    % only needed for generating test text
+
+\DeclareRobustCommand{\textcelcius}{\ensuremath{^{\circ}\mathrm{C}}}
+\DeclareRobustCommand{\textfahrenheiht}{\ensuremath{^{\circ}\mathrm{C}}}
+
+\setcounter{secnumdepth}{2}
+\renewcommand*{\recipesection}[2][]
+{%
+    \subsection[#1]{#2}
+}
+\renewcommand{\subsectionmark}[1]
+{% no implementation to display the section name instead
+}
+
+\usepackage{hyperref}    % must be the last package
+\hypersetup{%
+    pdfauthor            = {Michael Teresi},
+    pdftitle             = {Teresi Family Cookbook},
+    pdfsubject           = {Recipes},
+    pdfkeywords          = {recipes, recipe, cookbook, Teresi},
+    pdfstartview         = {FitV},
+    pdfview              = {FitH},
+    pdfpagemode          = {UseNone}, % Options; UseNone, UseOutlines
+    bookmarksopen        = {true},
+    pdfpagetransition    = {Glitter},
+    colorlinks           = {true},
+    linkcolor            = {magenta},
+    urlcolor             = {blue},
+    citecolor            = {cyan},
+    filecolor            = {black},
+}
+
+\hbadness=10000	% Ignore underfull boxes
+
+\graphicspath{{./desserts/img/}}
+
+\begin{document}
+
+\title{Teresi Family Cookbook}
+\author{Michael Teresi}
+\maketitle
+
+\tableofcontents
+
+% FEATURE make macro or find package to auto-crop an roi to make a full page image w/o a border
+%	probably use `adjustbox` package
+% FEATURE make collage (matrix) of different recipes, make the images links
+% FEATURE redifine the ingredients so it can be a 3 column table with the middle as the unit
+% TODO bibliography
+\clearpage
+\section{Desserts}
+TODO collage of images
+
+% background graphic
+%\setBackgroundPicture[x, y=-2cm, width=\paperwidth-4cm, height, orientation = pagecenter]
+%{pic/background}
+\include{./desserts/ItalianTricolor}
+\include{./desserts/SchwarzWeissGebacks}
+
+
+
+
+\end{document} 
