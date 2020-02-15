@@ -107,7 +107,14 @@
 
 \clearpage
 \section{Hot Sauce}
+{
 \include{./hot_sauce/base_lacto_brine}
+	\let\section\subsection
+	\let\subsection\subsubsection
+	\section{Fermented Red Hot Sauce}
+	\input{./hot_sauce/red_three}
+	% input additional recipes here (not include b/c page breaks)
+}
 
 \clearpage
 \section{Desserts}
