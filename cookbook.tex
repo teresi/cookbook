@@ -24,6 +24,7 @@
 \usepackage{tikz}
 \usepackage{nicefrac}
 \usepackage{amssymb}
+\usepackage{paralist}
 \frenchspacing
 
 \usepackage[nowarnings]{xcookybooky}
@@ -62,7 +63,11 @@
 
 \hbadness=10000	% Ignore underfull boxes
 
-\graphicspath{{./desserts/img/}}
+\graphicspath{
+	{./desserts/img/}
+	{./breakfasts/img/}
+}
+
 
 \begin{document}
 
@@ -79,6 +84,10 @@
 % TODO bibliography
 % TODO standardize Tablespoon --> Tbs, teaspoon --> tps
 % TODO standardize minutes / min --> minutes
+
+\clearpage
+\section{Breakfasts}
+\include{./breakfasts/egg_bites}
 
 \clearpage
 \section{Soups}
@@ -99,9 +108,16 @@
 \clearpage
 \section{Desserts}
 TODO collage of images
+
 TODO add a sub header to the recipe title (e.g. a commit msg)
+
 NOTE consider using bold font in key areas of the steps (e.g. the first sentence?)
+
 TODO fix reference/label between recipes, add recipe name to ref (SEE chili colorado)
+
+TODO add experimentation section, like the hints
+
+TODO consolidate images to top level folder `/img/` instead of per section?
 
 % background graphic
 %\setBackgroundPicture[x, y=-2cm, width=\paperwidth-4cm, height, orientation = pagecenter]
