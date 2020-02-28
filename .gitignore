@@ -4,3 +4,8 @@
 **/*.synctex.gz
 **/*.toc
 **/*.pdf
+**.*~
+cookbook-blx.bib
+cookbook.bbl
+cookbook.blg
+cookbook.run.xml

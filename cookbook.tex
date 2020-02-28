@@ -34,7 +34,7 @@
 \DeclareRobustCommand{\textcelcius}{\ensuremath{^{\circ}\mathrm{C}}}
 \DeclareRobustCommand{\textfahrenheiht}{\ensuremath{^{\circ}\mathrm{C}}}
 
-\setcounter{secnumdepth}{2}
+\setcounter{secnumdepth}{3}
 \renewcommand*{\recipesection}[2][]
 {%
     \subsection[#1]{#2}
@@ -67,6 +67,9 @@
 	{./desserts/img/}
 	{./breakfasts/img/}
 }
+
+\usepackage[backend=bibtex]{biblatex}
+\bibliography{bib}
 
 
 \begin{document}
@@ -138,5 +141,6 @@ TODO consolidate images to top level folder `/img/` instead of per section?
 \include{./desserts/peppermint_fudge}
 
 
+\printbibliography
 
 \end{document} 
