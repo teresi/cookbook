@@ -5,23 +5,20 @@ Teresi family cookbook.
 
 ## CONTRIBUTING
 
-- add recipes as individual tex files using a `recipe` (i.e. \begin{recipe...\end{recipe})
-  - add to a folder with the same name as the section
-  - append the graphics path as appropriate
-- include the recipe in the appropriate section in the main doc (`/cookbook.tex')
+- copy an existing recipe, rename, move to a folder according to the genre
+- add a the recipe to the top level `\cookbook.tex` using an `\include` call in the appropriate section.
+- add graphics to the `img` subfolder of the genre
+- update `\grpahicspath` with new image folders as necessary
 
 
 ## DESIGN
 
-- using `xcookybooky` for formatting
-- using top level document (`cookbook.tex`) with included files (`\include{myrecipe}`)
-
-
-## STYLE
-
-- add recipes as a one page instruction set and one page image
-- use a minimalistic voice in the instruction set (the preparation block)
-- add 'hints' for recipe modifications / variations
+- uses `xcookybooky` for formatting
+- the top level `TeX` file is `\cookbook.tex`
+- recipes are added using `\include` calls to the top level file
+- recipes are grouped according to genre: `\<my_section>\<recipe>.tex`
+- images are grouped in sub folders: `\<my_section>\img\`
+- bibliography is store in `\bib.bib`
 
 
 ## FUTURE
@@ -30,4 +27,28 @@ Teresi family cookbook.
 - [ ] modify 'Ingredients' blocks to three columns (amount, unit, ingredient)
 - [ ] add cover
 - [ ] add image collage to start of sections
-- [ ] add bibliography
+- [x] add bibliography
+- [ ] add custom class for recipe, reduce code repitition and standardize input
+- [ ] add compilation automation w/ `latexmk` | `CMake`
+- [ ] add git lfs for images
+- [ ] add ghostscript helper to compress pdf
+
+
+## HOW TO (FOR NEW USERS)
+
+### WINDOWS
+Download the project, LaTeX, and an editor, then build the pdf.
+
+- download the zipped project from github, or clone w/ Git
+    - e.g.: https://www.atlassian.com/git/tutorials/install-git#windows
+- install MiKTeX (SEE https://miktex.org/howto/install-miktex)
+- install TeXStudio or other editor (https://www.texstudio.org/)
+- open `\cookbook.tex` and compile to pdf (F5 in TeXStudio)
+
+### LINUX
+Install your preferred LaTeX distribution, IDE if desired, compile `\cookbook.tex`.
+
+e.g. Ubuntu:
+```bash
+# apt-get install git texlive texstudio
+```
