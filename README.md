@@ -6,19 +6,19 @@ Teresi family cookbook.
 ## CONTRIBUTING
 
 - copy an existing recipe, rename, move to a folder according to the genre
-- add a the recipe to the top level `\cookbook.tex` using an `\include` call in the appropriate section.
+- add a the recipe to the top level `/cookbook.tex` using an `\include` call in the appropriate section.
 - add graphics to the `img` subfolder of the genre
-- update `\grpahicspath` with new image folders as necessary
+- update `\graphicspath` with new image folders as necessary
 
 
 ## DESIGN
 
 - uses `xcookybooky` for formatting
-- the top level `TeX` file is `\cookbook.tex`
+- the top level `TeX` file is `/cookbook.tex`
 - recipes are added using `\include` calls to the top level file
-- recipes are grouped according to genre: `\<my_section>\<recipe>.tex`
-- images are grouped in sub folders: `\<my_section>\img\`
-- bibliography is store in `\bib.bib`
+- recipes are grouped according to genre: `/<my_section>/<recipe>.tex`
+- images are grouped in sub folders: `/<my_section>/img/`
+- bibliography is stored in `/bib.bib`
 
 
 ## FUTURE
@@ -43,10 +43,10 @@ Download the project, LaTeX, and an editor, then build the pdf.
     - e.g.: https://www.atlassian.com/git/tutorials/install-git#windows
 - install MiKTeX (SEE https://miktex.org/howto/install-miktex)
 - install TeXStudio or other editor (https://www.texstudio.org/)
-- open `\cookbook.tex` and compile to pdf (F5 in TeXStudio)
+- open `/cookbook.tex` and compile to pdf (F5 in TeXStudio)
 
 ### LINUX
-Install your preferred LaTeX distribution, IDE if desired, compile `\cookbook.tex`.
+Install your preferred LaTeX distribution, IDE if desired, compile `/cookbook.tex`.
 
 e.g. Ubuntu:
 ```bash

@@ -6,6 +6,9 @@
 **/*.pdf
 **.*~
 **.*~*
+**.*dvi
+**.*fls
+**.*fdb_latexmk
 **.*swp
 cookbook-blx.bib
 cookbook.bbl
