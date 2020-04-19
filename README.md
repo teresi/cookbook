@@ -29,12 +29,25 @@ Teresi family cookbook.
 - [ ] add image collage to start of sections
 - [x] add bibliography
 - [ ] add custom class for recipe, reduce code repitition and standardize input
-- [ ] add compilation automation w/ `latexmk` | `CMake`
+- [x] add compilation automation w/ `latexmk' / Makefile
 - [ ] add git lfs for images
-- [ ] add ghostscript helper to compress pdf
+- [x] add ghostscript helper to compress pdf
 
 
-## HOW TO (FOR NEW USERS)
+## HOW TO
+
+### LINUX
+```bash
+make clean
+make
+```
+
+Requires `texlive`.
+```bash
+# apt-get install texlive      # ubuntu, building, required
+# apt-get install ghostscript  # ubuntu, compress, optional
+```
+
 
 ### WINDOWS
 Download the project, LaTeX, and an editor, then build the pdf.
@@ -45,10 +58,3 @@ Download the project, LaTeX, and an editor, then build the pdf.
 - install TeXStudio or other editor (https://www.texstudio.org/)
 - open `/cookbook.tex` and compile to pdf (F5 in TeXStudio)
 
-### LINUX
-Install your preferred LaTeX distribution, IDE if desired, compile `/cookbook.tex`.
-
-e.g. Ubuntu:
-```bash
-# apt-get install git texlive texstudio
-```
