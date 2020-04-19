@@ -2,6 +2,7 @@
 
 Teresi family cookbook.
 
+[cookbook.pdf (April 2020)](https://github.com/teresi/teresi.github.io/blob/master/cookbook/archive/cookbook_20200419.pdf)
 
 ## CONTRIBUTING
 
