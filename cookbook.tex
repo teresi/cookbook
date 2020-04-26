@@ -25,6 +25,7 @@
 \usepackage{nicefrac}
 \usepackage{amssymb}
 \usepackage{paralist}
+
 \frenchspacing
 
 \usepackage[nowarnings]{xcookybooky}
@@ -84,9 +85,16 @@
 %	probably use `adjustbox` package
 % FEATURE make collage (matrix) of different recipes, make the images links
 % FEATURE redifine the ingredients so it can be a 3 column table with the middle as the unit
-% TODO bibliography
+
 % TODO standardize Tablespoon --> Tbs, teaspoon --> tps
 % TODO standardize minutes / min --> minutes
+% TODO collage of images
+% TODO add page number on top of image
+% TODO add a sub header to the recipe title (e.g. a commit msg)
+% NOTE consider using bold font in key areas of the steps (e.g. the first sentence?)
+% TODO fix reference/label between recipes, add recipe name to ref (SEE chili colorado)
+% TODO add experimentation section, like the hints
+% TODO consolidate images to top level folder `/img/` instead of per section?
 
 \clearpage
 \section{Breakfast}
@@ -132,17 +140,6 @@
 
 \clearpage
 \section{Cookies, Cakes}
-TODO collage of images
-
-TODO add a sub header to the recipe title (e.g. a commit msg)
-
-NOTE consider using bold font in key areas of the steps (e.g. the first sentence?)
-
-TODO fix reference/label between recipes, add recipe name to ref (SEE chili colorado)
-
-TODO add experimentation section, like the hints
-
-TODO consolidate images to top level folder `/img/` instead of per section?
 
 % background graphic
 %\setBackgroundPicture[x, y=-2cm, width=\paperwidth-4cm, height, orientation = pagecenter]
@@ -151,7 +148,7 @@ TODO consolidate images to top level folder `/img/` instead of per section?
 \include{./desserts/SchwarzWeissGebacks}
 \include{./desserts/peppermint_fudge}
 
-
+\addcontentsline{toc}{section}{References}
 \printbibliography
 
 \end{document}
