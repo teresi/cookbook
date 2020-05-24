@@ -67,6 +67,7 @@
 \graphicspath{
 	{./desserts/img/}
 	{./breakfasts/img/}
+	{./img/}
 }
 
 \usepackage[backend=bibtex]{biblatex}
@@ -75,9 +76,45 @@
 
 \begin{document}
 
-\title{Teresi Family Cookbook}
-\author{Michael Teresi}
-\maketitle
+
+
+\clearpage
+%% temporary titles
+% command to provide stretchy vertical space in proportion
+\newcommand\nbvspace[1][3]{\vspace*{\stretch{#1}}}
+% allow some slack to avoid under/overfull boxes
+\newcommand\nbstretchyspace{\spaceskip0.5em plus 0.25em minus 0.25em}
+% To improve spacing on titlepages
+\newcommand{\nbtitlestretch}{\spaceskip0.6em}
+\pagestyle{empty}
+\begin{center}
+	\bfseries
+	\nbvspace[1]
+	\Huge
+	{\nbtitlestretch\huge
+		TERESI FAMILY COOKERY
+	}
+	\nbvspace[2]
+	\normalsize
+	\\AN ONGOING COLLECTION OF FAVORITES\\
+	FROM AROUND THE GLOBE\\
+	\nbvspace[0.5]
+	\small BY\\ \nbvspace[0.1]
+	\Large MICHAEL TERESI \\ \small \& \\ \Large COMPANY\\
+	\nbvspace[1]
+	\hspace{1em}  % FUTURE a more legit way of lining it up?
+	\IfFileExists{../cookbook_img/stein2.png}{\includegraphics[width=1.75in]{../cookbook_img/stein2}}{}
+	\nbvspace[2]
+	\vfill
+\end{center}
+\clearpage
+
+
+
+
+%\title{Teresi Family Cookbook}
+%\author{Michael Teresi}
+%\maketitle
 
 
 \tableofcontents
