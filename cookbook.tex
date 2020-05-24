@@ -26,6 +26,10 @@
 \usepackage{amssymb}
 \usepackage{paralist}
 
+\usepackage[toc]{multitoc}
+\renewcommand*{\multicolumntoc}{2}
+\setlength{\columnseprule}{0.5pt}
+
 \frenchspacing
 
 \usepackage[nowarnings]{xcookybooky}
@@ -139,7 +143,7 @@
 \clearpage
 \section{Breakfast}
 \include{./breakfasts/egg_bites}
-\include{./scripts/recipe_snippet}
+%\include{./scripts/recipe_snippet}
 
 \clearpage
 \section{Soup}
