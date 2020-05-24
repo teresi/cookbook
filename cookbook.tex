@@ -79,6 +79,7 @@
 \author{Michael Teresi}
 \maketitle
 
+
 \tableofcontents
 
 % FEATURE make macro or find package to auto-crop an roi to make a full page image w/o a border
@@ -95,6 +96,9 @@
 % TODO fix reference/label between recipes, add recipe name to ref (SEE chili colorado)
 % TODO add experimentation section, like the hints
 % TODO consolidate images to top level folder `/img/` instead of per section?
+% BUG  can't use \cite[]{} (vs \cite{}) inside a recipe block? :  \begin{recipe}[source=\cite[]{}]{}
+% BUG using \refname from a label placed in the title of another recipe produces an in text ref to the right spot but the title in the ref is the next recipe title?
+% TODO can't add hints w/o a large space (\input on a recipe w/ hints doesn't layout well b/c the next recipe gets squashed)
 
 \clearpage
 \section{Breakfast}
@@ -129,8 +133,8 @@
 	\let\section\subsection
 	\let\subsection\subsubsection
 	\section{Fermented Red Hot Sauce}
+	% use \input (not \include) to remove page breaks
 	\input{./hot_sauce/red_three}
-	% input additional recipes here (not include b/c page breaks)
 }
 
 \clearpage
@@ -149,6 +153,12 @@
 \include{./desserts/SchwarzWeissGebacks}
 \include{./desserts/peppermint_fudge}
 
+\clearpage
+\section{Pie}
+\include{./desserts/basic_pie_pastry}
+\include{./desserts/strawberry_rhubarb_pie}
+
+\clearpage
 \addcontentsline{toc}{section}{References}
 \printbibliography
 
