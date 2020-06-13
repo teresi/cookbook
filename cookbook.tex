@@ -26,6 +26,7 @@
 \usepackage{amssymb}
 \usepackage{paralist}
 
+
 \usepackage[toc]{multitoc}
 \renewcommand*{\multicolumntoc}{2}
 \setlength{\columnseprule}{0.5pt}
@@ -91,16 +92,17 @@
 % To improve spacing on titlepages
 \newcommand{\nbtitlestretch}{\spaceskip0.6em}
 \pagestyle{empty}
-\begin{center}
+{
+	\centering
 	\bfseries
 	\nbvspace[1]
 	\Huge
-	{\nbtitlestretch\Huge
-		TERESI FAMILY COOKERY
+	{\nbtitlestretch
+		TERESI FAMILY COOKERY\\
 	}
 	\nbvspace[1]
 	\Large
-	\\AN ONGOING COLLECTION OF FAVORITES\\ AROUND THE GLOBE\\
+	AN ONGOING COLLECTION OF FAVORITES\\ AROUND THE GLOBE\\
 	\nbvspace[2]
 	\small BY\\ \nbvspace[0.1]
 	\Large MICHAEL TERESI \\ \Large \& COMPANY\\
@@ -109,7 +111,7 @@
 	\IfFileExists{../cookbook_img/stein2.png}{\includegraphics[width=1.75in]{../cookbook_img/stein2}}{}
 	\nbvspace[2]
 	\vfill
-\end{center}
+}
 \clearpage
 
 
@@ -197,6 +199,7 @@
 \section{Pie}
 \include{./desserts/basic_pie_pastry}
 \include{./desserts/strawberry_rhubarb_pie}
+\include{./desserts/lemon_meringue_pie}
 
 \clearpage
 \addcontentsline{toc}{section}{References}
