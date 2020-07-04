@@ -31,14 +31,14 @@
 \renewcommand*{\multicolumntoc}{2}
 \setlength{\columnseprule}{0.5pt}
 
-\frenchspacing
+
 
 \usepackage[nowarnings]{xcookybooky}
 
 \usepackage{blindtext}    % only needed for generating test text
 
 \DeclareRobustCommand{\textcelcius}{\ensuremath{^{\circ}\mathrm{C}}}
-\DeclareRobustCommand{\textfahrenheiht}{\ensuremath{^{\circ}\mathrm{C}}}
+\DeclareRobustCommand{\textfahrenheiht}{\ensuremath{^{\circ}\mathrm{F}}}
 
 \setcounter{secnumdepth}{3}
 \renewcommand*{\recipesection}[2][]
@@ -78,7 +78,7 @@
 \usepackage[backend=bibtex]{biblatex}
 \bibliography{bib}
 
-
+\frenchspacing
 \begin{document}
 
 
@@ -141,6 +141,8 @@
 % BUG  can't use \cite[]{} (vs \cite{}) inside a recipe block? :  \begin{recipe}[source=\cite[]{}]{}
 % BUG using \refname from a label placed in the title of another recipe produces an in text ref to the right spot but the title in the ref is the next recipe title?
 % TODO can't add hints w/o a large space (\input on a recipe w/ hints doesn't layout well b/c the next recipe gets squashed)
+% FUTURE add forward on abbreviations (eg. oz vs fl. oz., Tbs tsp)
+% TODO add custom ingredient command to make a 3col table (amount, unit, name)
 
 \clearpage
 \section{Breakfast}
@@ -156,6 +158,7 @@
 \clearpage
 \section{Sides}
 \include{./vegetables/collards_thanksgiving}
+\include{./sides/mac_and_cheese}
 
 \clearpage
 \section{Entr\`{e}es}
