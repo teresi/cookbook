@@ -11,7 +11,7 @@ LEVEL=4
 
 usage(){
 	echo "Usage: compress.bash [OPTION]..."
-	echo "Compress input pdf"
+	echo "Compress input pdf and output with data appended to name"
 	echo ""
 	echo "-i         input pdf file (../cookbook.pdf)"
 	echo "-o         output directory (../archive/)"
