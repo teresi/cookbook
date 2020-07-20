@@ -18,3 +18,7 @@ cookbook.bcf
 cookbook.maf
 cookbook.mtc
 cookbook.mtc0
+
+# ignore all images, use a separate project
+**/*.jpg
+**/*.png

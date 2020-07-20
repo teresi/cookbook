@@ -2,26 +2,39 @@
 
 Teresi family cookbook.
 
-[cookbook.pdf (April 2020)](https://github.com/teresi/teresi.github.io/blob/master/cookbook/archive/cookbook_20200419.pdf)
+- [cookbook.pdf (April 2020)](https://github.com/teresi/teresi.github.io/blob/master/cookbook/archive/cookbook_20200419.pdf)
 
 
 ## HOW TO
 
-### LINUX
 ```bash
-make clean
-make
+make cookbook.pdf
 ```
 
-Requires `texlive`.
+## DESIGN
+
+In summary:
+- `xcookybooky` provides formatting
+- `/cookbook.tex` is the top level (add recipes using `\include` or `\input`)
+- images are not tracked in this repository in order to:
+    - save space
+    - simplify printing
+
+See `/cookbook.tex` for more details.
+
+
+## DEPENDENCIES
+Requires a standard LaTeX distribution.
+
+Optionally requires `ghostscript` for compressing the pdf.
+
 ```bash
 # apt-get install texlive      # ubuntu, building, required
 # apt-get install ghostscript  # ubuntu, compress, optional
 ```
 
-
 ### WINDOWS
-Download the project, LaTeX, and an editor, then build the pdf.
+Download the project, install LaTeX and an editor, then build the pdf.
 
 - download the zipped project from github, or clone w/ Git
     - e.g.: https://www.atlassian.com/git/tutorials/install-git#windows
@@ -39,26 +52,15 @@ Download the project, LaTeX, and an editor, then build the pdf.
     - `\section{Breakfast}                           % the chapter`
     - `\include{./breakfasts/eggscellent_challenge}  % your new filename (no extension)`
 3. add images (optional)
-    - to the folder you copied your recipe, add your image into `img` subfolder
-    - if you created a new `img` subfolder,
-      update `\graphicspath` in `/cookbook.tex` with the new entry
-
-
-## DESIGN
-
-- uses `xcookybooky` for formatting
-- the top level `TeX` file is `/cookbook.tex`
-- recipes are added using `\include` calls to the top level file
-- recipes are grouped according to genre: `/<my_section>/<recipe>.tex`
-- images are grouped in sub folders: `/<my_section>/img/`
-- bibliography is stored in `/bib.bib`
+    - add images out of source, e.g. `/../cookbook_img`
 
 
 ## FUTURE
 
 - [ ] add hints to the margins
 - [ ] modify 'Ingredients' blocks to three columns (amount, unit, ingredient)
-- [ ] add cover
+- [x] add cover
+- [x] remove all images tracked in this repository
 - [ ] add image collage to start of sections
 - [x] add bibliography
 - [ ] add custom class for recipe, reduce code repitition and standardize input
