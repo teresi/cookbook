@@ -9,6 +9,7 @@ INPUT_PDF=$SCRIPT_PATH/../cookbook.pdf
 OUTPUT_DIR=$SCRIPT_PATH/../archive
 LEVEL=4
 
+# TODO probably should just take output filename to be more generic
 usage(){
 	echo "Usage: compress.bash [OPTION]..."
 	echo "Compress input pdf and output with data appended to name"

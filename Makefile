@@ -1,7 +1,8 @@
+# Makefile for Teresi family cookbook
 
 ROOT_DIR := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 SHELL := /bin/bash
-DATE := $(shell date '+%Y%m%d')
+DATE := $(shell date '+%Y%m%d')  # follows the format from compress.bash
 OUT := $(ROOT_DIR)/cookbook.pdf
 OUT_ARCHIVE := $(ROOT_DIR)/archive/cookbook_$(DATE).pdf
 

@@ -1,85 +1,283 @@
-% family cookbook using 'xcookybooky'
-% authors: Michael Teresi
+% The Teresi family cookbook
+%
+% Collection of favorites from family / friends / the interwebz
+%
+% Design:
+% - targets a book with a 6x9" trim
+% - uses outer marginnotes and single column
+%   (worked out better than both inner/outer notes for 6x9)
+%   (worked out better than twocolumn for 6x9)
+% - provides environments for formatting
+% - targets a recipe format of
+%   abstract, ingredients (1 | 2 col), steps, variations
+% - images not included in this git repository for space
+%
+% Future:
+% - add temperature command w/ compile time switch between Fahrenheit / Centigrade
+% - add aliases for Tablespoon, teaspon, fluid oz, minutes etc
+% - add keywords / index
+% - add 'contents at a glance' (1 level) before contents
+% - add a new package and move environments there?
+% - add a compile time toggle for adding images
+% - add a matrix of images for multiple recipes
+% - add tessalation for page backround artwork
+%   (SEE http://tex.my/creating-tiled-background-patterns/)
+% - add a flag for changing justification on the margin paragraphs (e.g. use justify, use ragged)
+% - add an alias for common measurements? e.g to replace \nicefrac{1}{4} etc.?
 
-\documentclass[]{article}
+% Bugs:
+% - there may be a line skip on the ingredient tables (on top) when using multicols
+% - marginnote used the wrong side of the page, possibly after the preface was added? had to use marginpar
+% - in xcookybooky couldn't use \cite[]{} (vs \cite{}) inside a recipe block? :  \begin{recipe}[source=\cite[]{}]{}
 
+
+\documentclass[10pt]{book}
+\usepackage{showframe}
 \usepackage[T1]{fontenc}
 \usepackage[latin1]{inputenc}
+
+\usepackage{ragged2e}  % for \justify
+\usepackage{marginnote}
+\usepackage[%
+twoside,%
+top=0.75in,%
+bottom=0.75in,%
+marginparsep=3ex,%
+marginparwidth=0.8in,%
+inner=0.75in,%
+outer=1.25in,%
+]{geometry}
+\geometry{
+	papersize={6in,9in}
+}
+
+
+\usepackage{fancyhdr}
+\pagestyle{empty}
 \usepackage{lmodern}
+\usepackage{lipsum}
 \usepackage[ngerman, english]{babel}
-\usepackage{tikz} % for creating the lines for the hint
 \usepackage{graphicx}
 \usepackage{xcolor}
-%\usepackage[clock, misc, weather]{ifsym} % Symbolpackage e.g. \Interval, \Wecker etc
-\usepackage{cookingsymbols} % Cookings symbols e.g. \Oven, \Dish etc
-\usepackage{wrapfig} % To wrap the tabular with the ingredients
-\usepackage{ifthen}
+\usepackage[clock, misc]{ifsym} % symbols
+\usepackage{cookingsymbols}     % symbols e.g. \Oven, \Dish etc
+\usepackage{tikzsymbols}        % symbols
+\usepackage{fontawesome}        % symbols
 \usepackage{xkeyval}
-\usepackage{lettrine} % numbering the preparation steps
-\usepackage{fancyhdr}
+\usepackage{lettrine} % a large first letter/number
 \usepackage{units}
-\usepackage{eso-pic} % for background pictures
-\usepackage{picture} % for modfifying the position of the bg pictures
+%\usepackage{eso-pic} % for background pictures
+%\usepackage{picture} % for modfifying the position of the bg pictures
 \usepackage{tabularx} % line breaks in tabular
 \usepackage{tikz}
 \usepackage{nicefrac}
 \usepackage{amssymb}
 \usepackage{paralist}
+\usepackage[colaction]{multicol}
+\usepackage{xparse}  % positional arg defaults
+\usepackage{marginnote}
+%\usepackage{tikzpagenodes}  % for printing marginnotes on correct side
+\usepackage{pgfornament}
+\usepackage{adforn}
+\usepackage{enumitem}
+\setlist{leftmargin=*}  % don't indent lists
 
+\usepackage{sectsty}  % access sectional units
+\usepackage{fancyhdr}
+\usepackage[backend=bibtex]{biblatex}
 
-\usepackage[toc]{multitoc}
-\renewcommand*{\multicolumntoc}{2}
-\setlength{\columnseprule}{0.5pt}
-
-
-
-\usepackage[nowarnings]{xcookybooky}
-
-\usepackage{blindtext}    % only needed for generating test text
-
-\DeclareRobustCommand{\textcelcius}{\ensuremath{^{\circ}\mathrm{C}}}
-\DeclareRobustCommand{\textfahrenheiht}{\ensuremath{^{\circ}\mathrm{F}}}
-
-\setcounter{secnumdepth}{3}
-\renewcommand*{\recipesection}[2][]
-{%
-    \subsection[#1]{#2}
-}
-\renewcommand{\subsectionmark}[1]
-{% no implementation to display the section name instead
-}
+\bibliography{bib}
 
 \usepackage{hyperref}    % must be the last package
 \hypersetup{%
-    pdfauthor            = {Michael Teresi},
-    pdftitle             = {Teresi Family Cookbook},
-    pdfsubject           = {Recipes},
-    pdfkeywords          = {recipes, recipe, cookbook, Teresi},
-    pdfstartview         = {FitV},
-    pdfview              = {FitH},
-    pdfpagemode          = {UseNone}, % Options; UseNone, UseOutlines
-    bookmarksopen        = {true},
-    pdfpagetransition    = {Glitter},
-    colorlinks           = {true},
-    linkcolor            = {magenta},
-    urlcolor             = {blue},
-    citecolor            = {cyan},
-    filecolor            = {black},
+	pdfauthor            = {Michael Teresi},
+	pdftitle             = {Teresi Family Cookbook},
+	pdfsubject           = {Recipes},
+	pdfkeywords          = {recipes, recipe, cookbook, Teresi},
+	pdfstartview         = {FitV},
+	pdfview              = {FitH},
+	pdfpagemode          = {UseNone}, % Options; UseNone, UseOutlines
+	bookmarksopen        = {true},
+	pdfpagetransition    = {Glitter},
+	colorlinks           = {true},
+	linkcolor            = {magenta},
+	urlcolor             = {blue},
+	citecolor            = {cyan},
+	filecolor            = {black},
 }
 
-\hbadness=10000	% Ignore underfull boxes
+%\hbadness=10000	% Ignore underfull boxes
 
-\graphicspath{}
+\graphicspath{}  % use of of source path
 
-\usepackage[backend=bibtex]{biblatex}
-\bibliography{bib}
+% add an ornament to the section numbers
+\makeatletter
+\def\@seccntformat#1{\adforn{33} \csname the#1\endcsname\quad}
+\makeatother
+
+% show servings, time, etc. w/ icons
+\ExplSyntaxOn
+% keys
+\keys_define:nn { mymodule/recipestats }
+{
+	servings .tl_set:N = \l_mymodule_servings_tl,
+	preptime .tl_set:N = \l_mymodule_preptime_tl,
+	bakingtime .tl_set:N = \l_mymodule_bakingtime_tl,
+	source .tl_set:N = \l_mymodule_source_tl,
+}
+\NewDocumentEnvironment{recipestats}{O{}}
+{
+	\keys_set:nn { mymodule/recipestats } { #1 }
+	% BUG a multicols doesn't left justify the icons?
+	% FUTURE using a multicols may be preferred so that missing icons aren't just blank cells
+	\begin{tabular}{clcl}
+		\tl_if_empty:NTF \l_mymodule_servings_tl
+		{& &}
+		{\Dish & \l_mymodule_servings_tl &}
+		
+		\tl_if_empty:NTF \l_mymodule_source_tl
+		{& \\}
+		{\PaperLandscape & \l_mymodule_source_tl \\}
+		
+		\tl_if_empty:NTF \l_mymodule_preptime_tl
+		{& &}
+		{\Gloves & \l_mymodule_preptime_tl &}
+		
+		\tl_if_empty:NTF \l_mymodule_bakingtime_tl
+		{& \\}
+		{\oven & \l_mymodule_bakingtime_tl \\}
+		\cr
+}
+{
+	\end{tabular}
+}
+\ExplSyntaxOff
+
+% italicize the abstract
+\newenvironment{recipeabstract}%
+{
+	\itshape
+}
+{
+	\par
+}
+
+% a 3 col tabular for ingredients
+% can be used to specify which componenet the ingredients are for
+% can be used to have multiple tabulars in columns
+% Args:
+%    (str): name of ingredient 'section', no name if None
+\ExplSyntaxOn % for \tl_if_blank:nTF
+\NewDocumentEnvironment{ingredientblock}{O{}}
+{
+	% default args:
+	% https://tex.stackexchange.com/questions/29973/more-than-one-optional-argument-for-newcommand
+	\tl_if_blank:nTF {#1}
+	{}  % empty
+	{\textit{#1}\\}  % not empty
+	\noindent
+	\begin{tabular}{rl>{\bfseries}l}
+}
+{
+	\end{tabular}
+}
+\ExplSyntaxOff % for \tl_if_blank:nTF
+
+% wrapper around a multicols
+% Args:
+%     (int): number of columns, 2 if None
+\NewDocumentEnvironment{ingredientcolumns}{O{2}}
+{
+%	\setlength\columnsep{1ex}
+	\noindent
+	\centering
+	\begin{multicols}{#1}
+}
+{
+	\end{multicols}
+	\par
+}
+
+% ingredient for a 3 column tabular 
+% intended for: quantity & unit & food
+% default empty quantity and unit:
+% e.g. \food[col1][col2]{col3}
+% e.g. \food[quantity][unit]{name}
+% e.g. \food{<ingredient name>}
+\NewDocumentCommand{\ingredient}{O{} O{} m }{
+	\ensuremath{#1} & \ensuremath{#2} & #3
+}
+
+\newenvironment{preparation}%
+{
+	% can also be controlled globally using
+	% \setlist[enumerate]{<options>}
+	\begin{enumerate}[topsep=0pt,itemsep=0ex,partopsep=0ex,parsep=0.5ex,label=\textbf{\arabic*}.]
+	}
+{
+	\end{enumerate}
+	\par
+	\vspace{2ex}  % NOTE is there a more canonical solution?
+}
+
+\newenvironment{experiments}%
+{
+	\textbf{EXPERIMENTS}%
+	
+	\begin{itemize}[label=\faFlask,topsep=0pt,itemsep=0ex,partopsep=1ex,parsep=1ex]
+	}
+	{
+	\end{itemize}
+	\par
+}
+
+\newenvironment{variation}%
+{
+	\textbf{VARIATIONS}%
+	
+	\begin{itemize}[label=\adforn{28},topsep=0pt,itemsep=0ex,partopsep=1ex,parsep=1ex]
+	}
+{
+	\end{itemize}
+	\par
+}
+
+% FUTURE wrap an input call to add this?
+\newcommand{\recipeend}[0]{
+	{\centering \pgfornament[scale=0.45]{88}\par}
+}
+
+% marginpar with ragged justification
+% NOTE had to use marginpar b/c marginnote produce notes on wrong side (after adding preface?)
+% https://latex.org/forum/viewtopic.php?t=6041
+\newcounter{pl}
+\newcommand\ragmarpar[1]{%
+	\stepcounter{pl}\label{pl-\thepl}%
+	\ifthenelse{\isodd{\pageref{pl-\thepl}}}%
+	{\marginpar{\RaggedRight #1}}
+	{\marginpar{\RaggedLeft #1}}
+}
 
 \frenchspacing
+% stop chapters / titles from having an extra blank page
+\let\cleardoublepage=\clearpage
+
+\pagestyle{fancy}
+\newcommand{\changefont}{%
+	\fontsize{9}{11}\selectfont
+}
+\fancyhf{}
+\fancyhead[LE,RO]{\changefont \slshape \rightmark} %section
+\fancyhead[RE,LO]{\changefont \slshape \leftmark} %chapter
+\fancyfoot[C]{\changefont \thepage} %footer
+
+
 \begin{document}
 
-
-
-\clearpage
+\frontmatter
+\begin{titlepage}
+\onecolumn
+\pagestyle{empty}
 %% temporary titles
 % command to provide stretchy vertical space in proportion
 \newcommand\nbvspace[1][3]{\vspace*{\stretch{#1}}}
@@ -87,126 +285,101 @@
 \newcommand\nbstretchyspace{\spaceskip0.5em plus 0.25em minus 0.25em}
 % To improve spacing on titlepages
 \newcommand{\nbtitlestretch}{\spaceskip0.6em}
-\pagestyle{empty}
 {
 	\centering
 	\bfseries
 	\nbvspace[1]
 	\Huge
 	{\nbtitlestretch
-		TERESI FAMILY COOKERY\\
-	}
+		TERESI FAMILY COOKERY
+	}\\
 	\nbvspace[1]
-	\Large
-	AN ONGOING COLLECTION OF FAVORITES\\ FROM AROUND THE GLOBE\\
-	\nbvspace[2]
-	\small BY\\ \nbvspace[0.1]
-	\Large MICHAEL TERESI \\ \Large \& COMPANY\\
-	\nbvspace[3]
+	\footnotesize
+	AN ONGOING COLLECTION OF FAVORITES FROM AROUND THE GLOBE\\
+	\nbvspace[1]
+	\Large MICHAEL TERESI \\ \small \& COMPANY\\
+	\nbvspace[1]
 	\hspace{1em}  % FUTURE a more legit way of lining it up?
-	\IfFileExists{../cookbook_img/stein2.png}{\includegraphics[width=1.75in]{../cookbook_img/stein2}}{}
-	\nbvspace[2]
+	\IfFileExists{../cookbook_img/stein2.png}{\includegraphics[width=0.33\textwidth]{../cookbook_img/stein2}}{}
 	\vfill
 }
-\clearpage
-
-
-
-
-%\title{Teresi Family Cookbook}
-%\author{Michael Teresi}
-%\maketitle
-
+\end{titlepage}
 
 \tableofcontents
+\chapter*{Preface}
+\addcontentsline{toc}{chapter}{Preface}
+\input{preface}
+\input{recipe_snippet}
+\nopagebreak
 
-% FEATURE make macro or find package to auto-crop an roi to make a full page image w/o a border
-%	probably use `adjustbox` package
-% FEATURE make collage (matrix) of different recipes, make the images links
-% FEATURE redifine the ingredients so it can be a 3 column table with the middle as the unit
+\mainmatter
 
-% TODO standardize Tablespoon --> Tbs, teaspoon --> tps
-% TODO standardize minutes / min --> minutes
-% TODO collage of images
-% TODO add page number on top of image
-% TODO add a sub header to the recipe title (e.g. a commit msg)
-% NOTE consider using bold font in key areas of the steps (e.g. the first sentence?)
-% TODO fix reference/label between recipes, add recipe name to ref (SEE chili colorado)
-% TODO add experimentation section, like the hints
-% TODO consolidate images to top level folder `/img/` instead of per section?
-% BUG  can't use \cite[]{} (vs \cite{}) inside a recipe block? :  \begin{recipe}[source=\cite[]{}]{}
-% BUG using \refname from a label placed in the title of another recipe produces an in text ref to the right spot but the title in the ref is the next recipe title?
-% TODO can't add hints w/o a large space (\input on a recipe w/ hints doesn't layout well b/c the next recipe gets squashed)
-% FUTURE add forward on abbreviations (eg. oz vs fl. oz., Tbs tsp)
-% TODO add custom ingredient command to make a 3col table (amount, unit, name)
+\chapter{Breakfast}
+\clearpage
+\input{./breakfasts/egg_bites}
+\input{./entrees/spinach_quiche}
+
+\chapter{Soup}
+\clearpage
+\input{./soups/gumbo_thanksgiving}
+%\include{./soups/cajun_crabmeat_bisque}
+%
+%\clearpage
+%\section{Sides}
+%\include{./vegetables/collards_thanksgiving}
+%\include{./sides/mac_and_cheese}
+%
+%\clearpage
+%\section{Entr\`{e}es}
+%\include{./entrees/mexican_beef_bowl}
+%\include{./entrees/fettuccine_alfredo}
+%\include{./entrees/rib_roast_christmas}
+%\include{./entrees/chili_colorado}
+%\include{./entrees/chili_schwarz}
+%\include{./entrees/hoola_poola}
+%
+%\clearpage
+%\section{Bread}
+%\include{./bread/focaccia}
+%
+%\clearpage
+%\section{Hot Sauce}
+%{
+%\include{./hot_sauce/base_lacto_brine}
+%	\let\section\subsection
+%	\let\subsection\subsubsection
+%	\section{Fermented Red Hot Sauce}
+%	% use \input (not \include) to remove page breaks
+%	\input{./hot_sauce/red_three}
+%}
+%
+%\clearpage
+%\section{Ice Cream}
+%{
+%\include{./icecream/chocolate_icecream_joc}
+%}
+%
+%
+%\clearpage
+%\section{Cookies, Cakes}
+%
+%% background graphic
+%%\setBackgroundPicture[x, y=-2cm, width=\paperwidth-4cm, height, orientation = pagecenter]
+%%{pic/background}
+%\include{./desserts/ItalianTricolor}
+%\include{./desserts/SchwarzWeissGebacks}
+%\include{./desserts/peppermint_fudge}
+%\include{./desserts/seven_layer_brownies}
+%\include{./desserts/elegant_wine_cake}
+%
+%\clearpage
+%\section{Pie}
+%\include{./desserts/basic_pie_pastry}
+%\include{./desserts/strawberry_rhubarb_pie}
+%\include{./desserts/lemon_meringue_pie}
 
 \clearpage
-\section{Breakfast}
-\include{./breakfasts/egg_bites}
-\include{./entrees/spinach_quiche}
-%\include{./scripts/recipe_snippet}
-
-\clearpage
-\section{Soup}
-\include{./soups/gumbo_thanksgiving}
-\include{./soups/cajun_crabmeat_bisque}
-
-\clearpage
-\section{Sides}
-\include{./vegetables/collards_thanksgiving}
-\include{./sides/mac_and_cheese}
-
-\clearpage
-\section{Entr\`{e}es}
-\include{./entrees/mexican_beef_bowl}
-\include{./entrees/fettuccine_alfredo}
-\include{./entrees/rib_roast_christmas}
-\include{./entrees/chili_colorado}
-\include{./entrees/chili_schwarz}
-\include{./entrees/hoola_poola}
-
-\clearpage
-\section{Bread}
-\include{./bread/focaccia}
-
-\clearpage
-\section{Hot Sauce}
-{
-\include{./hot_sauce/base_lacto_brine}
-	\let\section\subsection
-	\let\subsection\subsubsection
-	\section{Fermented Red Hot Sauce}
-	% use \input (not \include) to remove page breaks
-	\input{./hot_sauce/red_three}
-}
-
-\clearpage
-\section{Ice Cream}
-{
-\include{./icecream/chocolate_icecream_joc}
-}
-
-
-\clearpage
-\section{Cookies, Cakes}
-
-% background graphic
-%\setBackgroundPicture[x, y=-2cm, width=\paperwidth-4cm, height, orientation = pagecenter]
-%{pic/background}
-\include{./desserts/ItalianTricolor}
-\include{./desserts/SchwarzWeissGebacks}
-\include{./desserts/peppermint_fudge}
-\include{./desserts/seven_layer_brownies}
-\include{./desserts/elegant_wine_cake}
-
-\clearpage
-\section{Pie}
-\include{./desserts/basic_pie_pastry}
-\include{./desserts/strawberry_rhubarb_pie}
-\include{./desserts/lemon_meringue_pie}
-
-\clearpage
-\addcontentsline{toc}{section}{References}
+\addcontentsline{toc}{chapter}{References}
 \printbibliography
 
 \end{document}

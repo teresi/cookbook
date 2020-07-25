@@ -1,99 +1,56 @@
-\begin{recipe}[
-    preparationtime = 15 minutes,
-    bakingtime = 1 hour,
-    portion = 12,
-    source = Anova Culinary
-]
-{Egg Bites, Sous Vide}
-\graph{
-    %small = strawberry,
-    smallpicturewidth = 0.3\textwidth,
-    %big = strawberrycake,
-    bigpicturewidth = 0.6\textwidth,
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\ingredients{
-\unit[12]{large} & eggs\\
-\unit[1]{C} & Gruyere\\
-\unit[1/2]{C} & cream cheese\\
-\unit[1/4]{tsp} & salt\\
-\unit[6]{slices} & bacon\\
-\unit[12]{} & canning jars ($4oz$) \& lids\\
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\preparation{
-\step Set the water bath for $172 F^\circ\;/\;77.8 C^\circ$.
-\step Add a coating of butter / crisco / etc. to the jar interiors to allow egg bites to release.
-\step Cook bacon \& cut slices in half. Grate cheese.
-\step Add $1/2$ of a bacon slice to each jar.
-\step Blend eggs, cheeses, salt. Add egg mixture to each jar.
-\step Add lids to each jar and screw on lightly using only your fingertips. The goal is to allow air to release in order to prevent the jars from shattering in the bath.
-\step Add jars to water bath and cook for $1hour$. Remove, cool, tighten lids, and refridgerate up to $\approx1 week$.
-\step Reheat by:
+\section[Egg Bites]{Egg Bites, Sous Vide}
+\begin{recipestats}[
+	servings=12 jars,
+	preptime=15 minutes,
+	bakingtime=1 hour,
+	source=Anova Culinary,
+	]
+\end{recipestats}
+
+\begin{recipeabstract}
+	These are perfect for a quick and portable breakfast.
+	Jane and I got a sous vide machine for our wedding and tried them as the inaugural recipe since they cook quickly.
+	That and Jane's appreciation for Starbucks Egg Bites.
+	As it turns out there are many egg bite clones available and we felt this was a classic flavor combination.
+\end{recipeabstract}
+
+\begin{ingredientcolumns}
+\begin{ingredientblock}
+	\ingredient[12][large]{eggs}\\
+	\ingredient[1][C]{Gruyere}\\
+	\ingredient[\nicefrac{1}{2}][C]{cream cheese}
+\end{ingredientblock}
+\begin{ingredientblock}
+	\ingredient[\nicefrac{1}{4}][tsp]{salt}\\
+	\ingredient[6][slices]{bacon}\\
+	\ingredient[12][4 oz]{canning jars}
+\end{ingredientblock}
+\end{ingredientcolumns}
+
+\ragmarpar{greasing the jars is important as the eggs can get stuck}
+\begin{preparation}
+\item Set the water bath for $172 F^\circ\;/\;77.8 C^\circ$.
+\item Grease jar interiors w/ butter $\|$ crisco etc.
+\item Cook bacon \& cut slices in half. Grate cheese.
+\item Add $1/2$ of a bacon slice to each jar.
+\item Blend eggs, cheeses, salt. Add egg mixture to each jar.
+\item Add lids to each jar and screw on lightly using only your fingertips. The goal is to allow air to release in order to prevent the jars from shattering in the bath.
+\item Add jars to water bath and cook for $1\; hour$. Remove, cool, tighten lids, and refrigerate up to $\approx1 week$.
+\item Reheat by:
 \begin{inparaenum}[\itshape a)\upshape]
-	\item microwave for $[1...1.5\; minutes$]
+	\item microwave for $[1...1.5\; minutes$], or
 	\item invert \& remove, broil for a few minutes.
 \end{inparaenum}
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\hint{
-\begin{itemize}
-\item The cream effects the texture of the eggs: milk for flan-like, cream for fluffier, cream \& cottage cheese ($50/50$) or cream cheese for in-between (but this will require more experimentation to verify).
-\item Other flavors are available, such as tomato / basil, broccoli, red pepper, pickled jalepe\~{n}os. Experiment and add to this recipe.
+\end{preparation}
+
+\begin{experiments}
 \item This recipe may need some more salt, other resources recommend a ratio of $300g$ eggs (about 6), $300g$ cream, $3g$ salt, but omit the cheese.
 \item This recipe might benefit from butter / olive oil beaten into the eggs.
-\end{itemize}
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\setRecipeLengths{
-preparationwidth = 0.60\textwidth,
-ingredientswidth = 0.35\textwidth,
-pictureheight = 6cm,
-bigpicturewidth = 0.6\textwidth,
-smallpicturewidth = 0.35\textwidth
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\setRecipeSizes{
-recipename = \fontsize{25pt}{30pt},
-ing = \normalsize,
-inghead = \normalsize,
-prep = \normalsize,
-prephead = \normalsize,
-hint = \normalsize,
-hinthead = \Large
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\setRecipenameFont{
-%%pbsi
-%%fau
-%%fwb
-%%fjd % default when using the option handwritten
-%cmr % default
-%}{T1}{m}{n}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\setHeadlines{
-inghead = Ingredients,
-prephead = Preparation,
-hinthead = Hint,
-calory = Cal,
-continuationhead = Continuation,
-continuationfoot = Continuation on next page
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\setBackgroundPicture
-%[%
-%x = 2cm,
-%y = -1cm,
-%width=\paperwidth-3cm,
-%height,
-%orientation=pagecenter
-%]{pic/bg_transparent} % filepath
-\end{recipe}
+\end{experiments}
 
-%\clearpage
-%\thispagestyle{empty}
-% \begin{tikzpicture}[remember picture,overlay]
-%    inelegant way of getting a good image:
-%    use [keepaspectratio], trim to an aspect ratio close to the page, then remove [keepaspectraio] to get full page
-%   \node at (current page.center) {\includegraphics[width=\pdfpagewidth,clip,trim={0px 225px 0px 0px}]{eggbites}};
-%\end{tikzpicture}
+\begin{variation}
+\item Jane likes red pepper, I like Asiago $\&$ mushroom.
+\item The cream effects the texture of the eggs: milk produces a smooth consistency, cream is fluffier, cream \& cottage cheese ($50/50$) or cream cheese for in-between (needs more experimentation).
+\end{variation}
+
+\recipeend
