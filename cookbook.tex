@@ -30,26 +30,30 @@
 % - marginnote used the wrong side of the page, possibly after the preface was added? had to use marginpar
 % - in xcookybooky couldn't use \cite[]{} (vs \cite{}) inside a recipe block? :  \begin{recipe}[source=\cite[]{}]{}
 
+% Recipes:
+% - can we get a southern style mac and cheese?
+% - can we get a canonical southern style collards?
 
 \documentclass[10pt]{book}
-\usepackage{showframe}
+\newcommand\ningredientcol{2}  % variable for number of columns for ingredient list
 \usepackage[T1]{fontenc}
 \usepackage[latin1]{inputenc}
 
 \usepackage{ragged2e}  % for \justify
 \usepackage{marginnote}
 \usepackage[%
+showframe,%
 twoside,%
 top=0.75in,%
-bottom=0.75in,%
+bottom=0.5in,%
 marginparsep=3ex,%
 marginparwidth=0.8in,%
-inner=0.75in,%
+inner=0.875in,%
 outer=1.25in,%
+papersize={6in,9in},%
 ]{geometry}
-\geometry{
-	papersize={6in,9in}
-}
+
+%\usepackage[cam,letter,center]{crop} % show trim lines
 
 
 \usepackage{fancyhdr}
@@ -73,14 +77,23 @@ outer=1.25in,%
 \usepackage{nicefrac}
 \usepackage{amssymb}
 \usepackage{paralist}
-\usepackage[colaction]{multicol}
+\usepackage{multicol}
 \usepackage{xparse}  % positional arg defaults
-\usepackage{marginnote}
 %\usepackage{tikzpagenodes}  % for printing marginnotes on correct side
-\usepackage{pgfornament}
+\usepackage{pgfornament}  % symbols
+\usepackage{nameref}      % ref section name etc. w/ \nameref
 \usepackage{adforn}
 \usepackage{enumitem}
 \setlist{leftmargin=*}  % don't indent lists
+\usepackage{longtable}
+\usepackage{ifthen}
+
+
+% NOTE what are the right inputs to have sections moved to new page
+% if they are too close to the bottom?
+\usepackage[nobottomtitles]{titlesec}
+%\titlespacing*{\section}{12pt}{48pt}{4pt}
+%\usepackage[defaultlines=4,all]{nowidow}  % nowidow breaks the ingredient tables
 
 \usepackage{sectsty}  % access sectional units
 \usepackage{fancyhdr}
@@ -108,7 +121,8 @@ outer=1.25in,%
 
 %\hbadness=10000	% Ignore underfull boxes
 
-\graphicspath{}  % use of of source path
+% FUTURE move to env variable?
+\graphicspath{}  % use out of source path
 
 % add an ornament to the section numbers
 \makeatletter
@@ -146,10 +160,10 @@ outer=1.25in,%
 		\tl_if_empty:NTF \l_mymodule_bakingtime_tl
 		{& \\}
 		{\oven & \l_mymodule_bakingtime_tl \\}
-		\cr
 }
 {
 	\end{tabular}
+	\newline  % NOTE is there a better way?
 }
 \ExplSyntaxOff
 
@@ -159,7 +173,7 @@ outer=1.25in,%
 	\itshape
 }
 {
-	\par
+
 }
 
 % a 3 col tabular for ingredients
@@ -175,8 +189,7 @@ outer=1.25in,%
 	\tl_if_blank:nTF {#1}
 	{}  % empty
 	{\textit{#1}\\}  % not empty
-	\noindent
-	\begin{tabular}{rl>{\bfseries}l}
+	\begin{tabular}[t]{rl>{\bfseries}l}
 }
 {
 	\end{tabular}
@@ -188,14 +201,18 @@ outer=1.25in,%
 %     (int): number of columns, 2 if None
 \NewDocumentEnvironment{ingredientcolumns}{O{2}}
 {
-%	\setlength\columnsep{1ex}
-	\noindent
+	\setlength\columnsep{1ex}
+	% NOTE is there a better way to fix the spacing?
+	% The 1col ingredientcolumns has weird spacing so add a skip
+	\ifthenelse{\equal{#1}{1}}{\vskip1ex}{}
 	\centering
+	\noindent
 	\begin{multicols}{#1}
 }
 {
 	\end{multicols}
 	\par
+	\ifthenelse{\equal{#1}{1}}{\vskip1em}{}
 }
 
 % ingredient for a 3 column tabular 
@@ -213,6 +230,7 @@ outer=1.25in,%
 	% can also be controlled globally using
 	% \setlist[enumerate]{<options>}
 	\begin{enumerate}[topsep=0pt,itemsep=0ex,partopsep=0ex,parsep=0.5ex,label=\textbf{\arabic*}.]
+	\setcounter{enumi}{-1}
 	}
 {
 	\end{enumerate}
@@ -222,29 +240,31 @@ outer=1.25in,%
 
 \newenvironment{experiments}%
 {
-	\textbf{EXPERIMENTS}%
 	
+	\textbf{EXPERIMENTS}%
 	\begin{itemize}[label=\faFlask,topsep=0pt,itemsep=0ex,partopsep=1ex,parsep=1ex]
 	}
 	{
 	\end{itemize}
 	\par
+	\vspace{2ex}  % NOTE is there a more canonical solution?
 }
 
 \newenvironment{variation}%
 {
-	\textbf{VARIATIONS}%
 	
+	\textbf{VARIATIONS}%
 	\begin{itemize}[label=\adforn{28},topsep=0pt,itemsep=0ex,partopsep=1ex,parsep=1ex]
 	}
 {
 	\end{itemize}
 	\par
+	\vspace{2ex}  % NOTE is there a more canonical solution?
 }
 
 % FUTURE wrap an input call to add this?
 \newcommand{\recipeend}[0]{
-	{\centering \pgfornament[scale=0.45]{88}\par}
+	{\centering \pgfornament[scale=0.55]{88} \par}
 }
 
 % marginpar with ragged justification
@@ -258,6 +278,26 @@ outer=1.25in,%
 	{\marginpar{\RaggedLeft #1}}
 }
 
+
+% abbreviations / aliases
+\newcommand\onehalf{\nicefrac{1}{2}}
+\newcommand\onethird{\nicefrac{1}{3}}
+\newcommand\onefourth{\nicefrac{1}{4}}
+\newcommand\oneeighth{\nicefrac{1}{8}}
+
+\newcommand\twothird{\nicefrac{2}{3}}
+
+\newcommand\threehalf{\nicefrac{3}{2}}
+\newcommand\threefourth{\nicefrac{3}{4}}
+\newcommand\threeeighth{\nicefrac{3}{8}}
+
+\newcommand\Tablespoon{Tbs}
+\newcommand\teaspoon{tsp}
+\newcommand\Celsius{\ensuremath{C\^\circ}}
+\newcommand\Fahrenheit{\ensuremath{F^\circ}}
+\newcommand\ounce{\ensuremath{oz}}
+\newcommand\fluidounce{\ensuremath{fl\;oz}}
+
 \frenchspacing
 % stop chapters / titles from having an extra blank page
 \let\cleardoublepage=\clearpage
@@ -270,6 +310,93 @@ outer=1.25in,%
 \fancyhead[LE,RO]{\changefont \slshape \rightmark} %section
 \fancyhead[RE,LO]{\changefont \slshape \leftmark} %chapter
 \fancyfoot[C]{\changefont \thepage} %footer
+
+
+
+%% wrapper around a multicols
+%% Args:
+%%     (int): number of columns, 2 if None
+%\newsavebox\ltmcbox
+%\NewDocumentEnvironment{ingredientmulticols}{O{2}}
+%{
+%	\vbox\bgroup
+%	\setlength\columnsep{0ex}
+%	\centering
+%	\begin{multicols}{#1}
+%		\setbox\ltmcbox
+%			\makeatletter\col@number\@ne
+%			\begin{longtable}{rl>{\bfseries}l}
+%}
+%{
+%	\end{longtable}
+%	\unskip
+%	\unpenalty
+%	\unpenalty
+%	\egroup
+%	\unvbox\ltmcbox
+%	\end{multicols}
+%}
+
+
+
+% box for a multi column long table
+% SEE https://tex.stackexchange.com/questions/161827/balanced-longtables-multicol-and-page-breaks
+%\makeatletter
+%\newsavebox\ltmcbox
+%\newsavebox\xxbox
+%\newenvironment{multicolslongtable}[1]{
+%	\setbox\ltmcbox\vbox\bgroup
+%	\col@number\@ne
+%	\begin{longtable}{#1}
+%	}
+%	{
+%	\end{longtable}
+%	\unskip
+%	\unpenalty
+%	\unpenalty\egroup
+%	\unvbox\ltmcbox
+%}
+%\makeatother
+
+
+% environment to accept table input and produce multicol
+%\NewDocumentEnvironment{ingredientmulticols}{O{2}}
+%{
+%	\savebox\xxbox\bgroup
+%	\begin{minipage}{\textwidth}
+%		\begin{multicols}{#1}
+%			\begin{multicolslongtable}{| l | l | l |}
+%			}
+%			{
+%			\end{multicolslongtable}
+%		\end{multicols}
+%	\end{minipage}
+%	\egroup
+%	\begin{multicols}{#1}
+%		\centering
+%		\usebox\xxbox
+%	\end{multicols}
+%}
+
+
+% patch multicols to allow for one column
+% SEE https://tex.stackexchange.com/questions/233866/one-column-multicol-environment
+\let\multicolmulticols\multicols
+\let\endmulticolmulticols\endmulticols
+\RenewDocumentEnvironment{multicols}{mO{}}
+{%
+	\ifnum#1=1
+	#2%
+	\else % More than 1 column
+	\multicolmulticols{#1}[#2]
+	\fi
+}
+{%
+	\ifnum#1=1
+	\else % More than 1 column
+	\endmulticolmulticols
+	\fi
+}
 
 
 \begin{document}
@@ -324,42 +451,42 @@ outer=1.25in,%
 \input{./soups/gumbo_thanksgiving}
 \input{./soups/cajun_crabmeat_bisque}
 
-%\clearpage
-%\section{Sides}
-%\include{./vegetables/collards_thanksgiving}
-%\include{./sides/mac_and_cheese}
-%
-%\clearpage
-%\section{Entr\`{e}es}
-%\include{./entrees/mexican_beef_bowl}
-%\include{./entrees/fettuccine_alfredo}
-%\include{./entrees/rib_roast_christmas}
-%\include{./entrees/chili_colorado}
-%\include{./entrees/chili_schwarz}
-%\include{./entrees/hoola_poola}
-%
-%\clearpage
-%\section{Bread}
-%\include{./bread/focaccia}
-%
-%\clearpage
-%\section{Hot Sauce}
-%{
-%\include{./hot_sauce/base_lacto_brine}
-%	\let\section\subsection
-%	\let\subsection\subsubsection
-%	\section{Fermented Red Hot Sauce}
-%	% use \input (not \include) to remove page breaks
-%	\input{./hot_sauce/red_three}
-%}
-%
-%\clearpage
-%\section{Ice Cream}
-%{
-%\include{./icecream/chocolate_icecream_joc}
-%}
-%
-%
+\chapter{Sides}
+\clearpage
+\input{./vegetables/collards_thanksgiving}
+\input{./sides/mac_and_cheese}
+
+\chapter{Entr\`{e}es}
+\clearpage
+\input{./entrees/mexican_beef_bowl}
+\input{./entrees/fettuccine_alfredo}
+\input{./entrees/rib_roast_christmas}
+\input{./entrees/chili_colorado}
+\input{./entrees/chili_schwarz}
+\input{./entrees/hoola_poola}
+
+\chapter{Bread}
+\clearpage
+\input{./bread/focaccia}
+
+\chapter{Hot Sauce}
+\clearpage
+{
+\input{./hot_sauce/base_lacto_brine}
+	\section[Red Hot Sauce]{Fermented Red Hot Sauce}
+	\let\section\subsection
+	\let\subsection\subsubsection
+	
+	% use \input (not \include) to remove page breaks
+	\input{./hot_sauce/red_three}
+}
+
+\chapter{Ice Cream}
+\clearpage
+\input{./icecream/chocolate_icecream_joc}
+
+
+
 %\clearpage
 %\section{Cookies, Cakes}
 %

@@ -58,18 +58,23 @@ Download the project, install LaTeX and an editor, then build the pdf.
 ## TODO
 
 - [x] add custom layout (remove xcoookybooky)
-- [ ] add custom style
+- [x] add custom style
 - [x] add hints to the margins
 - [x] modify 'Ingredients' blocks to three columns (amount, unit, ingredient)
 - [x] add cover
 - [x] remove all images tracked in this repository
+- [ ] add front matter according to the novel package docs
+- [ ] add license?
+- [ ] add index by ingredient or keywords etc.
+- [ ] add calendar to icon matrix (default no entry), use \faCalendar0?
+- [ ] fix spacing for 1 col ingredients (before/after)
+- [ ] handle widows (`nowidow` brakes the tables, `titlesec` not working?)
 - [ ] add image collage
 - [ ] add switch to include images
 - [x] add bibliography
 - [x] add compilation automation w/ `latexmk' / Makefile
 - [x] remove all images from history (move any images out of source)
 - [x] add ghostscript helper to compress pdf
-- [ ] add index by ingredient or keywords etc.
 - [ ] add gluten free / vegetarian icons to `recipestats`
 - [ ] add list of gluten free / vegetarian?
 

@@ -1,125 +1,63 @@
-\begin{recipe}[
-    preparationtime = 20 minutes,
-    bakingtime = 30 minutes,
-    portion = 2...4 people,
-    source = Blue Apron
-]
-{Mexican Beef Bowl}
-\graph{
-    %small = strawberry,
-    smallpicturewidth = 0.3\textwidth,
-    %big = strawberrycake,
-    bigpicturewidth = 0.6\textwidth,
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\ingredients{
-Beef:\\\\
-\unit[1]{lb} & ground beef\\
-\unit[1/2]{lb} & tomatoes, cherry\\
-\unit[1/2]{lb} & carrots\\
-\unit[1]{} & lime\\
-\unit[1/4]{C} & jalepe\~{n}os, pickled\\
-\unit[1/4]{C} & sour cream\\
-\unit[4...8]{oz} & cheese, cotija\\
-\unit[3]{Tbs} & spice blend\\
-\unit[1]{C} & rice\\
-\\
-Spices:\\\\
-\unit[2]{Tbs} & Guajillo powder\\
-\unit[1]{Tbs} & chili powder\\
-\unit[1]{Tbs} & paprika, smoked\\
-\unit[1]{Tbs} & cumin\\
-\unit[1]{Tbs} & marjoram\\
-\unit[1/2]{Tbs} & garlic, ground\\
-\unit[1/2]{Tbs} & salt
-}
+\section[Beef Bowl]{Mexican Beef Bowl}\label{mexican_beef_bowl}
+\begin{recipestats}[
+	servings=4 people,
+	preptime=30 minutes,
+	bakingtime=30 minutes,
+	source=\citeauthor{blueApronBeefBowl} \cite{blueApronBeefBowl}
+	]
+\end{recipestats}
 
-\label{mexican_beef_bowl}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\preparation{
+\begin{ingredientcolumns}
+	\begin{ingredientblock}
+		\ingredient[1][lb]{ground beef}\\
+		\ingredient[\onehalf][lb]{tomatoes, cherry}\\
+		\ingredient[\onehalf][lb]{carrots}\\
+		\ingredient[1]{lime}\\
+		\ingredient[\onefourth][C]{jalepe\~{n}os, pickled}\\
+		\ingredient[\onefourth][C]{mayonnaise}\\
+		\ingredient[\approx 8][oz.]{cheese, cotija}\\
+		\ingredient[\approx 1][C]{rice}\\
+		\ingredient[\approx 3][\Tablespoon]{spice blend}
+	\end{ingredientblock}
+	\begin{ingredientblock}[spice blend]
+		\ingredient[2][\Tablespoon]{guajillo}\\
+		\ingredient[1][\Tablespoon]{ancho}\\
+		\ingredient[1][\Tablespoon]{paprika, smoked}\\
+		\ingredient[1][\Tablespoon]{cumin}\\
+		\ingredient[1][\Tablespoon]{marjoram}\\
+		\ingredient[\onehalf][\Tablespoon]{garlic powder}\\
+		\ingredient[\onehalf][\Tablespoon]{salt}
+	\end{ingredientblock}
+\end{ingredientcolumns}
 
-\step Begin to brown the beef in large saut\'{e} pan, stirring occasionally. Reach a strong color at end of recipe.
+\ragmarpar{for dried chilis: remove seeds, toast $\approx3\;min$ \@ $350\; \Fahrenheit$, grind}
 
-\step Dice carrots, toss with oil and spices.\\Preheat oven to $450 F^\circ$.
+\begin{preparation}
+\item Prepare ground spice blend; ahead of time if preferred.
 
-\step Begin cooking rice.
+\item Begin to brown the beef in large saut\'{e} pan, stirring occasionally. Reach a strong color at end of recipe.
 
-\step Roast carrots in oven on a cookie sheet, $12...14\;min$.
+\item Dice carrots, toss with oil and spices. Preheat oven to $450 \Fahrenheit$.
 
-\step Dice tomatoes, finely dice jalepe\~{n}os, combine with juice of 1/2 of lime, pickled jalepe\~{n}o juice to taste.
+\item Begin cooking rice.
 
-\step Add spices to beef ($\approx 3/4\; Tbs$) at end, cook $\approx1\; min$.\\Add $1/4\;C$ water, cook $2...3\;min$.
+\item Roast carrots in oven on a cookie sheet, $12...14\;min$.
 
-\step Combine mayonnaise and juice of 1/2 lime.\\Add pickled jalepe\~{n}o juice to taste.
+\item Dice tomatoes, finely dice jalepe\~{n}os, combine with juice of 1/2 of lime, pickled jalepe\~{n}o juice to taste.
 
-\step Serve by layering rice, beef, vegetables, pickled jalepe\~{n}os, cheese, mayonnaise.
+\item Add spices to beef ($\approx 3/4\; Tbs$) at end, cook $\approx1\; min$.\\Add $1/4\;C$ water, cook $2...3\;min$.
 
-\vspace{-2cm}
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item Combine mayonnaise and juice of 1/2 lime.\\Add pickled jalepe\~{n}o juice to taste.
 
-\hint{
-\begin{itemize}
-\item Chorizo works well in place of part or all of the beef. Season accordingly.
-\item Vary the amount of tomotoes, carrots, jalepe\~{n}os to taste. More carrots works particularly well.
-\item Cotija cheese is worth the effort to find it, but melted mozarella works too.
-\item Try replacing the rice with riced cauliflower. Cut into small pieces, chop in food processor with garlic, optionally frying in pan with or without oil.
-\item Ancho chili powder words particularly well.
-\item For the Guajillo powder, buy the dried chilies, remove the seeds, grind in a coffee grinder.
-\item The spice list is more of a guideline, experiment with the recipe, such as adding a few Arbol or another dried chili.
-\end{itemize}
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\setRecipeLengths{
-preparationwidth = 0.60\textwidth,
-ingredientswidth = 0.35\textwidth,
-pictureheight = 6cm,
-bigpicturewidth = 0.6\textwidth,
-smallpicturewidth = 0.35\textwidth
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\setRecipeSizes{
-recipename = \fontsize{25pt}{30pt},
-ing = \normalsize,
-inghead = \normalsize,
-prep = \normalsize,
-prephead = \normalsize,
-hint = \normalsize,
-hinthead = \Large
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\setRecipenameFont{
-%%pbsi
-%%fau
-%%fwb
-%%fjd % default when using the option handwritten
-%cmr % default
-%}{T1}{m}{n}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\setHeadlines{
-inghead = Ingredients,
-prephead = Preparation,
-hinthead = Hint,
-calory = Cal,
-continuationhead = Continuation,
-continuationfoot = Continuation on next page
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\setBackgroundPicture
-%[%
-%x = 2cm,
-%y = -1cm,
-%width=\paperwidth-3cm,
-%height,
-%orientation=pagecenter
-%]{pic/bg_transparent} % filepath
-\end{recipe}
+\item Serve by layering rice, beef, vegetables, pickled jalepe\~{n}os, cheese, mayonnaise.
+\end{preparation}
 
-%\clearpage
-%\thispagestyle{empty}
-% \begin{tikzpicture}[remember picture,overlay]
-   % inelegant way of getting a good image:
-   % use [keepaspectratio], trim to an aspect ratio close to the page, then remove [keepaspectraio] to get full page
-%   \node at (current page.center) {\includegraphics[width=\pdfpagewidth,height=\pdfpageheight,clip,trim={47px 10px 47px 10px}]{tricolor}};
-   % IMAGE: http://www.homemadeitaliancooking.com/italian-rainbow-cookies/
-%\end{tikzpicture}
+
+\begin{variation}
+\item Substitute riced cauliflower in place of rice. Cut into small pieces, chop in food processor with garlic, optionally pan fry.
+\item Substitute Chorizo in place of beef, reduce spices.
+\item Cotija cheese is worth the effort to find it, but mozzarella works.
+\item For convenience, regular pre-ground chili powder can replace the guajillo. Similarly ancho powder is readily available.
+\end{variation}
+
+\recipeend
