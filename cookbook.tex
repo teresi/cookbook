@@ -88,6 +88,9 @@ papersize={6in,9in},%
 \usepackage{longtable}
 \usepackage{ifthen}
 
+% NOTE what are the right settings for `nowidow` to work?
+% adding \noclub to variation env doesn't seem to work
+\usepackage[]{nowidow}  % wrecks tables so just load macros (no options)
 
 % NOTE what are the right inputs to have sections moved to new page
 % if they are too close to the bottom?
@@ -252,7 +255,6 @@ papersize={6in,9in},%
 
 \newenvironment{variation}%
 {
-	
 	\textbf{VARIATIONS}%
 	\begin{itemize}[label=\adforn{28},topsep=0pt,itemsep=0ex,partopsep=1ex,parsep=1ex]
 	}
@@ -487,13 +489,10 @@ papersize={6in,9in},%
 
 
 
-%\clearpage
-%\section{Cookies, Cakes}
-%
-%% background graphic
-%%\setBackgroundPicture[x, y=-2cm, width=\paperwidth-4cm, height, orientation = pagecenter]
-%%{pic/background}
-%\include{./desserts/ItalianTricolor}
+\chapter{Cookies, Cakes}
+\clearpage
+
+\input{./desserts/ItalianTricolor}
 %\include{./desserts/SchwarzWeissGebacks}
 %\include{./desserts/peppermint_fudge}
 %\include{./desserts/seven_layer_brownies}
