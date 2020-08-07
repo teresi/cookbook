@@ -92,6 +92,10 @@ papersize={6in,9in},%
 % adding \noclub to variation env doesn't seem to work
 \usepackage[]{nowidow}  % wrecks tables so just load macros (no options)
 
+\widowpenalty9000
+\clubpenalty9000
+
+
 % NOTE what are the right inputs to have sections moved to new page
 % if they are too close to the bottom?
 \usepackage[nobottomtitles]{titlesec}
@@ -202,8 +206,16 @@ papersize={6in,9in},%
 % wrapper around a multicols
 % Args:
 %     (int): number of columns, 2 if None
+\newcommand{\tempwidowpenalty}{\widowpenalty}
+\newcommand{\tempclubpenalty}{\clubpenalty}
 \NewDocumentEnvironment{ingredientcolumns}{O{2}}
 {
+	% temporarily reduce widow/club penalty
+	% so the long table still adds a column break
+	\renewcommand{\tempclubpenalty}{\clubpenalty}
+	\renewcommand{\tempwidowpenalty}{\widowpenalty}
+	\clubpenalty0
+	\widowpenalty0
 	\setlength\columnsep{1ex}
 	% NOTE is there a better way to fix the spacing?
 	% The 1col ingredientcolumns has weird spacing so add a skip
@@ -216,6 +228,8 @@ papersize={6in,9in},%
 	\end{multicols}
 	\par
 	\ifthenelse{\equal{#1}{1}}{\vskip1em}{}
+	\clubpenalty\tempclubpenalty
+	\widowpenalty\tempwidowpenalty
 }
 
 % ingredient for a 3 column tabular 
@@ -238,30 +252,33 @@ papersize={6in,9in},%
 {
 	\end{enumerate}
 	\par
-	\vspace{2ex}  % NOTE is there a more canonical solution?
+%	\vspace{2ex}  % NOTE is there a more canonical solution?
 }
 
 \newenvironment{experiments}%
 {
 	
-	\textbf{EXPERIMENTS}%
+	\paragraph{EXPERIMENTS}%
 	\begin{itemize}[label=\faFlask,topsep=0pt,itemsep=0ex,partopsep=1ex,parsep=1ex]
 	}
 	{
 	\end{itemize}
 	\par
-	\vspace{2ex}  % NOTE is there a more canonical solution?
+%	\vspace{2ex}  % NOTE is there a more canonical solution?
 }
 
 \newenvironment{variation}%
 {
-	\textbf{VARIATIONS}%
+%	\begin{samepage}
+%	\textbf{VARIATIONS}%
+	\paragraph{VARIATIONS}  % TODO use upper case font?
 	\begin{itemize}[label=\adforn{28},topsep=0pt,itemsep=0ex,partopsep=1ex,parsep=1ex]
 	}
 {
 	\end{itemize}
+%	\end{samepage}
 	\par
-	\vspace{2ex}  % NOTE is there a more canonical solution?
+%	\vspace{2ex}  % NOTE is there a more canonical solution?
 }
 
 % FUTURE wrap an input call to add this?
@@ -493,9 +510,9 @@ papersize={6in,9in},%
 \clearpage
 
 \input{./desserts/ItalianTricolor}
-%\include{./desserts/SchwarzWeissGebacks}
-%\include{./desserts/peppermint_fudge}
-%\include{./desserts/seven_layer_brownies}
+\input{./desserts/SchwarzWeissGebacks}
+\input{./desserts/peppermint_fudge}
+%\input{./desserts/seven_layer_brownies}
 %\include{./desserts/elegant_wine_cake}
 %
 %\clearpage
