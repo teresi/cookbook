@@ -24,6 +24,7 @@
 %   (SEE http://tex.my/creating-tiled-background-patterns/)
 % - add a flag for changing justification on the margin paragraphs (e.g. use justify, use ragged)
 % - add an alias for common measurements? e.g to replace \nicefrac{1}{4} etc.?
+% - update minutes / min to use commands, standardize to abbreviation?
 
 % Bugs:
 % - there may be a line skip on the ingredient tables (on top) when using multicols
@@ -42,7 +43,7 @@
 \usepackage{ragged2e}  % for \justify
 \usepackage{marginnote}
 \usepackage[%
-showframe,%
+%showframe,%
 twoside,%
 top=0.75in,%
 bottom=0.5in,%
@@ -216,7 +217,7 @@ papersize={6in,9in},%
 	\renewcommand{\tempwidowpenalty}{\widowpenalty}
 	\clubpenalty0
 	\widowpenalty0
-	\setlength\columnsep{1ex}
+	\setlength\columnsep{2ex}
 	% NOTE is there a better way to fix the spacing?
 	% The 1col ingredientcolumns has weird spacing so add a skip
 	\ifthenelse{\equal{#1}{1}}{\vskip1ex}{}
@@ -504,20 +505,18 @@ papersize={6in,9in},%
 \clearpage
 \input{./icecream/chocolate_icecream_joc}
 
-
-
 \chapter{Cookies, Cakes}
 \clearpage
 
 \input{./desserts/ItalianTricolor}
 \input{./desserts/SchwarzWeissGebacks}
 \input{./desserts/peppermint_fudge}
-%\input{./desserts/seven_layer_brownies}
-%\include{./desserts/elegant_wine_cake}
-%
-%\clearpage
-%\section{Pie}
-%\include{./desserts/basic_pie_pastry}
+\input{./desserts/seven_layer_brownies}
+\input{./desserts/elegant_wine_cake}
+
+\chapter{Pie}
+\clearpage
+\input{./desserts/basic_pie_pastry}
 %\include{./desserts/strawberry_rhubarb_pie}
 %\include{./desserts/lemon_meringue_pie}
 
