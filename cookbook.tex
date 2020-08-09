@@ -28,6 +28,7 @@
 % [ ] update `recipeabstract` to just `abstract`
 % [ ] don't use clearpage after chapter, or, add something to the cleared page?
 %     the clearpages use a lot of space but the recipes get split less?
+% [ ] add command to standardize order of ref w/ number, e.g. <section no.> <section title>
 
 % Bugs:
 % [ ] there may be a line skip on the ingredient tables (on top) when using multicols (sort of addressed by adding small spaces if using one col?)
@@ -46,7 +47,7 @@
 \usepackage{ragged2e}           % for \justify
 \usepackage{marginnote}         % notes in the margins
 \usepackage[%
-showframe,%
+%showframe,%
 twoside,%
 top=0.75in,%
 bottom=0.5in,%
@@ -71,10 +72,12 @@ papersize={6in,9in},%
 \usepackage{adforn}             % symbols
 \usepackage{amssymb}            % symbols
 \usepackage{xkeyval}            % commands w/ key / value
-\usepackage{GoudyIn,lettrine}   % a large first letter/number
-\renewcommand{\LettrineFontHook}{\GoudyInfamily{}}
-\LettrineTextFont{\itshape}
-\setcounter{DefaultLines}{3}%
+\usepackage{lettrine}   % a large first letter/number
+% GoudyIn font can't be embedded into the pdf
+%\usepackage{GoudyIn}   % a large first letter/number
+%\renewcommand{\LettrineFontHook}{\GoudyInfamily{}}
+%\LettrineTextFont{\itshape}
+%\setcounter{DefaultLines}{3}%
 
 \usepackage{ifthen}             % if statements
 \usepackage{longtable}          % column break table

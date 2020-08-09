@@ -1,0 +1,33 @@
+\begin{recipe}[
+    preparationtime = ,
+    bakingtime = ,
+    portion = ,
+    source = Eleanor
+]
+{Swedish Meatballs (Kottbullar)}
+\graph{
+    %small = strawberry,
+    smallpicturewidth = 0.3\textwidth,
+    %big = strawberrycake,
+    bigpicturewidth = 0.6\textwidth,
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ingredients{
+Meatballs:\\\\
+\unit[1 1/2]{lb} & round, ground\\
+\unit[3/4]{lb} & pork, ground\\
+\unit[3/4]{lb} & veal, ground\\
+\unit[3]{C} & bread crumbs, soft\\
+\unit[1/2]{C} & milk\\
+\unit[1/2]{C} & onion\\
+\unit[2]{Tbs} & parsley\\
+\unit[1/2]{tps} & ginger\\
+\unit[1 1/2]{C} & half \& half\\
+\unit[]{to taste} & salt / peppper\\
+\\
+Gravy:\\\\
+\unit[2]{Tbs} & flour\\
+\unit[1 1/2]{C} & half \& half\\
+\unit[1/2]{tps} & pan drippings\\
+\unit[1]{tps} & insant coffee\\
+Gravy (alternate):\\\\
