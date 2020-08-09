@@ -3,13 +3,12 @@
 Teresi family cookbook.
 
 - [cookbook.pdf (April 2020)](https://github.com/teresi/teresi.github.io/blob/master/cookbook/archive/cookbook_20200419.pdf)
-
+- [cookbook.pdf (August 2020)](https://github.com/teresi/teresi.github.io/blob/master/cookbook/archive/cookbook_20200809.pdf)
 
 ## HOW TO
-See `Makefile`
 
 ```bash
-make cookbook.pdf
+make cookbook.pdf  # creates the output PDF
 ```
 
 
@@ -46,16 +45,16 @@ Download the project, install LaTeX and an editor, then build the pdf.
 ## CONTRIBUTING
 
 1. create a new recipe file
-    - copy & rename `scripts/recipe_snippet.tex` to your desired folder.
+    - copy & rename `recipe_snippet.tex` to your desired folder.
 2. add the new recipe to the cookbok
-    - in `/cookbook.tex`, add an `\include{}` line to your desired chapter
+    - in `/cookbook.tex`, add an `\input{}` line to your desired chapter
     - `\section{Breakfast}                           % the chapter`
     - `\include{./breakfasts/eggscellent_challenge}  % your new filename (no extension)
-3. add images (optional)
-    - add images out of source, e.g. `/../cookbook_img`
+3. modify your new recipe using the commands provided in `recipe_snippet.tex`
+    - see Preface for a compiled example
 
 
-## TODO
+## FUTURE
 
 - [x] add custom layout (remove xcoookybooky)
 - [x] add custom style
@@ -68,7 +67,7 @@ Download the project, install LaTeX and an editor, then build the pdf.
 - [ ] add index by ingredient or keywords etc.
 - [ ] add calendar to icon matrix (default no entry), use \faCalendar0?
 - [ ] fix spacing for 1 col ingredients (before/after)
-- [ ] handle widows (`nowidow` brakes the tables, `titlesec` not working?)
+- [x] handle widows (`nowidow` brakes the tables, `titlesec` not working?)
 - [ ] add image collage
 - [ ] add switch to include images
 - [x] add bibliography
