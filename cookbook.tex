@@ -8,42 +8,45 @@
 %   (worked out better than both inner/outer notes for 6x9)
 %   (worked out better than twocolumn for 6x9)
 % - provides environments for formatting
-% - targets a recipe format of
+% - targets a recipe format of:
 %   abstract, ingredients (1 | 2 col), steps, variations
 % - images not included in this git repository for space
 %
 % Future:
-% - add temperature command w/ compile time switch between Fahrenheit / Centigrade
-% - add aliases for Tablespoon, teaspon, fluid oz, minutes etc
-% - add keywords / index
-% - add 'contents at a glance' (1 level) before contents
-% - add a new package and move environments there?
-% - add a compile time toggle for adding images
-% - add a matrix of images for multiple recipes
-% - add tessalation for page backround artwork
+% [ ] add temperature command w/ compile time switch between Fahrenheit / Centigrade
+% [x] add aliases for Tablespoon, teaspon, fluid oz, minutes etc
+% [ ] add keywords / index
+% [ ] add 'contents at a glance' (1 level) before contents
+% [ ] add a new package and move environments there?
+% [ ] add a compile time toggle for adding images
+% [ ] add a matrix of images for multiple recipes
+% [ ] add tessalation for page backround artwork
 %   (SEE http://tex.my/creating-tiled-background-patterns/)
-% - add a flag for changing justification on the margin paragraphs (e.g. use justify, use ragged)
-% - add an alias for common measurements? e.g to replace \nicefrac{1}{4} etc.?
-% - update minutes / min to use commands, standardize to abbreviation?
+% [ ] add a flag for changing justification on the margin paragraphs (e.g. use justify, use ragged)
+% [x] add an alias for common measurements? e.g to replace \nicefrac{1}{4} etc.?
+% [ ] update minutes / min to use commands, standardize to abbreviation?
+% [ ] update `recipeabstract` to just `abstract`
+% [ ] don't use clearpage after chapter, or, add something to the cleared page?
+%     the clearpages use a lot of space but the recipes get split less?
 
 % Bugs:
-% - there may be a line skip on the ingredient tables (on top) when using multicols
-% - marginnote used the wrong side of the page, possibly after the preface was added? had to use marginpar
-% - in xcookybooky couldn't use \cite[]{} (vs \cite{}) inside a recipe block? :  \begin{recipe}[source=\cite[]{}]{}
+% [ ] there may be a line skip on the ingredient tables (on top) when using multicols (sort of addressed by adding small spaces if using one col?)
+% [ ] marginnote used the wrong side of the page, possibly after the preface was added? had to use marginpar (maybe don't bother with a larger format 2 column, the 6x9" works pretty well and the auto column break in the ingredients appears to be a difficult issue to solve)
+% [x] in xcookybooky couldn't use \cite[]{} (vs \cite{}) inside a recipe block? :  \begin{recipe}[source=\cite[]{}]{} (solved by replacing xcookybooky w/ custom commands)
 
 % Recipes:
 % - can we get a southern style mac and cheese?
 % - can we get a canonical southern style collards?
 
+
 \documentclass[10pt]{book}
-\newcommand\ningredientcol{2}  % variable for number of columns for ingredient list
+\newcommand\ningredientcol{2}   % number of columns for ingredient list
 \usepackage[T1]{fontenc}
 \usepackage[latin1]{inputenc}
-
-\usepackage{ragged2e}  % for \justify
-\usepackage{marginnote}
+\usepackage{ragged2e}           % for \justify
+\usepackage{marginnote}         % notes in the margins
 \usepackage[%
-%showframe,%
+showframe,%
 twoside,%
 top=0.75in,%
 bottom=0.5in,%
@@ -52,64 +55,65 @@ marginparwidth=0.8in,%
 inner=0.875in,%
 outer=1.25in,%
 papersize={6in,9in},%
-]{geometry}
+]{geometry}                     % change physical dimensions
 
 %\usepackage[cam,letter,center]{crop} % show trim lines
 
-
-\usepackage{fancyhdr}
+\usepackage{fancyhdr}           % header / footers
 \pagestyle{empty}
-\usepackage{lmodern}
-\usepackage{lipsum}
-\usepackage[ngerman, english]{babel}
-\usepackage{graphicx}
-\usepackage{xcolor}
+\usepackage{lmodern}            % change font
+\usepackage{lipsum}             % dummy text
+\usepackage{graphicx}           % better graphics
 \usepackage[clock, misc]{ifsym} % symbols
-\usepackage{cookingsymbols}     % symbols e.g. \Oven, \Dish etc
+\usepackage{cookingsymbols}     % symbols
 \usepackage{tikzsymbols}        % symbols
 \usepackage{fontawesome}        % symbols
-\usepackage{xkeyval}
-\usepackage{lettrine} % a large first letter/number
-\usepackage{units}
-%\usepackage{eso-pic} % for background pictures
-%\usepackage{picture} % for modfifying the position of the bg pictures
-\usepackage{tabularx} % line breaks in tabular
-\usepackage{tikz}
-\usepackage{nicefrac}
-\usepackage{amssymb}
-\usepackage{paralist}
-\usepackage{multicol}
-\usepackage{xparse}  % positional arg defaults
-%\usepackage{tikzpagenodes}  % for printing marginnotes on correct side
-\usepackage{pgfornament}  % symbols
-\usepackage{nameref}      % ref section name etc. w/ \nameref
-\usepackage{adforn}
-\usepackage{enumitem}
-\setlist{leftmargin=*}  % don't indent lists
-\usepackage{longtable}
-\usepackage{ifthen}
+\usepackage{adforn}             % symbols
+\usepackage{amssymb}            % symbols
+\usepackage{xkeyval}            % commands w/ key / value
+\usepackage{GoudyIn,lettrine}   % a large first letter/number
+\renewcommand{\LettrineFontHook}{\GoudyInfamily{}}
+\LettrineTextFont{\itshape}
+\setcounter{DefaultLines}{3}%
+
+\usepackage{ifthen}             % if statements
+\usepackage{longtable}          % column break table
+\usepackage{multicol}           % multiple columns
+\usepackage{tabularx}           % tabular w/ more features
+\usepackage{nicefrac}           % typeset fractions
+\usepackage{paralist}           % in-text enums
+\usepackage{xparse}             % positional arg defaults
+%\usepackage{tikzpagenodes}     % for printing marginnotes on correct side
+\usepackage{pgfornament}        % symbols
+\usepackage{nameref}            % ref section name etc. w/ \nameref
+\usepackage{enumitem}           % better enumerations
+\setlist{leftmargin=*}          % don't indent lists
+\usepackage{sectsty}            % access sectional units
 
 % NOTE what are the right settings for `nowidow` to work?
 % adding \noclub to variation env doesn't seem to work
-\usepackage[]{nowidow}  % wrecks tables so just load macros (no options)
-
+% wrecks ingredient so just load macros (no options)
+\usepackage[]{nowidow}          % prevent widows / orphans
 \widowpenalty9000
 \clubpenalty9000
 
-
 % NOTE what are the right inputs to have sections moved to new page
 % if they are too close to the bottom?
-\usepackage[nobottomtitles]{titlesec}
+%\usepackage[nobottomtitles]{titlesec}  % better section placement
 %\titlespacing*{\section}{12pt}{48pt}{4pt}
 %\usepackage[defaultlines=4,all]{nowidow}  % nowidow breaks the ingredient tables
 
-\usepackage{sectsty}  % access sectional units
-\usepackage{fancyhdr}
-\usepackage[backend=bibtex]{biblatex}
+% unused packages
+%\usepackage{tikz}
+%\usepackage{units}
+%\usepackage{eso-pic} % for background pictures
+%\usepackage{picture} % for modfifying the position of the bg pictures
+%\usepackage{xcolor}  % driver independant colors
 
+\usepackage[backend=bibtex]{biblatex}
 \bibliography{bib}
 
-\usepackage{hyperref}    % must be the last package
+\usepackage{hyperref}    % links etc. (must be the last package)
 \hypersetup{%
 	pdfauthor            = {Michael Teresi},
 	pdftitle             = {Teresi Family Cookbook},
@@ -153,14 +157,6 @@ papersize={6in,9in},%
 	% BUG a multicols doesn't left justify the icons?
 	% FUTURE using a multicols may be preferred so that missing icons aren't just blank cells
 	\begin{tabular}{clcl}
-		\tl_if_empty:NTF \l_mymodule_servings_tl
-		{& &}
-		{\Dish & \l_mymodule_servings_tl &}
-		
-		\tl_if_empty:NTF \l_mymodule_source_tl
-		{& \\}
-		{\PaperLandscape & \l_mymodule_source_tl \\}
-		
 		\tl_if_empty:NTF \l_mymodule_preptime_tl
 		{& &}
 		{\Gloves & \l_mymodule_preptime_tl &}
@@ -168,6 +164,14 @@ papersize={6in,9in},%
 		\tl_if_empty:NTF \l_mymodule_bakingtime_tl
 		{& \\}
 		{\oven & \l_mymodule_bakingtime_tl \\}
+		
+		\tl_if_empty:NTF \l_mymodule_servings_tl
+		{& &}
+		{\Dish & \l_mymodule_servings_tl &}
+		
+		\tl_if_empty:NTF \l_mymodule_source_tl
+		{& \\}
+		{\PaperLandscape & \l_mymodule_source_tl \\}
 }
 {
 	\end{tabular}
@@ -222,7 +226,6 @@ papersize={6in,9in},%
 	% The 1col ingredientcolumns has weird spacing so add a skip
 	\ifthenelse{\equal{#1}{1}}{\vskip1ex}{}
 	\centering
-	\noindent
 	\begin{multicols}{#1}
 }
 {
@@ -284,7 +287,7 @@ papersize={6in,9in},%
 
 % FUTURE wrap an input call to add this?
 \newcommand{\recipeend}[0]{
-	{\centering \pgfornament[scale=0.55]{88} \par}
+	{\centering \pgfornament[scale=0.55]{88} \smallbreak}
 }
 
 % marginpar with ragged justification
@@ -330,7 +333,6 @@ papersize={6in,9in},%
 \fancyhead[LE,RO]{\changefont \slshape \rightmark} %section
 \fancyhead[RE,LO]{\changefont \slshape \leftmark} %chapter
 \fancyfoot[C]{\changefont \thepage} %footer
-
 
 
 %% wrapper around a multicols
@@ -501,13 +503,16 @@ papersize={6in,9in},%
 	\input{./hot_sauce/red_three}
 }
 
+\chapter{Pickles}
+\clearpage
+\input{./pickles/quick_jalepenos}
+
 \chapter{Ice Cream}
 \clearpage
 \input{./icecream/chocolate_icecream_joc}
 
 \chapter{Cookies, Cakes}
 \clearpage
-
 \input{./desserts/ItalianTricolor}
 \input{./desserts/SchwarzWeissGebacks}
 \input{./desserts/peppermint_fudge}
@@ -517,8 +522,8 @@ papersize={6in,9in},%
 \chapter{Pie}
 \clearpage
 \input{./desserts/basic_pie_pastry}
-%\include{./desserts/strawberry_rhubarb_pie}
-%\include{./desserts/lemon_meringue_pie}
+\input{./desserts/strawberry_rhubarb_pie}
+\input{./desserts/lemon_meringue_pie}
 
 \clearpage
 \addcontentsline{toc}{chapter}{References}
