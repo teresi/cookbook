@@ -29,11 +29,13 @@
 % [ ] don't use clearpage after chapter, or, add something to the cleared page?
 %     the clearpages use a lot of space but the recipes get split less?
 % [ ] add command to standardize order of ref w/ number, e.g. <section no.> <section title>
+% [ ] replace minitoc w/ title https://tex.stackexchange.com/questions/65412/minitoc-with-two-column-content
 
 % Bugs:
 % [ ] there may be a line skip on the ingredient tables (on top) when using multicols (sort of addressed by adding small spaces if using one col?)
 % [ ] marginnote used the wrong side of the page, possibly after the preface was added? had to use marginpar (maybe don't bother with a larger format 2 column, the 6x9" works pretty well and the auto column break in the ingredients appears to be a difficult issue to solve)
 % [x] in xcookybooky couldn't use \cite[]{} (vs \cite{}) inside a recipe block? :  \begin{recipe}[source=\cite[]{}]{} (solved by replacing xcookybooky w/ custom commands)
+% [ ] titlesec / nobottomtitles moves the variation/experiments (paragaphs) to the next page too much (can we make it not apply to paragraphs?)
 
 % Recipes:
 % - can we get a southern style mac and cheese?
@@ -47,13 +49,13 @@
 \usepackage{ragged2e}           % for \justify
 \usepackage{marginnote}         % notes in the margins
 \usepackage[%
-%showframe,%
+showframe,%
 twoside,%
 top=0.75in,%
 bottom=0.5in,%
-marginparsep=3ex,%
+marginparsep=0.2in,%
 marginparwidth=0.8in,%
-inner=0.875in,%
+inner=0.75in,%  3/4" inner looks good
 outer=1.25in,%
 papersize={6in,9in},%
 ]{geometry}                     % change physical dimensions
@@ -92,6 +94,7 @@ papersize={6in,9in},%
 \usepackage{enumitem}           % better enumerations
 \setlist{leftmargin=*}          % don't indent lists
 \usepackage{sectsty}            % access sectional units
+\usepackage{minitoc}
 
 % NOTE what are the right settings for `nowidow` to work?
 % adding \noclub to variation env doesn't seem to work
@@ -102,7 +105,7 @@ papersize={6in,9in},%
 
 % NOTE what are the right inputs to have sections moved to new page
 % if they are too close to the bottom?
-%\usepackage[nobottomtitles]{titlesec}  % better section placement
+\usepackage[nobottomtitles]{titlesec}  % better section placement
 %\titlespacing*{\section}{12pt}{48pt}{4pt}
 %\usepackage[defaultlines=4,all]{nowidow}  % nowidow breaks the ingredient tables
 
@@ -204,6 +207,7 @@ papersize={6in,9in},%
 	\tl_if_blank:nTF {#1}
 	{}  % empty
 	{\textit{#1}\\}  % not empty
+	\setlength{\tabcolsep}{1ex}
 	\begin{tabular}[t]{rl>{\bfseries}l}
 }
 {
@@ -224,7 +228,7 @@ papersize={6in,9in},%
 	\renewcommand{\tempwidowpenalty}{\widowpenalty}
 	\clubpenalty0
 	\widowpenalty0
-	\setlength\columnsep{2ex}
+	\setlength\columnsep{0.5ex}
 	% NOTE is there a better way to fix the spacing?
 	% The 1col ingredientcolumns has weird spacing so add a skip
 	\ifthenelse{\equal{#1}{1}}{\vskip1ex}{}
@@ -457,31 +461,43 @@ papersize={6in,9in},%
 }
 \end{titlepage}
 
+\dominitoc  % enable mini table of contents
+\nomtcrule  % disable horizontal rule lines in minitoc
+
 \tableofcontents
+
+
 \chapter*{Preface}
+\enlargethispage{5\baselineskip}  % help the recipe snippet get onto one page
 \addcontentsline{toc}{chapter}{Preface}
 \input{preface}
 \input{recipe_snippet}
-\nopagebreak
+\clearpage
 
 \mainmatter
 
+\setcounter{mtc}{0}  % minitoc, reset to first chapter
+\mtcaddchapter       % minitoc, required at first chapter
 \chapter{Breakfast}
+\minitoc
 \clearpage
 \input{./breakfasts/egg_bites}
 \input{./entrees/spinach_quiche}
 
 \chapter{Soup}
+\minitoc
 \clearpage
 \input{./soups/gumbo_thanksgiving}
 \input{./soups/cajun_crabmeat_bisque}
 
 \chapter{Sides}
+\minitoc
 \clearpage
 \input{./vegetables/collards_thanksgiving}
 \input{./sides/mac_and_cheese}
 
 \chapter{Entr\`{e}es}
+\minitoc
 \clearpage
 \input{./entrees/mexican_beef_bowl}
 \input{./entrees/fettuccine_alfredo}
@@ -489,32 +505,37 @@ papersize={6in,9in},%
 \input{./entrees/chili_colorado}
 \input{./entrees/chili_schwarz}
 \input{./entrees/hoola_poola}
+\input{./entrees/eggplant_lasagna}
 
 \chapter{Bread}
+\minitoc
 \clearpage
 \input{./bread/focaccia}
 
 \chapter{Hot Sauce}
+\minitoc
 \clearpage
 {
 \input{./hot_sauce/base_lacto_brine}
 	\section[Red Hot Sauce]{Fermented Red Hot Sauce}
 	\let\section\subsection
 	\let\subsection\subsubsection
-	
 	% use \input (not \include) to remove page breaks
 	\input{./hot_sauce/red_three}
 }
 
 \chapter{Pickles}
+\minitoc
 \clearpage
 \input{./pickles/quick_jalepenos}
 
 \chapter{Ice Cream}
+\minitoc
 \clearpage
 \input{./icecream/chocolate_icecream_joc}
 
 \chapter{Cookies, Cakes}
+\minitoc
 \clearpage
 \input{./desserts/ItalianTricolor}
 \input{./desserts/SchwarzWeissGebacks}
@@ -523,6 +544,7 @@ papersize={6in,9in},%
 \input{./desserts/elegant_wine_cake}
 
 \chapter{Pie}
+\minitoc
 \clearpage
 \input{./desserts/basic_pie_pastry}
 \input{./desserts/strawberry_rhubarb_pie}
