@@ -10,6 +10,8 @@
 **.*fls
 **.*fdb_latexmk
 **.*swp
+**.*idx
+**.*ilg
 cookbook-blx.bib
 cookbook.bbl
 cookbook.blg
