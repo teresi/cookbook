@@ -24,15 +24,22 @@
 %   (SEE http://tex.my/creating-tiled-background-patterns/)
 % [ ] add a flag for changing justification on the margin paragraphs (e.g. use justify, use ragged)
 % [x] add an alias for common measurements? e.g to replace \nicefrac{1}{4} etc.?
-% [ ] update minutes / min to use commands, standardize to abbreviation?
 % [ ] update `recipeabstract` to just `abstract`
 % [ ] don't use clearpage after chapter, or, add something to the cleared page?
 %     the clearpages use a lot of space but the recipes get split less?
 % [ ] add command to standardize order of ref w/ number, e.g. <section no.> <section title>
 % [ ] replace minitoc w/ title https://tex.stackexchange.com/questions/65412/minitoc-with-two-column-content
-% [ ] get `webomints` symbols working (for symbols)
+% [ ] get `webomints` symbols working
 % [ ] add a vegan / vegetarian marking (\faLeaf ?) on the recipe name? or in the stats?
-% [ ] standardize cook / prep times
+% [ ] update minutes / min to use commands, standardize to abbreviation? (min / hr)
+%     this will be good to reduce column size in recipe stats entries
+% [ ] add fan time / vegan to recitpe stats (optionall)
+%     prep   electric  fan
+%     yield  source    vegan / veg
+% [ ] add section in preface on abbreviations used (e.g. Tbs/tsp, min/hr...)
+% [ ] standardize spacing on NxYxZ etc, see makecookbook
+
+
 
 % Bugs:
 % [ ] there may be a line skip on the ingredient tables (on top) when using multicols (sort of addressed by adding small spaces if using one col?)
@@ -58,7 +65,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[latin1]{inputenc}
 \usepackage{ragged2e}           % for \justify
-\usepackage{marginnote}         % notes in the margins
+\usepackage[fulladjust]{marginnote}         % notes in the margins
 \usepackage[%
 showframe,%
 twoside,%
@@ -151,7 +158,7 @@ papersize={6in,9in},%
 	filecolor            = {black},
 }
 
-%\hbadness=10000	% Ignore underfull boxes
+\hbadness=1000	% limit reporting on overfull horz boxes
 
 % FUTURE move to env variable?
 \graphicspath{}  % use out of source path
@@ -324,6 +331,9 @@ papersize={6in,9in},%
 
 
 % abbreviations / aliases
+\newcommand\minute{\ensuremath{min}}
+\newcommand\hour{\ensuremath{hr}}
+
 \newcommand\onehalf{\nicefrac{1}{2}}
 \newcommand\onethird{\nicefrac{1}{3}}
 \newcommand\onefourth{\nicefrac{1}{4}}
@@ -337,7 +347,7 @@ papersize={6in,9in},%
 
 \newcommand\Tablespoon{Tbs}
 \newcommand\teaspoon{tsp}
-\newcommand\Celsius{\ensuremath{C\^\circ}}
+\newcommand\Celsius{\ensuremath{C^\circ}}
 \newcommand\Fahrenheit{\ensuremath{F^\circ}}
 \newcommand\ounce{\ensuremath{oz}}
 \newcommand\fluidounce{\ensuremath{fl\;oz}}
@@ -441,6 +451,9 @@ papersize={6in,9in},%
 	\fi
 }
 
+% show a vegan symbol on the margin?
+%\def\vegan#1{\marginpar[\sloppy\RaggedLeft\hspace{0pt}#1]{\sloppy\RaggedRight\hspace{0pt}#1}}
+\def\vegan#1{\marginpar{\Large\faLeaf}}
 
 \begin{document}
 
