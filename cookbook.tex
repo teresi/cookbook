@@ -177,28 +177,38 @@ papersize={6in,9in},%
 	preptime .tl_set:N = \l_mymodule_preptime_tl,
 	bakingtime .tl_set:N = \l_mymodule_bakingtime_tl,
 	source .tl_set:N = \l_mymodule_source_tl,
+	convectiontime .tl_set:N = \l_mymodule_convectiontime_tl,
+	vegetarian .tl_set:N = \l_mymodule_vegetarian_tl,
 }
 \NewDocumentEnvironment{recipestats}{O{}}
 {
 	\keys_set:nn { mymodule/recipestats } { #1 }
 	% BUG a multicols doesn't left justify the icons?
 	% FUTURE using a multicols may be preferred so that missing icons aren't just blank cells
-	\begin{tabular}{clcl}
+	\begin{tabular}{clclcl}
 		\tl_if_empty:NTF \l_mymodule_preptime_tl
 		{& &}
 		{\Gloves & \l_mymodule_preptime_tl &}
 		
 		\tl_if_empty:NTF \l_mymodule_bakingtime_tl
-		{& \\}
-		{\oven & \l_mymodule_bakingtime_tl \\}
+		{& &}
+		{\oven & \l_mymodule_bakingtime_tl &}
 		
+		\tl_if_empty:NTF \l_mymodule_convectiontime_tl
+		{& \\}
+		{\Fanoven & \l_mymodule_convectiontime_tl \\}
+
 		\tl_if_empty:NTF \l_mymodule_servings_tl
 		{& &}
 		{\Dish & \l_mymodule_servings_tl &}
 		
 		\tl_if_empty:NTF \l_mymodule_source_tl
+		{& &}
+		{\PaperLandscape & \l_mymodule_source_tl &}
+
+		\tl_if_empty:NTF \l_mymodule_vegetarian_tl
 		{& \\}
-		{\PaperLandscape & \l_mymodule_source_tl \\}
+		{\faLeaf & \l_mymodule_vegetarian_tl \\}
 }
 {
 	\end{tabular}
