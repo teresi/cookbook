@@ -120,15 +120,16 @@ papersize={6in,9in},%
 % NOTE what are the right settings for `nowidow` to work?
 % adding \noclub to variation env doesn't seem to work
 % wrecks ingredient so just load macros (no options)
-\usepackage[]{nowidow}          % prevent widows / orphans
-\widowpenalty9000
-\clubpenalty9000
+%\usepackage[]{nowidow}          % prevent widows / orphans
+\widowpenalty8000
+\clubpenalty8000
+%\postdisplaypenalty1000
 
-% NOTE what are the right inputs to have sections moved to new page
-% if they are too close to the bottom?
-\usepackage[nobottomtitles]{titlesec}  % better section placement
-%\titlespacing*{\section}{12pt}{48pt}{4pt}
-%\usepackage[defaultlines=4,all]{nowidow}  % nowidow breaks the ingredient tables
+\usepackage[nobottomtitles*]{titlesec}  % better section placement
+% space at bottom to move titles to next page
+\renewcommand{\bottomtitlespace}{0.1\textheight}  % default 0.2\textheight
+% space left, before, after section
+\titlespacing*{\section}{0em}{4ex plus 4ex minus 4ex}{1ex}
 
 % unused packages
 %\usepackage{tikz}
@@ -299,7 +300,6 @@ papersize={6in,9in},%
 
 \newenvironment{experiments}%
 {
-	
 	\paragraph{EXPERIMENTS}%
 	\begin{itemize}[label=\faFlask,topsep=0pt,itemsep=0ex,partopsep=1ex,parsep=1ex]
 	}
