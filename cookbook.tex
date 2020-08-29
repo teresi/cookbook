@@ -127,7 +127,7 @@ papersize={6in,9in},%
 
 \usepackage[nobottomtitles*]{titlesec}  % better section placement
 % space at bottom to move titles to next page
-\renewcommand{\bottomtitlespace}{0.1\textheight}  % default 0.2\textheight
+\renewcommand{\bottomtitlespace}{0.12\textheight}  % default 0.2\textheight
 % space left, before, after section
 \titlespacing*{\section}{0em}{4ex plus 4ex minus 4ex}{1ex}
 
@@ -254,6 +254,7 @@ papersize={6in,9in},%
 \newcommand{\tempclubpenalty}{\clubpenalty}
 \NewDocumentEnvironment{ingredientcolumns}{O{2}}
 {
+	\smallskip  % add a skip so it can break properly
 	% temporarily reduce widow/club penalty
 	% so the long table still adds a column break
 	\renewcommand{\tempclubpenalty}{\clubpenalty}
