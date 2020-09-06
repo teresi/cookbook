@@ -67,7 +67,7 @@
 \usepackage{ragged2e}           % for \justify
 \usepackage[fulladjust]{marginnote}         % notes in the margins
 \usepackage[%
-showframe,%
+%showframe,%
 twoside,%
 top=0.75in,%
 bottom=0.5in,%
@@ -574,7 +574,14 @@ papersize={6in,9in},%
 \chapter{Pickles}
 \minitoc
 \clearpage
-\input{./pickles/quick_jalepenos}
+\input{./pickles/quick_pickles}
+{
+	\let\section\subsection
+	\let\subsection\subsubsection
+	\input{./pickles/red_onion}
+	\input{./pickles/jalepenos}
+	\input{./pickles/radishes}
+}
 
 \chapter{Ice Cream}
 \minitoc
