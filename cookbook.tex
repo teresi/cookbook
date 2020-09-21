@@ -12,10 +12,29 @@
 %   abstract, ingredients (1 | 2 col), steps, variations
 % - images not included in this git repository for space
 %
+% Future recipes:
+% [ ] barbeque rubs
+% [ ] kuchen
+% [ ] quick kuchen
+% [ ] breakfast casserole / Christmas
+% [ ] yeast pancakes? (overnight)
+% [ ] japanese pancakes
+% [ ] Bob's rice crispies
+% [ ] southern style mac and cheese
+% [ ] canonical southern style collards
+% [ ] 'bachelor chow`, chickpea chorizo
+% [ ] 'bachelor chow`, chicken soup
+% [ ] 'bachelor chow`, barley gruel
+% [ ] 'bachelor chow`, cabbage and keilbasa
+% [ ] drink, caiparinha
+% [ ] drink, mummy juice
+% [ ] drink, limeaide & scotch for wedding signature drink
+
 % Future:
+% [ ] add section in preface on abbreviations used (e.g. Tbs/tsp, min/hr...)
 % [ ] add temperature command w/ compile time switch between Fahrenheit / Centigrade
 % [x] add aliases for Tablespoon, teaspon, fluid oz, minutes etc
-% [ ] add keywords / index
+% [x] add keywords / index
 % [ ] add 'contents at a glance' (1 level) before contents
 % [ ] add a new package and move environments there?
 % [ ] add a compile time toggle for adding images
@@ -30,15 +49,13 @@
 % [ ] add command to standardize order of ref w/ number, e.g. <section no.> <section title>
 % [ ] replace minitoc w/ title https://tex.stackexchange.com/questions/65412/minitoc-with-two-column-content
 % [ ] get `webomints` symbols working
-% [ ] add a vegan / vegetarian marking (\faLeaf ?) on the recipe name? or in the stats?
-% [ ] update minutes / min to use commands, standardize to abbreviation? (min / hr)
+% [x] add a vegan / vegetarian marking (\faLeaf ?) on the recipe name? or in the stats?
+% [x] update minutes / min to use commands, standardize to abbreviation? (min / hr)
 %     this will be good to reduce column size in recipe stats entries
-% [ ] add fan time / vegan to recitpe stats (optionall)
+% [x] add fan time / vegan to recitpe stats (optionall)
 %     prep   electric  fan
 %     yield  source    vegan / veg
-% [ ] add section in preface on abbreviations used (e.g. Tbs/tsp, min/hr...)
 % [ ] standardize spacing on NxYxZ etc, see makecookbook
-
 
 
 % Bugs:
@@ -46,18 +63,6 @@
 % [ ] marginnote used the wrong side of the page, possibly after the preface was added? had to use marginpar (maybe don't bother with a larger format 2 column, the 6x9" works pretty well and the auto column break in the ingredients appears to be a difficult issue to solve)
 % [x] in xcookybooky couldn't use \cite[]{} (vs \cite{}) inside a recipe block? :  \begin{recipe}[source=\cite[]{}]{} (solved by replacing xcookybooky w/ custom commands)
 % [ ] titlesec / nobottomtitles moves the variation/experiments (paragaphs) to the next page too much (can we make it not apply to paragraphs?)
-
-% Recipes:
-% - barbeque rubs
-% - coffee cake
-% - breakfast casserole / Christmas
-% - Emma's pretzels
-% - yeast pancakes? (overnight)
-% - japanese pancakes
-% - Bob's rice crispies
-% - 
-% - can we get a southern style mac and cheese?
-% - can we get a canonical southern style collards?
 
 
 \documentclass[10pt]{book}
@@ -363,6 +368,7 @@ papersize={6in,9in},%
 \newcommand\ounce{\ensuremath{oz}}
 \newcommand\fluidounce{\ensuremath{fl\;oz}}
 \newcommand\quart{\ensuremath{quart}}
+\newcommand\pound{\ensuremath{lb}}
 
 \newcommand\Celsius{\ensuremath{C^\circ}}
 \newcommand\Fahrenheit{\ensuremath{F^\circ}}
@@ -535,6 +541,7 @@ papersize={6in,9in},%
 \clearpage
 \input{./soups/gumbo_thanksgiving}
 \input{./soups/cajun_crabmeat_bisque}
+\input{./soups/hearty_italian_sausage}
 
 \chapter{Sides}
 \minitoc
