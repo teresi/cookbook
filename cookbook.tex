@@ -99,6 +99,7 @@ papersize={6in,9in},%
 \usepackage{adforn}             % symbols
 \usepackage{amssymb}            % symbols
 \usepackage{xkeyval}            % commands w/ key / value
+\usepackage{varioref}           % references decorated w/ page numbers
 \usepackage{lettrine}   % a large first letter/number
 % GoudyIn font can't be embedded into the pdf
 %\usepackage{GoudyIn}   % a large first letter/number
@@ -132,9 +133,15 @@ papersize={6in,9in},%
 \clubpenalty8000
 %\postdisplaypenalty1000
 
+% MAGIC NUMBER
+% don't start a recipe at the bottom of the page
+% *but also* don't split a recipe across pages...
+% large bottomtitlespace seems to move paragraphs to new pages
+% this could use some improvement but is difficult b/c it also
+% interacts poorly with the double column ingredients and titlespacing
 \usepackage[nobottomtitles*]{titlesec}  % better section placement
 % space at bottom to move titles to next page
-\renewcommand{\bottomtitlespace}{0.12\textheight}  % default 0.2\textheight
+\renewcommand{\bottomtitlespace}{0.04\textheight}  % default 0.2\textheight
 % space left, before, after section
 \titlespacing*{\section}{0em}{4ex plus 4ex minus 4ex}{1ex}
 
@@ -333,7 +340,9 @@ papersize={6in,9in},%
 
 % FUTURE wrap an input call to add this?
 \newcommand{\recipeend}[0]{
-	{\centering \pgfornament[scale=0.55]{88} \smallbreak}
+	% small break to center ornament
+	% skip to give space after ornament
+	{\centering \pgfornament[scale=0.55]{88}\smallbreak \smallskip}
 }
 
 % marginpar with ragged justification
@@ -347,8 +356,14 @@ papersize={6in,9in},%
 	{\marginpar{\RaggedLeft #1}}
 }
 
+% reference for a label w/ name, section, page number
+% <title> <section #> <on page...>
+\newcommand\reffull[1]{%
+	\nameref{#1} \vref{#1}%
+}
 
 % abbreviations / aliases
+% use math mode for units for consistent style
 \newcommand\second{\ensuremath{sec}}
 \newcommand\minute{\ensuremath{min}}
 \newcommand\hour{\ensuremath{hr}}
@@ -377,6 +392,8 @@ papersize={6in,9in},%
 
 \newcommand\milliliter{\ensuremath{ml}}
 \newcommand\gram{\ensuremath{g}}
+
+\newcommand\inch{\ensuremath{inch}}
 
 
 \frenchspacing
@@ -569,6 +586,7 @@ papersize={6in,9in},%
 \input{./entrees/hoola_poola}
 \input{./entrees/steak_argintine}
 \input{./entrees/lasagna}
+\input{./entrees/pork_al_pastor}
 
 \chapter{Bread}
 \minitoc
@@ -594,6 +612,13 @@ papersize={6in,9in},%
 	\input{./hot_sauce/red_04}
 }
 
+\chapter{Marinades, Rubs}
+\minitoc
+\clearpage
+\input{./marinades/achiote_paste}
+\input{./marinades/al_pastor_marinade}
+
+
 \chapter{Pickles}
 \minitoc
 \clearpage
@@ -601,9 +626,9 @@ papersize={6in,9in},%
 {
 	\let\section\subsection
 	\let\subsection\subsubsection
-	\input{./pickles/red_onion}
-	\input{./pickles/jalepenos}
-	\input{./pickles/radishes}
+	\input{./pickles/quick_red_onion}
+	\input{./pickles/quick_jalepenos}
+	\input{./pickles/quick_radishes}
 }
 
 \chapter{Ice Cream}
