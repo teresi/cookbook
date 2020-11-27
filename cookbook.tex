@@ -36,11 +36,13 @@
 % [ ] coquito
 
 % Future:
+% [ ] add section in back to explain units (tsp, etc.)
+% [ ] add command for in-text reference to standardize (e.g. <section> <title> <page>)
 % [ ] add section in preface on abbreviations used (e.g. Tbs/tsp, min/hr...)
 % [ ] add temperature command w/ compile time switch between Fahrenheit / Centigrade
 % [x] add aliases for Tablespoon, teaspon, fluid oz, minutes etc
 % [x] add keywords / index
-% [ ] add 'contents at a glance' (1 level) before contents
+% [x] add 'contents at a glance' (1 level) before contents
 % [ ] add a new package and move environments there?
 % [ ] add a compile time toggle for adding images
 % [ ] add a matrix of images for multiple recipes
@@ -70,14 +72,14 @@
 % [ ] titlesec / nobottomtitles moves the variation/experiments (paragaphs) to the next page too much (can we make it not apply to paragraphs?)
 
 
-\documentclass[10pt]{book}
+\documentclass[9pt]{book}
 \newcommand\ningredientcol{2}   % number of columns for ingredient list
 \usepackage[T1]{fontenc}
 \usepackage[latin1]{inputenc}
 \usepackage{ragged2e}           % for \justify
 \usepackage[fulladjust]{marginnote}         % notes in the margins
 \usepackage[%
-showframe,%
+%showframe,%
 twoside,%
 top=0.75in,%
 bottom=0.5in,%
@@ -615,11 +617,12 @@ papersize={6in,9in},%
 	\input{./hot_sauce/red_04}
 }
 
-\chapter{Marinades, Rubs}
+\chapter{Marinades \& etc.}
 \minitoc
 \clearpage
 \input{./marinades/achiote_paste}
 \input{./marinades/al_pastor_marinade}
+\input{./marinades/ham_honey_mustard}
 
 
 \chapter{Pickles}
@@ -647,6 +650,7 @@ papersize={6in,9in},%
 \input{./desserts/peppermint_fudge}
 \input{./desserts/seven_layer_brownies}
 \input{./desserts/elegant_wine_cake}
+%\input{./desserts/almond_spekulatius}
 
 \chapter{Pie}
 \minitoc
