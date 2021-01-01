@@ -37,6 +37,7 @@
 % [ ] coquito
 
 % Future:
+% [ ] add support for vertical spacing to \ragmarpar (e.g \marginnote[horz]{text}[vert]
 % [ ] add an 'original recipe' source to icons (\faBook)
 %     (move vegetarian back to margin? make source / original-source same column
 % [ ] add section in back to explain units (tsp, etc.)
@@ -200,8 +201,8 @@ papersize={6in,9in},%
 	preptime .tl_set:N = \l_mymodule_preptime_tl,
 	bakingtime .tl_set:N = \l_mymodule_bakingtime_tl,
 	source .tl_set:N = \l_mymodule_source_tl,
+	original .tl_set:N = \l_mymodule_origin_tl,
 	convectiontime .tl_set:N = \l_mymodule_convectiontime_tl,
-	vegetarian .tl_set:N = \l_mymodule_vegetarian_tl,
 }
 \NewDocumentEnvironment{recipestats}{O{}}
 {
@@ -217,21 +218,21 @@ papersize={6in,9in},%
 		{& &}
 		{\oven & \l_mymodule_bakingtime_tl &}
 		
-		\tl_if_empty:NTF \l_mymodule_convectiontime_tl
+		\tl_if_empty:NTF \l_mymodule_source_tl
 		{& \\}
-		{\Fanoven & \l_mymodule_convectiontime_tl \\}
+		{\PaperLandscape & \l_mymodule_source_tl \\}
 
 		\tl_if_empty:NTF \l_mymodule_servings_tl
 		{& &}
 		{\Dish & \l_mymodule_servings_tl &}
 		
-		\tl_if_empty:NTF \l_mymodule_source_tl
+		\tl_if_empty:NTF \l_mymodule_convectiontime_tl
 		{& &}
-		{\PaperLandscape & \l_mymodule_source_tl &}
+		{\Fanoven & \l_mymodule_convectiontime_tl &}
 
-		\tl_if_empty:NTF \l_mymodule_vegetarian_tl
+		\tl_if_empty:NTF \l_mymodule_origin_tl
 		{& \\}
-		{\faLeaf & \l_mymodule_vegetarian_tl \\}
+		{\faBook & \l_mymodule_origin_tl \\}
 }
 {
 	\end{tabular}
@@ -360,6 +361,8 @@ papersize={6in,9in},%
 \newcommand\ragmarpar[1]{%
 	\stepcounter{pl}\label{pl-\thepl}%
 	\ifthenelse{\isodd{\pageref{pl-\thepl}}}%
+	%\marginnote adds spacing between recipes steps
+	% (and also causes problems with justification?)
 	{\marginpar{\RaggedLeft \it{#1}}}
 	{\marginpar{\RaggedRight \it{#1}}}
 }
@@ -503,9 +506,20 @@ papersize={6in,9in},%
 	\fi
 }
 
-% show a vegan symbol on the margin?
-%\def\vegan#1{\marginpar[\sloppy\RaggedLeft\hspace{0pt}#1]{\sloppy\RaggedRight\hspace{0pt}#1}}
-\def\vegan#1{\marginpar{\Large\faLeaf}}
+% show a vegan symbol on the margin
+% justify to outer direction
+%\def\vegan#1{\marginpar{\Large\faLeaf}}
+%\newcounter{pl}  %already defined (page left)
+% using this in a section title requires using both short/long titles
+% (for some reason)
+\newcommand\vegan[0]{%
+	\stepcounter{pl}\label{pl-\thepl}%
+	\ifthenelse{\isodd{\pageref{pl-\thepl}}}%
+	% marginnote doesn't work when using this inside a section title
+	{\marginpar{\RaggedLeft \Large\faLeaf}}
+	{\marginpar{\RaggedRight \Large\faLeaf}}
+}
+
 
 \begin{document}
 
