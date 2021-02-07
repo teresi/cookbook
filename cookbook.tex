@@ -203,13 +203,14 @@ papersize={6in,9in},%
 	bakingtime .tl_set:N = \l_mymodule_bakingtime_tl,
 	source .tl_set:N = \l_mymodule_source_tl,
 	original .tl_set:N = \l_mymodule_origin_tl,
-	convectiontime .tl_set:N = \l_mymodule_convectiontime_tl,
+	inactivetime .tl_set:N = \l_mymodule_inactivetime_tl,
 }
 \NewDocumentEnvironment{recipestats}{O{}}
 {
 	\keys_set:nn { mymodule/recipestats } { #1 }
 	% BUG a multicols doesn't left justify the icons?
-	% FUTURE using a multicols may be preferred so that missing icons aren't just blank cells
+	% FUTURE using a multicols may be preferred so that missing icons aren't just blank cells?
+	% but that would change the order...
 	\begin{tabular}{clclcl}
 		\tl_if_empty:NTF \l_mymodule_preptime_tl
 		{& &}
@@ -227,9 +228,9 @@ papersize={6in,9in},%
 		{& &}
 		{\Dish & \l_mymodule_servings_tl &}
 		
-		\tl_if_empty:NTF \l_mymodule_convectiontime_tl
+		\tl_if_empty:NTF \l_mymodule_inactivetime_tl
 		{& &}
-		{\Fanoven & \l_mymodule_convectiontime_tl &}
+		{\faClockO & \l_mymodule_inactivetime_tl &}
 
 		\tl_if_empty:NTF \l_mymodule_origin_tl
 		{& \\}
