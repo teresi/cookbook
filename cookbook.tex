@@ -353,7 +353,7 @@ papersize={6in,9in},%
 \newcommand{\recipeend}[0]{
 	% small break to center ornament
 	% skip to give space after ornament
-	{\centering \pgfornament[scale=0.55]{88}\smallbreak \smallskip}
+	{\centering \pgfornament[scale=0.55]{88}\smallbreak \medskip}
 }
 
 % marginpar with ragged justification
@@ -576,8 +576,13 @@ papersize={6in,9in},%
 \chapter{Breakfast}
 \minitoc
 \clearpage
-\input{./breakfasts/egg_bites}
 \input{./entrees/spinach_quiche}
+
+\chapter{Sous vide}
+\minitoc
+\clearpage
+\input{./breakfasts/egg_bites}
+\input{./sous_vide/ribeye}
 
 \chapter{Soup}
 \minitoc
