@@ -27,16 +27,13 @@
 % [ ] Bob's rice crispies
 % [ ] southern style mac and cheese
 % [ ] canonical southern style collards
-% [ ] 'bachelor chow`, chickpea chorizo
-% [ ] 'bachelor chow`, chicken soup
-% [ ] 'bachelor chow`, barley gruel
-% [ ] 'bachelor chow`, cabbage and keilbasa
 % [ ] drink, mummy juice
 % [ ] drink, limeaide & scotch for wedding signature drink
 % [ ] Muddie Buddies/ Trash
 % [ ] coquito
 
 % Future:
+% [ ] add version or has to an info page (in preface?)
 % [ ] add support for vertical spacing to \ragmarpar (e.g \marginnote[horz]{text}[vert]
 % [ ] add an 'original recipe' source to icons (\faBook)
 %     (move vegetarian back to margin? make source / original-source same column
@@ -151,7 +148,7 @@ papersize={6in,9in},%
 % interacts poorly with the double column ingredients and titlespacing
 \usepackage[nobottomtitles*]{titlesec}  % better section placement
 % space at bottom to move titles to next page
-\renewcommand{\bottomtitlespace}{0.04\textheight}  % default 0.2\textheight
+\renewcommand{\bottomtitlespace}{0.2\textheight}  % default 0.2\textheight
 % space left, before, after section
 \titlespacing*{\section}{0em}{4ex plus 4ex minus 4ex}{1ex}
 
@@ -242,14 +239,11 @@ papersize={6in,9in},%
 }
 \ExplSyntaxOff
 
-% italicize the abstract
 \newenvironment{recipeabstract}%
-{
-	\itshape
-}
-{
-
-}
+{\itshape}
+% a small skip here helps the ingredients not get crammed in at the
+% bottom of a page (sometimes the columns got messed up without the skip)
+{\smallskip}
 
 % a 3 col tabular for ingredients
 % can be used to specify which componenet the ingredients are for
@@ -279,7 +273,7 @@ papersize={6in,9in},%
 \newcommand{\tempclubpenalty}{\clubpenalty}
 \NewDocumentEnvironment{ingredientcolumns}{O{2}}
 {
-	\smallskip  % add a skip so it can break properly
+%	\smallskip  % add a skip so it can break properly
 	% temporarily reduce widow/club penalty
 	% so the long table still adds a column break
 	\renewcommand{\tempclubpenalty}{\clubpenalty}
@@ -295,8 +289,8 @@ papersize={6in,9in},%
 }
 {
 	\end{multicols}
-	\par
-	\ifthenelse{\equal{#1}{1}}{\vskip1em}{}
+	\par  % omitted par results in non-centered single col (?)
+	\medskip
 	\clubpenalty\tempclubpenalty
 	\widowpenalty\tempwidowpenalty
 }
@@ -326,34 +320,39 @@ papersize={6in,9in},%
 
 \newenvironment{experiments}%
 {
-	\paragraph{EXPERIMENTS}%
+	% using \bigskip\noindent\textbf interacts better with \bottomtitlespace
+	% compared to \paragraph, as it doesn't move this block to the next
+	% page as often
+	\bigskip
+	\noindent
+	\textbf{EXPERIMENTS}%
 	\begin{itemize}[label=\faFlask,topsep=0pt,itemsep=0ex,partopsep=1ex,parsep=1ex]
-	}
-	{
+}
+{
 	\end{itemize}
 	\par
-%	\vspace{2ex}  % NOTE is there a more canonical solution?
 }
 
 \newenvironment{variation}%
 {
-%	\begin{samepage}
-%	\textbf{VARIATIONS}%
-	\paragraph{VARIATIONS}  % TODO use upper case font?
+	% using \bigskip\noindent\textbf interacts better with \bottomtitlespace
+	% compared to \paragraph, as it doesn't move this block to the next
+	% page as often
+	\bigskip
+	\noindent
+	\textbf{VARIATIONS}%
 	\begin{itemize}[label=\adforn{28},topsep=0pt,itemsep=0ex,partopsep=1ex,parsep=1ex]
-	}
+}
 {
 	\end{itemize}
-%	\end{samepage}
 	\par
-%	\vspace{2ex}  % NOTE is there a more canonical solution?
 }
 
 % FUTURE wrap an input call to add this?
 \newcommand{\recipeend}[0]{
 	% small break to center ornament
 	% skip to give space after ornament
-	{\centering \pgfornament[scale=0.55]{88}\smallbreak \medskip}
+	{\centering \pgfornament[scale=0.55]{88}\smallbreak \smallskip}
 }
 
 % marginpar with ragged justification
@@ -612,7 +611,6 @@ papersize={6in,9in},%
 \input{./entrees/rib_roast_christmas}
 \input{./entrees/chili_colorado}
 \input{./entrees/chili_schwarz}
-\input{./entrees/hoola_poola}
 \input{./entrees/steak_argintine}
 \input{./entrees/lasagna}
 \input{./entrees/pork_al_pastor}
@@ -623,11 +621,23 @@ papersize={6in,9in},%
 \clearpage
 \input{./bread/focaccia}
 \input{./bread/soft_pretzels}
+% TODO biscuits from book Ratio
 
 \chapter{Sandwiches}
 \minitoc
 \clearpage
 \input{./sandwich/fantastic_frank.tex}
+% TODO work sandwiches
+
+\chapter{Bachelor Chow}
+\minitoc
+\clearpage
+% TODO chickpea chorizo extravaganza
+% TODO chicken soup
+% TODO barley gruel
+% TODO cabbage and keilbasa
+\input{./bachelor_chow/curry_rice.tex}
+\input{./entrees/hoola_poola}
 
 \chapter{Hot Sauce}
 \minitoc
