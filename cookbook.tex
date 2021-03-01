@@ -131,6 +131,8 @@ papersize={6in,9in},%
 \usepackage{imakeidx}           % index for backmatter (keywords)
 \makeindex[columns=1]
 
+\righthyphenmin=3               % don't hyphenate unless N letters after hyphen
+\lefthyphenmin=4                % don't hyphenate unless N letters before hyphen
 
 % NOTE what are the right settings for `nowidow` to work?
 % adding \noclub to variation env doesn't seem to work
@@ -582,6 +584,7 @@ papersize={6in,9in},%
 \clearpage
 \input{./breakfasts/egg_bites}
 \input{./sous_vide/ribeye}
+\input{./sous_vide/shrimp}
 
 \chapter{Soup}
 \minitoc
