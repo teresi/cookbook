@@ -311,6 +311,8 @@ papersize={6in,9in},%
 {
 	% can also be controlled globally using
 	% \setlist[enumerate]{<options>}
+	% slightly encourage a page break here w/ \pagebreak
+	\pagebreak[2]  % MAGIC NUMBER experimental, [0...4] higher is more insistent
 	\begin{enumerate}[topsep=0pt,itemsep=0ex,partopsep=0ex,parsep=0.5ex,label=\textbf{\arabic*}.]
 	\setcounter{enumi}{-1}
 	}
@@ -326,8 +328,10 @@ papersize={6in,9in},%
 	% compared to \paragraph, as it doesn't move this block to the next
 	% page as often
 	\bigskip
+	% slightly encourage a page break here w/ \pagebreak
+	\pagebreak[2]  % MAGIC NUMBER experimental, [0...4] higher is more insistent
 	\noindent
-	\textbf{EXPERIMENTS}%
+	\textbf{EXPERIMENTS}
 	\begin{itemize}[label=\faFlask,topsep=0pt,itemsep=0ex,partopsep=1ex,parsep=1ex]
 }
 {
@@ -341,6 +345,8 @@ papersize={6in,9in},%
 	% compared to \paragraph, as it doesn't move this block to the next
 	% page as often
 	\bigskip
+	% slightly encourage a page break here w/ \pagebreak
+	\pagebreak[2]  % MAGIC NUMBER experimental, [0...4] higher is more insistent
 	\noindent
 	\textbf{VARIATIONS}%
 	\begin{itemize}[label=\adforn{28},topsep=0pt,itemsep=0ex,partopsep=1ex,parsep=1ex]
