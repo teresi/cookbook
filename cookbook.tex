@@ -356,12 +356,21 @@ papersize={6in,9in},%
 	\par
 }
 
-% FUTURE wrap an input call to add this?
+% use a savebox to reduce call count to TikZ
+% https://tex.my/2020/05/24/creating-tiled-background-patterns/
+% ~1.15x speedup on 64 pages w/ dual core (~3.75s --> 3.25s)
+\newsavebox{\armOrnament}
+\sbox{\armOrnament}{%
+	{\pgfornament[scale=0.55]{88}}
+}
+
 \newcommand{\recipeend}[0]{
 	% small break to center ornament
 	% skip to give space after ornament
-	{\centering \pgfornament[scale=0.55]{88}\smallbreak \smallskip}
+	%{\centering \pgfornament[scale=0.55]{88} \smallbreak \smallskip}
+	{\centering \usebox{\armOrnament} \smallbreak \smallskip}
 }
+
 
 % marginpar with ragged justification
 % NOTE had to use marginpar b/c marginnote produce notes on wrong side (after adding preface?)
