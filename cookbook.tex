@@ -74,6 +74,12 @@
 
 
 \documentclass[9pt]{book}
+
+%\pdfcompresslevel=0
+%\pdfminorversion=5
+%\pdfobjcompresslevel=2
+
+
 \newcommand\ningredientcol{2}   % number of columns for ingredient list
 \usepackage[T1]{fontenc}
 \usepackage[latin1]{inputenc}
@@ -361,7 +367,7 @@ papersize={6in,9in},%
 % ~1.15x speedup on 64 pages w/ dual core (~3.75s --> 3.25s)
 \newsavebox{\armOrnament}
 \sbox{\armOrnament}{%
-	{\pgfornament[scale=0.55]{88}}
+	{\pgfornament[scale=0.45]{88}}
 }
 
 \newcommand{\recipeend}[0]{
@@ -619,7 +625,14 @@ papersize={6in,9in},%
 \minitoc
 \clearpage
 \input{./drinks/cococo_co_cococo}
-\input{./drinks/margarita}
+\input{./drinks/caipirinha}
+\section{Margarita}
+{
+	\let\section\subsection
+	\let\subsection\subsubsection
+	\input{./drinks/margarita}
+	\input{./drinks/margarita_joy_of_cooking}
+}
 
 \chapter{Entr\`{e}es}
 \minitoc
