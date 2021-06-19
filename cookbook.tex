@@ -31,6 +31,8 @@
 % [ ] drink, limeaide & scotch for wedding signature drink
 % [ ] Muddie Buddies/ Trash
 % [ ] coquito
+% [ ] beer bread
+% [ ] Hawaiian banana bread
 
 % Future:
 % [ ] add version or has to an info page (in preface?)
@@ -67,6 +69,7 @@
 
 
 % Bugs:
+% [ ] experiments / variation environment names inconsistent b/c former is plural latter is singular
 % [ ] there may be a line skip on the ingredient tables (on top) when using multicols (sort of addressed by adding small spaces if using one col?)
 % [ ] marginnote used the wrong side of the page, possibly after the preface was added? had to use marginpar (maybe don't bother with a larger format 2 column, the 6x9" works pretty well and the auto column break in the ingredients appears to be a difficult issue to solve)
 % [x] in xcookybooky couldn't use \cite[]{} (vs \cite{}) inside a recipe block? :  \begin{recipe}[source=\cite[]{}]{} (solved by replacing xcookybooky w/ custom commands)
@@ -654,6 +657,7 @@ papersize={6in,9in},%
 \clearpage
 \input{./bread/focaccia}
 \input{./bread/soft_pretzels}
+\input{./bread/banana_bread}
 % TODO biscuits from book Ratio
 
 \chapter{Sandwiches}
