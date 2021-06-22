@@ -284,7 +284,10 @@ papersize={6in,9in},%
 \newcommand{\tempclubpenalty}{\clubpenalty}
 \NewDocumentEnvironment{ingredientcolumns}{O{2}}
 {
+	% adding a smallskip here sometimes helps it break properly
+	% but more often does not help
 %	\smallskip  % add a skip so it can break properly
+
 	% temporarily reduce widow/club penalty
 	% so the long table still adds a column break
 	\renewcommand{\tempclubpenalty}{\clubpenalty}
@@ -737,6 +740,7 @@ papersize={6in,9in},%
 \input{./desserts/midnight_cookies}
 \input{./desserts/frankie_deluxe}
 \input{./desserts/frankie_brownies}
+\input{./desserts/chocolate_cake}
 %\input{./desserts/almond_spekulatius}
 
 \chapter{Pie}
