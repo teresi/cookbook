@@ -1,16 +1,48 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{family_cookbook}[Cookbook template]
+\ProvidesClass{family_cookbook}[Family cookbook template]
 
+% A minimalistic cookbook.
+
+% AUTHOR
+% Michael Teresi
+%
+% DESIGN
+% - derives from the `book` class
+% - formats a recipe into:
+%   quick info, abstract, ingredients, preparation, variations, experiments
+% - formats ingredients into one or two columns,
+%   with a table for amount, unit, description
+% - does not include graphics to simplify printing and minimize repo size
+% - adds ornaments to section, variation, experiments, end of recipe
+% - adds notes / hints to margins of the page
+%
+% ENVIRONMENTS
+% `recipestats`        summary w/ icons
+% `recipeabstract`     quick recipe info, e.g. prep time, amount, etc
+% `ingredientcolumns`  recipe ingredients
+% `preparation`        enumerated instructions
+% `variation`          itemized options
+% `experiments`        itemized ongoing tests
+%
+% COMMANDS
+% `recipeend`          ornament at end of recipe
+% `ragmarpar`          add notes to page margins
+% `reffull`            add in-text citation to another recipe
+% `onehalf`            helper for fractions (and others)
+
+% FUTURE discuss settings for widows etc.
 % FUTURE add options (DeclareOption)
 
+
 \LoadClass[9pt]{book}
-\pagestyle{empty}
+\frenchspacing                  % one space after period
+\righthyphenmin=3               % don't hyphenate unless N letters after hyphen
+\lefthyphenmin=4                % don't hyphenate unless N letters before hyphen
+% NOTE starting chaptes on left might improve printed copy
+% can we add cleardoublepage back w/o messing up front matter?
+\let\cleardoublepage=\clearpage % stop chapters/titles having extra blank page
 
 
-\RequirePackage[T1]{fontenc}
-\RequirePackage[latin1]{inputenc}
-\RequirePackage{ragged2e}           % for \justify
-\RequirePackage[fulladjust]{marginnote}         % notes in the margins
 \RequirePackage[%
 	%showframe,%
 	twoside,%
@@ -20,25 +52,30 @@
 	marginparwidth=0.8in,%
 	inner=0.85in,%
 	outer=1.15in,%
-	%includeheadfoot,%              % BUG fixes head/foot sizes but swaps outer/gutter?
+	%includeheadfoot,% BUG fixes head/foot sizes but swaps outer/gutter?
 	papersize={6in,9in},%
-]{geometry}                     % change physical dimensions
-
-%\RequirePackage[cam,letter,center]{crop} % show trim lines
-
-\RequirePackage{fancyhdr}           % header / footers
-\RequirePackage{lmodern}            % change font
-\RequirePackage{lipsum}             % dummy text
-\RequirePackage{graphicx}           % better graphics
-\RequirePackage[clock, misc]{ifsym} % symbols
-\RequirePackage{cookingsymbols}     % symbols
-\RequirePackage{tikzsymbols}        % symbols
-\RequirePackage{fontawesome}        % symbols
-\RequirePackage{adforn}             % symbols
-\RequirePackage{amssymb}            % symbols
-\RequirePackage{xkeyval}            % commands w/ key / value
-\RequirePackage{varioref}           % references decorated w/ page numbers
-\RequirePackage{lettrine}   % a large first letter/number
+]{geometry}
+\RequirePackage[T1]{fontenc}             % hypenate accented letters
+% TODO remove inputenc, not necessary?
+\RequirePackage[latin1]{inputenc}        % specify input file encoding
+\RequirePackage[backend=bibtex]{biblatex}
+    \bibliography{bib}
+\RequirePackage{ragged2e}                % for \justify
+\RequirePackage[fulladjust]{marginnote}  % notes in the margins
+\RequirePackage{fancyhdr}                % header / footers
+\RequirePackage{lmodern}                 % change font
+% TODO remove graphicx, not necessary
+\RequirePackage{graphicx}                % better graphics
+\RequirePackage[clock, misc]{ifsym}      % symbols
+\RequirePackage{cookingsymbols}          % symbols
+\RequirePackage{tikzsymbols}             % symbols
+\RequirePackage{fontawesome}             % symbols
+\RequirePackage{adforn}                  % symbols
+\RequirePackage{amssymb}                 % symbols
+\RequirePackage{xkeyval}                 % commands w/ key/value
+\RequirePackage{varioref}                % references decorated w/ page numbers
+% TODO remove lettrine, no used?
+\RequirePackage{lettrine}                % a large first letter/number
 
 % GoudyIn font can't be embedded into the pdf
 %\RequirePackage{GoudyIn}   % a large first letter/number
@@ -53,18 +90,16 @@
 \RequirePackage{nicefrac}           % typeset fractions
 \RequirePackage{paralist}           % in-text enums
 \RequirePackage{xparse}             % positional arg defaults
+% TODO remove tikzpagenoes, not required?
 %\RequirePackage{tikzpagenodes}     % for printing marginnotes on correct side
 \RequirePackage{pgfornament}        % symbols
 \RequirePackage{nameref}            % ref section name etc. w/ \nameref
 \RequirePackage{enumitem}           % better enumerations
-\setlist{leftmargin=*}          % don't indent lists
+    \setlist{leftmargin=*}          % don't indent lists
 \RequirePackage{sectsty}            % access sectional units
 \RequirePackage{minitoc}            % table of contents per chapter
 \RequirePackage{imakeidx}           % index for backmatter (keywords)
-\makeindex[columns=2]
-
-\righthyphenmin=3               % don't hyphenate unless N letters after hyphen
-\lefthyphenmin=4                % don't hyphenate unless N letters before hyphen
+    \makeindex[columns=2]
 
 % NOTE what are the right settings for `nowidow` to work?
 % adding \noclub to variation env doesn't seem to work
@@ -86,24 +121,32 @@
 % space left, before, after section
 \titlespacing*{\section}{0em}{4ex plus 4ex minus 4ex}{1ex}
 
-% unused packages
+% TODO remove old packages, did these conflict or just get refactored out?
 %\RequirePackage{tikz}
 %\RequirePackage{units}
 %\RequirePackage{eso-pic} % for background pictures
 %\RequirePackage{picture} % for modfifying the position of the bg pictures
 %\RequirePackage{xcolor}  % driver independant colors
 
-\RequirePackage[backend=bibtex]{biblatex}
-\bibliography{bib}
-
 \RequirePackage{hyperref}    % links etc. (must be the last package)
 
 \hbadness=1000	% limit reporting on overfull horz boxes
+
+\pagestyle{fancy}               % from `fancyhdr`, customize header/footers
+\newcommand{\changefont}{%
+	\fontsize{9}{11}\selectfont
+}
+\fancyhf{}
+\fancyhead[LE,RO]{\changefont \slshape \rightmark} %section
+\fancyhead[RE,LO]{\changefont \slshape \leftmark} %chapter
+\fancyfoot[C]{\changefont \thepage} %footer
+
 
 % add an ornament to the section numbers
 \makeatletter
 \def\@seccntformat#1{\adforn{33} \csname the#1\endcsname\quad}
 \makeatother
+
 
 % show servings, time, etc. w/ icons
 \ExplSyntaxOn
@@ -154,11 +197,13 @@
 }
 \ExplSyntaxOff
 
+
 \newenvironment{recipeabstract}%
 {\itshape}
 % a small skip here helps the ingredients not get crammed in at the
 % bottom of a page (sometimes the columns got messed up without the skip)
 {\smallskip}
+
 
 % a 3 col tabular for ingredients
 % can be used to specify which componenet the ingredients are for
@@ -180,6 +225,7 @@
 	\end{tabular}
 }
 \ExplSyntaxOff % for \tl_if_blank:nTF
+
 
 % wrapper around a multicols
 % Args:
@@ -213,6 +259,7 @@
 	\widowpenalty\tempwidowpenalty
 }
 
+
 % ingredient for a 3 column tabular 
 % intended for: quantity & unit & food
 % default empty quantity and unit:
@@ -222,6 +269,7 @@
 \NewDocumentCommand{\ingredient}{O{} O{} m }{
 	\ensuremath{#1} & \ensuremath{#2} & #3
 }
+
 
 \newenvironment{preparation}%
 {
@@ -237,6 +285,7 @@
 	\par
 %	\vspace{2ex}  % NOTE is there a more canonical solution?
 }
+
 
 \newenvironment{experiments}%
 {
@@ -254,6 +303,7 @@
 	\end{itemize}
 	\par
 }
+
 
 \newenvironment{variation}%
 {
@@ -341,19 +391,6 @@
 \newcommand\inch{\ensuremath{inch}}
 
 
-\frenchspacing
-% stop chapters / titles from having an extra blank page
-\let\cleardoublepage=\clearpage
-
-\pagestyle{fancy}
-\newcommand{\changefont}{%
-	\fontsize{9}{11}\selectfont
-}
-\fancyhf{}
-\fancyhead[LE,RO]{\changefont \slshape \rightmark} %section
-\fancyhead[RE,LO]{\changefont \slshape \leftmark} %chapter
-\fancyfoot[C]{\changefont \thepage} %footer
-
 
 %% wrapper around a multicols
 %% Args:
@@ -378,7 +415,6 @@
 %	\unvbox\ltmcbox
 %	\end{multicols}
 %}
-
 
 
 % box for a multi column long table
@@ -440,6 +476,7 @@
 	\fi
 }
 
+
 % show a vegan symbol on the margin
 % justify to outer direction
 %\def\vegan#1{\marginpar{\Large\faLeaf}}
@@ -453,4 +490,3 @@
 	{\marginpar{\RaggedLeft \Large\faLeaf}}
 	{\marginpar{\RaggedRight \Large\faLeaf}}
 }
-
