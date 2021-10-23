@@ -341,6 +341,8 @@
 % marginpar with ragged justification
 % NOTE had to use marginpar b/c marginnote produce notes on wrong side (after adding preface?)
 % https://latex.org/forum/viewtopic.php?t=6041
+% see also (for marginnote)
+% https://tex.stackexchange.com/questions/247449/making-marginnote-to-appear-either-side-of-twocolumn-twoside-document-part-ii
 \newcounter{pl}
 \newcommand\ragmarpar[1]{%
 	\stepcounter{pl}\label{pl-\thepl}%

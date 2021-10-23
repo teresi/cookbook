@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 # compress input pdf
+# writes the compressed copy to target directory
+# appends the current date to the basename of the file
 
 COMPRESSION_LEVELS=(/default /printer /prepress /ebook /screen)
 SCRIPT_PATH="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
@@ -9,10 +11,11 @@ INPUT_PDF=$SCRIPT_PATH/../cookbook.pdf
 OUTPUT_DIR=$SCRIPT_PATH/../archive
 LEVEL=4
 
-# TODO probably should just take output filename to be more generic
+# FUTURE probably should just take output filename to be more generic
 usage(){
 	echo "Usage: compress.bash [OPTION]..."
-	echo "Compress input pdf and output with data appended to name"
+	echo "Compress input pdf and output with date appended to the name"
+	echo "    e.g. myfile.ext --> myfile_YYYYMMDD.ext"
 	echo ""
 	echo "-i         input pdf file (../cookbook.pdf)"
 	echo "-o         output directory (../archive/)"
@@ -42,6 +45,7 @@ filename="${filename_in%.*}"
 date=$(date '+%Y%m%d')
 output_pdf=$OUTPUT_DIR/${filename}_${date}.${extension}
 
+echo ""
 echo "input pdf:      ${INPUT_PDF}"
 echo "compression:    ${compression}"
 echo "output pdf:     ${output_pdf}"

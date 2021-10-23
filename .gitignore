@@ -24,4 +24,5 @@ cookbook.mtc*
 
 # ignore all images, use a separate project
 **/*.jpg
+**/*.jpeg
 **/*.png

@@ -3,17 +3,18 @@
 ROOT_DIR := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 SHELL := /bin/bash
 DATE := $(shell date '+%Y%m%d')  # follows the format from compress.bash
-OUT := $(ROOT_DIR)/cookbook.pdf
-OUT_ARCHIVE := $(ROOT_DIR)/archive/cookbook_$(DATE).pdf
+PROJECT := cookbook
+IN := .tex
+OUT := cookbook.pdf
 
-$(OUT_ARCHIVE): cookbook.pdf
-	$(ROOT_DIR)/scripts/compress.bash -l 0
+.PHONY: all clean compress
+.PHONY: $(PROJECT).pdf  # delegate to latexmk b/c it needs run more than once for LaTeX
 
-.PHONY: cookbook.pdf  # allow latexmk to handle multiple calls
 cookbook.pdf:
-	latexmk -pdf $(ROOT_DIR)/cookbook.tex
+	latexmk -pdf $(PROJECT).tex
 
-.PHONY: clean
+all compress: $(PROJECT).pdf
+	+$(MAKE) -C archive
+
 clean:
-	-rm -rf $(OUT)
-	-rm -rf $(OUT_ARCHIVE)
+	latexmk -C $(PROJECT).tex
