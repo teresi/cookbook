@@ -13,13 +13,13 @@
 **.*idx
 **.*ilg
 **.*ind
-cookbook-blx.bib
-cookbook.bbl
-cookbook.blg
-cookbook.run.xml
-cookbook.bcf
-cookbook.maf
-cookbook.mtc*
+**-blx.bib
+**.bbl
+**.blg
+**.run.xml
+**.bcf
+**.maf
+**.mtc*
 
 
 # ignore all images, use a separate project
