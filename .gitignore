@@ -22,6 +22,15 @@
 **.maf
 **.mtc*
 
+# acronym
+**.acn
+**.acr
+**.alg
+**.glg
+**.glo
+**.gls
+**.ist
+
 
 # ignore all images, use a separate project
 **/*.jpg

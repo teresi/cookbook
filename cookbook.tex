@@ -27,6 +27,7 @@
 % [ ] southern style mac and cheese
 % [ ] canonical southern style collards
 % [ ] drink, mummy juice
+% [ ] drink, tiddly
 % [ ] drink, limeaide & scotch for wedding signature drink
 % [ ] Muddie Buddies/ Trash
 % [ ] coquito
@@ -36,7 +37,8 @@
 % [ ] cosmo drink
 
 % Future:
-% [ ] move drinks index to it's own separate index?
+% [ ] move drinks to subsections by spirit or style (e.g. rum / punch ...)
+% [ ] add a legend for abbreviations
 % [ ] add subchapters for drinks by type of alcohol
 % [ ] add function to add section to index w/o having to specify section in command
 % [ ] add version or hash to an info page (in preface?)
@@ -75,6 +77,7 @@
 %\pdfcompresslevel=0
 %\pdfminorversion=5
 %\pdfobjcompresslevel=2
+\usepackage[acronym]{glossaries}
 
 
 \hypersetup{%
@@ -94,6 +97,10 @@
 	filecolor            = {black},
 }
 
+
+\makeglossaries
+\newacronym{NCS}{NCS}{Non-Centrifugal Cane Sugar}
+\glsaddall
 
 \begin{document}
 \frontmatter
@@ -182,6 +189,17 @@
 \chapter{Drinks}
 \minitoc
 \clearpage
+\section{Syrups}
+{
+	\let\section\subsection
+	\let\subsection\subsubsection
+	\input{./drinks/simple_syrup}
+	\input{./drinks/rich_syrup}
+	\input{./drinks/honey_syrup}
+	\input{./drinks/demerara_syrup}
+	\input{./drinks/sc_demerara_syrup}
+
+}
 \input{./drinks/cococo_co_cococo}
 \input{./drinks/caipirinha}
 \section{Margarita}
@@ -332,5 +350,10 @@
 \clearpage
 \addcontentsline{toc}{chapter}{Index}
 \printindex
+
+
+\addcontentsline{toc}{chapter}{Acronyms}
+\printglossary[type=\acronymtype, title=Acronyms]
+
 
 \end{document}
