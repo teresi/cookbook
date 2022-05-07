@@ -39,6 +39,7 @@
 \righthyphenmin=3               % don't hyphenate unless N letters after hyphen
 \lefthyphenmin=4                % don't hyphenate unless N letters before hyphen
 
+
 % NOTE starting chapters on left might improve printed copy
 % can we add cleardoublepage back w/o messing up front matter?
 \let\cleardoublepage=\clearpage % stop chapters/titles having extra blank page
@@ -72,23 +73,24 @@
 \RequirePackage{fdsymbol}                % symbols (e.g. \largeblackstar, \largewhitestar}
 \RequirePackage{xkeyval}                 % commands w/ key/value
 \RequirePackage{varioref}                % references decorated w/ page numbers
-\RequirePackage{ifthen}             % if statements
-\RequirePackage{longtable}          % column break table
-\RequirePackage{multicol}           % multiple columns
-\RequirePackage{tabularx}           % tabular w/ more features
-\RequirePackage{nicefrac}           % typeset fractions
-\RequirePackage{paralist}           % in-text enums
-\RequirePackage{xparse}             % positional arg defaults
-\RequirePackage{pgfornament}        % symbols
-\RequirePackage{nameref}            % ref section name etc. w/ \nameref
-\RequirePackage{enumitem}           % better enumerations
-    \setlist{leftmargin=*}          % don't indent lists
-\RequirePackage{sectsty}            % access sectional units
-\RequirePackage{minitoc}            % table of contents per chapter
-\RequirePackage{imakeidx}           % index for backmatter (keywords)
+\RequirePackage{ifthen}                  % if statements
+\RequirePackage{longtable}               % column break table
+\RequirePackage{multicol}                % multiple columns
+\RequirePackage{tabularx}                % tabular w/ more features
+\RequirePackage{nicefrac}                % typeset fractions
+\RequirePackage{paralist}                % in-text enums
+\RequirePackage{xparse}                  % positional arg defaults
+\RequirePackage{pgfornament}             % symbols
+\RequirePackage{nameref}                 % ref section name etc. w/ \nameref
+\RequirePackage{enumitem}                % better enumerations
+    \setlist{leftmargin=*}               % don't indent lists
+\RequirePackage{sectsty}                 % access sectional units
+\RequirePackage{minitoc}                 % table of contents per chapter
+\RequirePackage{imakeidx}                % index for backmatter (keywords)
     \makeindex[columns=2]
 
 % NB `GoudyIn` can't be embedded into the pdf (for lettrine / large first character)
+
 
 % NOTE what are the right settings for `nowidow` to work?
 % adding \noclub to variation env doesn't seem to work
@@ -97,6 +99,7 @@
 \widowpenalty8000
 \clubpenalty8000
 %\postdisplaypenalty1000
+
 
 % don't start a recipe at the bottom of the page
 % *but also* don't split a recipe across pages...
@@ -108,6 +111,7 @@
 \renewcommand{\bottomtitlespace}{0.2\textheight}  % default 0.2\textheight
 % space left, before, after section
 \titlespacing*{\section}{0em}{4ex plus 4ex minus 4ex}{1ex}
+
 
 % NB use `hyperref` flag `pdfa` to stop removal of links after compressing w/ ghostscript
 \RequirePackage[pdfa]{hyperref}    % links etc. (must be the last package)
@@ -243,7 +247,8 @@
 }
 
 
-% ingredient for a 3 column tabular 
+% \ingredient[<quantity>][<unit>]{<name>}
+% ingredient for a 3 column tabular
 % intended for: quantity & unit & food
 % default empty quantity and unit:
 % e.g. \food[col1][col2]{col3}
@@ -305,6 +310,7 @@
 	\par
 }
 
+
 % use a savebox to reduce call count to TikZ
 % https://tex.my/2020/05/24/creating-tiled-background-patterns/
 % ~1.15x speedup on 64 pages w/ dual core (~3.75s --> 3.25s)
@@ -313,6 +319,9 @@
 	{\pgfornament[scale=0.45]{88}}
 }
 
+
+% \recipeend
+% add a flourished section break, signifying end of the recipe
 \newcommand{\recipeend}[0]{
 	% small break to center ornament
 	% skip to give space after ornament
@@ -336,11 +345,13 @@
 	{\marginpar{\RaggedRight \it{#1}}}
 }
 
+
 % reference for a label w/ name, section, page number
 % <title> <section #> <on page...>
 \newcommand\reffull[1]{%
 	\nameref{#1} \vref{#1}%
 }
+
 
 % abbreviations / aliases
 % use math mode for units for consistent style
@@ -374,7 +385,6 @@
 \newcommand\gram{\ensuremath{g}}
 
 \newcommand\inch{\ensuremath{inch}}
-
 
 
 %% wrapper around a multicols
@@ -462,12 +472,12 @@
 }
 
 
-% show a vegan symbol on the margin
+% \vegan
+% show a vegetarian/vegan symbol on the margin
 % justify to outer direction
 %\def\vegan#1{\marginpar{\Large\faLeaf}}
 %\newcounter{pl}  %already defined (page left)
 % using this in a section title requires using both short/long titles
-% (for some reason)
 \newcommand\vegan[0]{%
 	\stepcounter{pl}\label{pl-\thepl}%
 	\ifthenelse{\isodd{\pageref{pl-\thepl}}}%
