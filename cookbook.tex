@@ -71,12 +71,13 @@
 
 
 \documentclass{family_cookbook}
+\pdfcompresslevel=0     % faster compile w/o compress, use ghostscript to compress after
+\pdfobjcompresslevel=0  % faster compile w/o compress, use ghostscript to compress after
+
 
 \usepackage{lipsum}             % dummy text
 %\usepackage[cam,letter,center]{crop} % show trim lines
-%\pdfcompresslevel=0
 %\pdfminorversion=5
-%\pdfobjcompresslevel=2
 \usepackage[acronym]{glossaries}
 \usepackage{booktabs}           % tables
 \usepackage{siunitx}            % numbers in tables
@@ -103,7 +104,6 @@
 \newacronym{NCS}{NCS}{Non-Centrifugal Cane Sugar}
 \newacronym{MSG}{MSG}{Monosodium Glutamate}
 \glsaddall
-
 
 \begin{document}
 \frontmatter

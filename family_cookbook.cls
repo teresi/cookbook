@@ -44,7 +44,7 @@
 
 
 \RequirePackage[%
-	showframe,%
+	%showframe,%
 	twoside,%
 	top=0.65in,%
 	bottom=0.55in,%
@@ -56,8 +56,6 @@
 	papersize={6in,9in},%
 ]{geometry}
 \RequirePackage[T1]{fontenc}             % hypenate accented letters
-% TODO remove inputenc, not necessary?
-\RequirePackage[latin1]{inputenc}        % specify input file encoding
 \RequirePackage[backend=bibtex]{biblatex}
     \bibliography{bib}
 \RequirePackage{ragged2e}                % for \justify
@@ -72,7 +70,8 @@
 \RequirePackage{fontawesome}             % symbols
 \RequirePackage{adforn}                  % symbols
 \RequirePackage{amssymb}                 % symbols
-\RequirePackage{stix}                    % symbols (e.g. \bigstar, \bigwhitestar}
+%\RequirePackage{stix}                    % symbols (e.g. \bigstar, \bigwhitestar}
+\RequirePackage{fdsymbol}                % symbols (e.g. \largeblackstar, \largewhitestar}
 \RequirePackage{xkeyval}                 % commands w/ key/value
 \RequirePackage{varioref}                % references decorated w/ page numbers
 % TODO remove lettrine, no used?
@@ -129,7 +128,8 @@
 %\RequirePackage{picture} % for modfifying the position of the bg pictures
 %\RequirePackage{xcolor}  % driver independant colors
 
-\RequirePackage{hyperref}    % links etc. (must be the last package)
+% NB use `hyperref` flag `pdfa` to stop removal of links after compressing w/ ghostscript
+\RequirePackage[pdfa]{hyperref}    % links etc. (must be the last package)
 
 \hbadness=1000	% limit reporting on overfull horz boxes
 
@@ -498,19 +498,20 @@
 % \stars[<max_stars=5>]{<filled_stars>}
 % star rating using filled/open stars
 % NB line between if and body is required
-% NOTE package \fdsymbol, \largewhitestar, \largeblackstar are bigger but don't fit
-%   in the current margin, maybe use max 3 stars?
-\newcommand{\stars}[2][5]{%
+% NOTE \bigstar / \bigwhitestar, from `stix`, work for max 5 stars
+% NOTE \largewhitestar / \largeblackstar, from `fdsymbol`, are bigger but 5 don't fit in margin
+\newcommand{\stars}[2][3]{%
 	\stepcounter{pl}\label{pl-\thepl}%
 	\ifthenelse{\isodd{\pageref{pl-\thepl}}}%
 
+	\hfill
 	\newcount\loopi\loopi=0
 	\loop\ifnum\loopi<#2
-		\ensuremath{\bigstar}\hfill
+		\ensuremath{\largeblackstar}\hfill
 		\advance\loopi by1
 	\repeat
 	\loop\ifnum\loopi<#1
-		\ensuremath{\bigwhitestar}\hfill
+		\ensuremath{\largewhitestar}\hfill
 		\advance\loopi by1
 	\repeat
 	\hfill
@@ -521,7 +522,7 @@
 % star rating in the margin
 % respecting ragged left/right
 % NB \noindent is used to prevent a vertical spacing
-\newcommand{\ragStars}[2][5]{
+\newcommand{\ragStars}[2][3]{
 	\stepcounter{pl}\label{pl-\thepl}%
 	\ifthenelse{\isodd{\pageref{pl-\thepl}}}%
 	{\marginpar{\RaggedLeft\noindent\stars[#1]{#2}}}
