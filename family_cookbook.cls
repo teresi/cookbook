@@ -34,11 +34,12 @@
 % FUTURE add options (DeclareOption)
 
 
-\LoadClass[9pt]{book}
+\LoadClass[10pt]{book}
 \frenchspacing                  % one space after period
 \righthyphenmin=3               % don't hyphenate unless N letters after hyphen
 \lefthyphenmin=4                % don't hyphenate unless N letters before hyphen
-% NOTE starting chaptes on left might improve printed copy
+
+% NOTE starting chapters on left might improve printed copy
 % can we add cleardoublepage back w/o messing up front matter?
 \let\cleardoublepage=\clearpage % stop chapters/titles having extra blank page
 
@@ -62,27 +63,15 @@
 \RequirePackage[fulladjust]{marginnote}  % notes in the margins
 \RequirePackage{fancyhdr}                % header / footers
 \RequirePackage{lmodern}                 % change font
-% TODO remove graphicx, not necessary
-\RequirePackage{graphicx}                % better graphics
 \RequirePackage[clock, misc]{ifsym}      % symbols
 \RequirePackage{cookingsymbols}          % symbols
 \RequirePackage{tikzsymbols}             % symbols
-\RequirePackage{fontawesome}             % symbols
-\RequirePackage{adforn}                  % symbols
-\RequirePackage{amssymb}                 % symbols
+\RequirePackage{fontawesome}             % symbols (e.g. \faLeaf)
+\RequirePackage{adforn}                  % symbols (fleurons / flowers)
 %\RequirePackage{stix}                    % symbols (e.g. \bigstar, \bigwhitestar}
 \RequirePackage{fdsymbol}                % symbols (e.g. \largeblackstar, \largewhitestar}
 \RequirePackage{xkeyval}                 % commands w/ key/value
 \RequirePackage{varioref}                % references decorated w/ page numbers
-% TODO remove lettrine, no used?
-\RequirePackage{lettrine}                % a large first letter/number
-
-% GoudyIn font can't be embedded into the pdf
-%\RequirePackage{GoudyIn}   % a large first letter/number
-%\renewcommand{\LettrineFontHook}{\GoudyInfamily{}}
-%\LettrineTextFont{\itshape}
-%\setcounter{DefaultLines}{3}%
-
 \RequirePackage{ifthen}             % if statements
 \RequirePackage{longtable}          % column break table
 \RequirePackage{multicol}           % multiple columns
@@ -90,8 +79,6 @@
 \RequirePackage{nicefrac}           % typeset fractions
 \RequirePackage{paralist}           % in-text enums
 \RequirePackage{xparse}             % positional arg defaults
-% TODO remove tikzpagenoes, not required?
-%\RequirePackage{tikzpagenodes}     % for printing marginnotes on correct side
 \RequirePackage{pgfornament}        % symbols
 \RequirePackage{nameref}            % ref section name etc. w/ \nameref
 \RequirePackage{enumitem}           % better enumerations
@@ -101,6 +88,8 @@
 \RequirePackage{imakeidx}           % index for backmatter (keywords)
     \makeindex[columns=2]
 
+% NB `GoudyIn` can't be embedded into the pdf (for lettrine / large first character)
+
 % NOTE what are the right settings for `nowidow` to work?
 % adding \noclub to variation env doesn't seem to work
 % wrecks ingredient so just load macros (no options)
@@ -109,7 +98,6 @@
 \clubpenalty8000
 %\postdisplaypenalty1000
 
-% MAGIC NUMBER
 % don't start a recipe at the bottom of the page
 % *but also* don't split a recipe across pages...
 % large bottomtitlespace seems to move paragraphs to new pages
@@ -121,15 +109,9 @@
 % space left, before, after section
 \titlespacing*{\section}{0em}{4ex plus 4ex minus 4ex}{1ex}
 
-% TODO remove old packages, did these conflict or just get refactored out?
-%\RequirePackage{tikz}
-%\RequirePackage{units}
-%\RequirePackage{eso-pic} % for background pictures
-%\RequirePackage{picture} % for modfifying the position of the bg pictures
-%\RequirePackage{xcolor}  % driver independant colors
-
 % NB use `hyperref` flag `pdfa` to stop removal of links after compressing w/ ghostscript
 \RequirePackage[pdfa]{hyperref}    % links etc. (must be the last package)
+
 
 \hbadness=1000	% limit reporting on overfull horz boxes
 
