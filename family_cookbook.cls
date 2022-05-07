@@ -44,7 +44,7 @@
 
 
 \RequirePackage[%
-	%showframe,%
+	showframe,%
 	twoside,%
 	top=0.65in,%
 	bottom=0.55in,%
@@ -72,6 +72,7 @@
 \RequirePackage{fontawesome}             % symbols
 \RequirePackage{adforn}                  % symbols
 \RequirePackage{amssymb}                 % symbols
+\RequirePackage{stix}                    % symbols (e.g. \bigstar, \bigwhitestar}
 \RequirePackage{xkeyval}                 % commands w/ key/value
 \RequirePackage{varioref}                % references decorated w/ page numbers
 % TODO remove lettrine, no used?
@@ -492,3 +493,38 @@
 	{\marginpar{\RaggedLeft \Large\faLeaf}}
 	{\marginpar{\RaggedRight \Large\faLeaf}}
 }
+
+
+% \stars[<max_stars=5>]{<filled_stars>}
+% star rating using filled/open stars
+% NB line between if and body is required
+% NOTE package \fdsymbol, \largewhitestar, \largeblackstar are bigger but don't fit
+%   in the current margin, maybe use max 3 stars?
+\newcommand{\stars}[2][5]{%
+	\stepcounter{pl}\label{pl-\thepl}%
+	\ifthenelse{\isodd{\pageref{pl-\thepl}}}%
+
+	\newcount\loopi\loopi=0
+	\loop\ifnum\loopi<#2
+		\ensuremath{\bigstar}\hfill
+		\advance\loopi by1
+	\repeat
+	\loop\ifnum\loopi<#1
+		\ensuremath{\bigwhitestar}\hfill
+		\advance\loopi by1
+	\repeat
+	\hfill
+}
+
+
+% \ragStars[<max_stars=5>]{<filled_stars>}
+% star rating in the margin
+% respecting ragged left/right
+% NB \noindent is used to prevent a vertical spacing
+\newcommand{\ragStars}[2][5]{
+	\stepcounter{pl}\label{pl-\thepl}%
+	\ifthenelse{\isodd{\pageref{pl-\thepl}}}%
+	{\marginpar{\RaggedLeft\noindent\stars[#1]{#2}}}
+	{\marginpar{\RaggedRight\noindent\stars[#1]{#2}}}
+}
+
