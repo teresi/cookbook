@@ -87,7 +87,8 @@
 \RequirePackage{sectsty}                 % access sectional units
 \RequirePackage{minitoc}                 % table of contents per chapter
 \RequirePackage{imakeidx}                % index for backmatter (keywords)
-    \makeindex[columns=2]
+	\indexsetup{othercode=\small}
+	\makeindex[program=makeindex,columns=2,intoc=true,options={-s index_style.ist}]
 
 % NB `GoudyIn` can't be embedded into the pdf (for lettrine / large first character)
 
