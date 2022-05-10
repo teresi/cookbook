@@ -490,12 +490,13 @@
 % \stars[<max_stars=5>]{<filled_stars>}
 % star rating using filled/open stars
 % NB line between if and body is required
+% NB the non-breaking space (the tilde) is necessary to align it vertically
 % NOTE \bigstar / \bigwhitestar, from `stix`, work for max 5 stars
 % NOTE \largewhitestar / \largeblackstar, from `fdsymbol`, are bigger but 5 don't fit in margin
 \newcommand{\stars}[2][3]{%
 	\stepcounter{pl}\label{pl-\thepl}%
 	\ifthenelse{\isodd{\pageref{pl-\thepl}}}%
-
+	~
 	\hfill
 	\newcount\loopi\loopi=0
 	\loop\ifnum\loopi<#2
