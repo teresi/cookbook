@@ -14,7 +14,7 @@ cookbook.pdf:
 	latexmk -pdf $(PROJECT).tex
 
 all compress: $(PROJECT).pdf
-	+$(MAKE) -C archive
+	+$(MAKE) -C archive --no-print-directory
 
 clean:
 	latexmk -C $(PROJECT).tex

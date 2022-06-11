@@ -4,12 +4,12 @@
 # writes the compressed copy to target directory
 # appends the current date to the basename of the file
 
-COMPRESSION_LEVELS=(/default /printer /prepress /ebook /screen)
-SCRIPT_PATH="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+compression_levels=(/default /printer /prepress /ebook /screen)
+script_path="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
-INPUT_PDF=$SCRIPT_PATH/../cookbook.pdf
-OUTPUT_DIR=$SCRIPT_PATH/../archive
-LEVEL=4
+input_pdf=$script_path/../cookbook.pdf
+output_dir=$script_path/../archive
+level=4
 
 # FUTURE probably should just take output filename to be more generic
 usage(){
@@ -26,9 +26,9 @@ while getopts i:o:l:h option
 do
 case "${option}"
 in
-i) INPUT_PDF=${OPTARG};;
-o) OUTPUT_DIR=${OPTARG};;
-l) LEVEL=${OPTARG};;
+i) input_pdf=${OPTARG};;
+o) output_dir=${OPTARG};;
+l) level=${OPTARG};;
 h)
 	if [ -z ${OPTARG} ]
 	then
@@ -38,27 +38,36 @@ h)
 esac
 done
 
-compression=${COMPRESSION_LEVELS[$LEVEL]}
-filename_in=$(basename -- $INPUT_PDF)
+compression=${compression_levels[$level]}
+filename_in=$(basename -- $input_pdf)
 extension="${filename_in##*.}"
 filename="${filename_in%.*}"
 date=$(date '+%Y%m%d')
-output_pdf=$OUTPUT_DIR/${filename}_${date}.${extension}
+output_pdf=$output_dir/${filename}_${date}.${extension}
 
 echo ""
-echo "input pdf:      ${INPUT_PDF}"
 echo "compression:    ${compression}"
+echo "input pdf:      ${input_pdf}"
 echo "output pdf:     ${output_pdf}"
+
+du_in=$(du -hs $input_pdf)
+du_arr=(${du_in// / })
+size_in=${du_arr[0]}
+echo "input size:     $size_in"
+
+# INFO dPrinted=false was supposed to keep links after compression
+# but it does not appear to achieve that
 
 gs -sDEVICE=pdfwrite \
    -dCompatibilityLevel=1.4 \
    -dPDFSETTINGS=$compression \
    -dNOPAUSE -dQUIET -dBATCH \
    -sOutputFile=$output_pdf \
-   $INPUT_PDF
+   $input_pdf
 
 du_out=$(du -hs $output_pdf)
 du_arr=(${du_out// / })
-size=${du_arr[0]}
-echo "output size:    $size"
+size_out=${du_arr[0]}
+echo "output size:    $size_out"
+
 echo ""
