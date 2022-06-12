@@ -10,8 +10,8 @@ Recipes from friends and family.
 ## HOW TO
 
 ```bash
-$ make           # create PDF using latexmk
-$ make compress  # optional, compress PDF
+$ make cookbook.pdf  # the book
+$ make help          # show usage
 ```
 
 ![preface](https://github.com/teresi/teresi.github.io/blob/master/preface.png)
@@ -27,13 +27,15 @@ $ make compress  # optional, compress PDF
 
 
 ## DEPENDENCIES
-Requires `LaTeX`, `latexmk`.
+Requires LaTeX and BibTeX.
 
-e.g. in Ubuntu:
+e.g. in Ubuntu and etc.:
 ```bash
-# apt install texlive      # for compiling, required
-# apt install ghostscript  # for compressing, optional
-# apt install make         # for convenience, optional
+
+# apt install texlive-full               # required
+# apt install texlive-bibtex-extra       # required
+# apt install make latexmk               # optional
+# apt install ghostscript                # optional
 ```
 
 ## CONTRIBUTING
@@ -65,3 +67,4 @@ Download the project, install LaTeX and an editor, then build the pdf.
 - [ ] add front matter according to the novel package docs
 - [ ] fix spacing for 1 col ingredients (before/after)
 - [ ] fleshout index by ingredient or keywords etc.
+- [ ] find a way to reduce size of dependencies? (maybe use `tlmgr`?)
