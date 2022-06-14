@@ -181,16 +181,13 @@
 }
 {
 	\end{tabular}
-	\newline  % NOTE is there a better way?
 }
 \ExplSyntaxOff
 
 
 \newenvironment{recipeabstract}%
-{\itshape}
-% a small skip here helps the ingredients not get crammed in at the
-% bottom of a page (sometimes the columns got messed up without the skip)
-{\smallskip}
+{\medskip\itshape}
+{\medskip\pagebreak[2]}  % MAGIC experimental page break (0..4)
 
 
 % a 3 col tabular for ingredients
@@ -222,10 +219,8 @@
 \newcommand{\tempclubpenalty}{\clubpenalty}
 \NewDocumentEnvironment{ingredientcolumns}{O{2}}
 {
-	% adding a smallskip here sometimes helps it break properly
-	% but more often does not help
-%	\smallskip  % add a skip so it can break properly
-
+	% NB better to use skips/breaks after abstract and before preparation
+	%    b/c there are sometimes multiple ingredient blocks and it looks better
 	% temporarily reduce widow/club penalty
 	% so the long table still adds a column break
 	\renewcommand{\tempclubpenalty}{\clubpenalty}
@@ -241,10 +236,10 @@
 }
 {
 	\end{multicols}
-	\par  % omitted par results in non-centered single col (?)
-	\medskip
 	\clubpenalty\tempclubpenalty
 	\widowpenalty\tempwidowpenalty
+	% par required for 1col else it gets left justified for some reason
+	\ifthenelse{\equal{#1}{1}}{\par}{}
 }
 
 
@@ -265,6 +260,7 @@
 	% can also be controlled globally using
 	% \setlist[enumerate]{<options>}
 	% slightly encourage a page break here w/ \pagebreak
+	\medskip
 	\pagebreak[2]  % MAGIC NUMBER experimental, [0...4] higher is more insistent
 	\begin{enumerate}[topsep=0pt,itemsep=0ex,partopsep=0ex,parsep=0.5ex,label=\textbf{\arabic*}.]
 	\setcounter{enumi}{-1}
@@ -272,7 +268,6 @@
 {
 	\end{enumerate}
 	\par
-%	\vspace{2ex}  % NOTE is there a more canonical solution?
 }
 
 
