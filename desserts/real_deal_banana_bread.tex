@@ -17,11 +17,9 @@
 \end{recipeabstract}
 
 
-% FUTURE how should >2 ingredient blocks be handled?
-% adding them all to one `ingredientcolumns` environement
-% results in strage column breaks
-% an alternative may be to use multiple `ingredientcolumns`
-% but reduce spacing before/after it
+% NOTE >2 `ingredientblock`s could be added all together w/ manual skips
+% or manually create more than one `ingredientcolumns`
+% or something else...
 \begin{ingredientcolumns}
 
 	\begin{ingredientblock}[banana mix]
@@ -29,15 +27,19 @@
 		\ingredient[20][g]{lime juice}
 	\end{ingredientblock}
 
+	\bigskip
 	\begin{ingredientblock}[add-ins]
 		\ingredient[250][g]{chocolate chips}\\
 		\ingredient[15][g]{flour}
 	\end{ingredientblock}
 
-\end{ingredientcolumns}
-
-
-\begin{ingredientcolumns}
+	\bigskip
+	\begin{ingredientblock}[mango mix]
+		\ingredient[425][g]{mango}\\
+		\ingredient[20][g]{butter}\\
+		\ingredient[10][g]{lime zest}\\
+		\ingredient[15][g]{lime juice}
+	\end{ingredientblock}
 
 	\begin{ingredientblock}[batter]
 		\ingredient[270][g]{butter}\\
@@ -48,18 +50,7 @@
 		\ingredient[3][g]{baking powder}
 	\end{ingredientblock}
 
-	\begin{ingredientblock}[mango mix]
-		\ingredient[425][g]{mango}\\
-		\ingredient[20][g]{butter}\\
-		\ingredient[10][g]{lime zest}\\
-		\ingredient[15][g]{lime juice}
-	\end{ingredientblock}
-
-\end{ingredientcolumns}
-
-
-\begin{ingredientcolumns}[1]
-
+	\smallskip
 	\begin{ingredientblock}[glaze]
 		\ingredient[30][g]{lime juice}\\
 		\ingredient[180][g]{sugar, powdered}
@@ -68,20 +59,18 @@
 \end{ingredientcolumns}
 
 \begin{preparation}
-\item First step...
+\item 
 \item Second step...
 \end{preparation}
 
 
 \begin{variation}
 \item First variation...
-\item Second variation...
 \end{variation}
 
 
 \begin{experiments}
 \item First experiment...
-\item Second experiment...
 \end{experiments}
 
 
