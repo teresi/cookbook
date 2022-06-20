@@ -351,15 +351,19 @@
 
 % abbreviations / aliases
 % use math mode for units for consistent style
+% NOTE since \day is already defined, maybe make all time commands uppercase?
 \newcommand\second{\ensuremath{sec}}
 \newcommand\minute{\ensuremath{min}}
 \newcommand\hour{\ensuremath{hr}}
+\newcommand\Day{\ensuremath{day}}
 \newcommand\week{\ensuremath{week}}
+\newcommand\Month{\ensuremath{month}}
 
 \newcommand\onehalf{\nicefrac{1}{2}}
 \newcommand\onethird{\nicefrac{1}{3}}
 \newcommand\onefourth{\nicefrac{1}{4}}
 \newcommand\oneeighth{\nicefrac{1}{8}}
+\newcommand\onetenth{\nicefrac{1}{10}}
 
 \newcommand\twothird{\nicefrac{2}{3}}
 
