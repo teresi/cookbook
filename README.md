@@ -2,9 +2,7 @@
 
 Recipes from friends and family.
 
-- [cookbook.pdf (October 2021)](https://github.com/teresi/teresi.github.io/blob/master/cookbook/archive/cookbook_20211023.pdf)
-- [cookbook.pdf (August 2021)](https://github.com/teresi/teresi.github.io/blob/master/cookbook/archive/cookbook_20210806.pdf)
-- [cookbook.pdf (August 2020)](https://github.com/teresi/teresi.github.io/blob/master/cookbook/archive/cookbook_20200809.pdf)
+- [cookbook.pdf (June 2022)](https://github.com/teresi/teresi.github.io/blob/master/cookbook/archive/cookbook_20220620.pdf)
 
 
 ## HOW TO
@@ -15,6 +13,7 @@ $ make help          # show usage
 ```
 
 ![preface](https://github.com/teresi/teresi.github.io/blob/master/preface.png)
+
 
 ## DESIGN
 - typesets recipes w/ a minimlist style
@@ -46,18 +45,7 @@ e.g. in Ubuntu and etc.:
     - find your chapter in `cookbook.tex`, e.g. `\section{Breakfast}`
     - add the new recipe using `\input{}` to said section
         - `\include{./breakfasts/eggscellent_challenge}  % your new filename (no extension)
-3. modify your new recipe using the commands provided in `recipe_snippet.tex`
-    - see Preface for a compiled example
-4. compile with `make`
-
-
-### WINDOWS
-Download the project, install LaTeX and an editor, then build the pdf.
-
-- download the zipped project or clone w/ [Git](https://www.atlassian.com/git/tutorials/install-git#windows)
-- install a `LaTeX` distribution, e.g. [MiKTeX](https://miktex.org/howto/install-miktex)
-  + optionally install an IDE, e.g. [TeXstudio](https://www.texstudio.org/)
-- open `cookbook.tex` and compile to pdf (F5 in TeXstudio)
+3. update snippet w/ your recipe, compile
 
 
 ## FUTURE
