@@ -89,6 +89,7 @@
 \RequirePackage{imakeidx}                % index for backmatter (keywords)
 	\indexsetup{othercode=\small}
 	\makeindex[program=makeindex,columns=2,intoc=true,options={-s index_style.ist}]
+\RequirePackage{tocloft}                 % fix TOC, and control Table Of Contents etc
 
 % NB `GoudyIn` can't be embedded into the pdf (for lettrine / large first character)
 
