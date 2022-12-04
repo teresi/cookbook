@@ -110,7 +110,7 @@
 % interacts poorly with the double column ingredients and titlespacing
 \RequirePackage[nobottomtitles*]{titlesec}  % better section placement
 % space at bottom to move titles to next page
-\renewcommand{\bottomtitlespace}{0.2\textheight}  % default 0.2\textheight
+\renewcommand{\bottomtitlespace}{0.25\textheight}  % default 0.2\textheight
 % space left, before, after section
 \titlespacing*{\section}{0em}{4ex plus 4ex minus 4ex}{1ex}
 
@@ -188,7 +188,7 @@
 
 \newenvironment{recipeabstract}%
 {\medskip\itshape}
-{\medskip\pagebreak[2]}  % MAGIC experimental page break (0..4)
+{\medbreak}
 
 
 % a 3 col tabular for ingredients
@@ -261,8 +261,9 @@
 	% can also be controlled globally using
 	% \setlist[enumerate]{<options>}
 	% slightly encourage a page break here w/ \pagebreak
-	\medskip
-	\pagebreak[2]  % MAGIC NUMBER experimental, [0...4] higher is more insistent
+	%\pagebreak[0]  % MAGIC NUMBER experimental, [0...4] higher is more insistent
+	%\medskip
+	\medbreak
 	\begin{enumerate}[topsep=0pt,itemsep=0ex,partopsep=0ex,parsep=0.5ex,label=\textbf{\arabic*}.]
 	\setcounter{enumi}{-1}
 	}
@@ -272,16 +273,15 @@
 }
 
 
+% using \bigskip\noindent\textbf interacts better with \bottomtitlespace
+% compared to \paragraph, as it doesn't move this block to the next
+% page as often
 \newenvironment{experiments}%
 {
-	% using \bigskip\noindent\textbf interacts better with \bottomtitlespace
-	% compared to \paragraph, as it doesn't move this block to the next
-	% page as often
-	\bigskip
-	% slightly encourage a page break here w/ \pagebreak
-	\pagebreak[2]  % MAGIC NUMBER experimental, [0...4] higher is more insistent
+	\medbreak
 	\noindent
-	\textbf{EXPERIMENTS}
+	\textbf{EXPERIMENTS}\nopagebreak
+	\smallskip
 	\begin{itemize}[label=\faFlask,topsep=0pt,itemsep=0ex,partopsep=1ex,parsep=1ex]
 }
 {
@@ -295,11 +295,11 @@
 	% using \bigskip\noindent\textbf interacts better with \bottomtitlespace
 	% compared to \paragraph, as it doesn't move this block to the next
 	% page as often
-	\bigskip
-	% slightly encourage a page break here w/ \pagebreak
-	\pagebreak[2]  % MAGIC NUMBER experimental, [0...4] higher is more insistent
+	%\pagebreak[2]  % MAGIC NUMBER experimental, [0...4] higher is more insistent
+	\medbreak
 	\noindent
-	\textbf{VARIATIONS}%
+	\textbf{VARIATIONS}\nopagebreak
+	\smallskip
 	\begin{itemize}[label=\adforn{28},topsep=0pt,itemsep=0ex,partopsep=1ex,parsep=1ex]
 }
 {
@@ -320,10 +320,9 @@
 % \recipeend
 % add a flourished section break, signifying end of the recipe
 \newcommand{\recipeend}[0]{
-	% small break to center ornament
-	% skip to give space after ornament
 	%{\centering \pgfornament[scale=0.55]{88} \smallbreak \smallskip}
-	{\centering \usebox{\armOrnament} \smallbreak \smallskip}
+	{\centering \usebox{\armOrnament} \medbreak}
+	% NB adding a \pagebreak here appears to mess up the margin notes
 }
 
 

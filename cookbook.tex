@@ -115,12 +115,12 @@
 \newcommand\nbstretchyspace{\spaceskip0.5em plus 0.25em minus 0.25em}
 % To improve spacing on titlepages
 \newcommand{\nbtitlestretch}{\spaceskip0.6em}
-{
+{%
 	\centering
 	\bfseries
 	\nbvspace[1]
 	\Huge
-	{\nbtitlestretch
+	{\nbtitlestretch%
 		TERESI FAMILY COOKERY
 	}\\
 	\nbvspace[1]
@@ -135,8 +135,8 @@
 }
 \end{titlepage}
 
-\dominitoc  % enable mini table of contents
-\nomtcrule  % disable horizontal rule lines in minitoc
+\dominitoc%  % enable mini table of contents
+\nomtcrule%  % disable horizontal rule lines in minitoc
 
 
 \tableofcontents
@@ -150,13 +150,13 @@
 \clearpage
 
 
-\mainmatter
+\mainmatter%
 
 
 \setcounter{mtc}{0}  % minitoc, reset to first chapter
-\mtcaddchapter       % minitoc, required at first chapter
+\mtcaddchapter%      % minitoc, required at first chapter
 \chapter{Breakfast}
-\minitoc
+\minitoc%
 \clearpage
 \input{./entrees/spinach_quiche}
 \input{./breakfasts/overnight_oats}
@@ -166,7 +166,7 @@
 
 
 \chapter{Sous vide}
-\minitoc
+\minitoc%
 \clearpage
 \input{./breakfasts/egg_bites}
 \input{./sous_vide/ribeye}
@@ -174,7 +174,7 @@
 
 
 \chapter{Soup}
-\minitoc
+\minitoc%
 \clearpage
 \input{./soups/gumbo_thanksgiving}
 \input{./soups/cajun_crabmeat_bisque}
@@ -183,19 +183,19 @@
 
 
 \chapter{Sides}
-\minitoc
+\minitoc%
 \clearpage
 \input{./vegetables/collards_thanksgiving}
 \input{./sides/mac_and_cheese}
 
 
 \chapter{Drinks}
-\minitoc
+\minitoc%
 \clearpage
 \section{Syrups}
-{
-	\let\section\subsection
-	\let\subsection\subsubsection
+{%
+	\let\section\subsection%
+	\let\subsection\subsubsection%
 	\input{./drinks/simple_syrup}
 	\input{./drinks/rich_syrup}
 	\input{./drinks/honey_syrup}
@@ -206,9 +206,9 @@
 \input{./drinks/cococo_co_cococo}
 \input{./drinks/caipirinha}
 \section{Margarita}
-{
-	\let\section\subsection
-	\let\subsection\subsubsection
+{%
+	\let\section\subsection%
+	\let\subsection\subsubsection%
 	\input{./drinks/margarita}
 	\input{./drinks/margarita_joy_of_cooking}
 	\input{./drinks/floridita_margarita}
