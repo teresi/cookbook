@@ -110,7 +110,7 @@
 % interacts poorly with the double column ingredients and titlespacing
 \RequirePackage[nobottomtitles*]{titlesec}  % better section placement
 % space at bottom to move titles to next page
-\renewcommand{\bottomtitlespace}{0.25\textheight}  % default 0.2\textheight
+\renewcommand{\bottomtitlespace}{0.3\textheight}  % MAGIC, experimental, default 0.2\textheight
 % space left, before, after section
 \titlespacing*{\section}{0em}{4ex plus 4ex minus 4ex}{1ex}
 
