@@ -229,16 +229,17 @@
 % TODO try out Smuggler's Cove Mai Tai / orgeat / Mai Tai Syrup
 \input{./drinks/aperol_spritz}
 \input{./drinks/pacific_sunshine}
+\input{./drinks/whiskey_sour}
 
 
 \chapter{Beverages}
-\minitoc
+\minitoc%
 \clearpage
 \input{./beverages/frozen_limeade}
 
 
 \chapter{Entr\`{e}es}
-\minitoc
+\minitoc%
 \clearpage
 \input{./entrees/mexican_beef_bowl}
 \input{./entrees/fettuccine_alfredo}
@@ -253,7 +254,7 @@
 
 
 \chapter{Bread}
-\minitoc
+\minitoc%
 \clearpage
 \input{./bread/focaccia}
 \input{./bread/soft_pretzels}
@@ -262,14 +263,14 @@
 
 
 \chapter{Sandwiches}
-\minitoc
+\minitoc%
 \clearpage
 \input{./sandwich/fantastic_frank.tex}
 % TODO work sandwiches
 
 
 \chapter{Bachelor Chow}
-\minitoc
+\minitoc%
 \clearpage
 % TODO chickpea chorizo extravaganza
 % TODO chicken soup
@@ -280,26 +281,26 @@
 
 
 \chapter{Crock Pot}
-\minitoc
+\minitoc%
 \clearpage
 \input{./crockpot/beef_sandwiches.tex}
 
 
 \chapter{Hot Sauce}
-\minitoc
+\minitoc%
 \clearpage
-{
+{%
 \input{./hot_sauce/base_lacto_brine}
 	\section[Red Hot Sauce]{Fermented Red Hot Sauce}
-	\let\section\subsection
-	\let\subsection\subsubsection
+	\let\section\subsection%
+	\let\subsection\subsubsection%
 	% use \input (not \include) to remove page breaks
 	\input{./hot_sauce/red_03}
 	\input{./hot_sauce/red_04}
 }
 
 \chapter{Marinades \& etc.}
-\minitoc
+\minitoc%
 \clearpage
 \input{./marinades/achiote_paste}
 \input{./marinades/al_pastor_marinade}
@@ -308,12 +309,12 @@
 
 
 \chapter{Pickles}
-\minitoc
+\minitoc%
 \clearpage
 \input{./pickles/quick_pickles}
-{
-	\let\section\subsection
-	\let\subsection\subsubsection
+{%
+	\let\section\subsection%
+	\let\subsection\subsubsection%
 	\input{./pickles/quick_red_onion}
 	\input{./pickles/quick_jalepenos}
 	\input{./pickles/quick_radishes}
@@ -321,13 +322,13 @@
 
 
 \chapter{Ice Cream}
-\minitoc
+\minitoc%
 \clearpage
 \input{./icecream/chocolate_icecream_joc}
 
 
 \chapter{Cakes}
-\minitoc
+\minitoc%
 \clearpage
 \input{./desserts/italian_tricolor}
 \input{./desserts/SchwarzWeissGebacks}
@@ -345,7 +346,7 @@
 
 
 \chapter{Pie}
-\minitoc
+\minitoc%
 \clearpage
 \input{./desserts/basic_pie_pastry}
 \input{./desserts/strawberry_rhubarb_pie}
@@ -355,7 +356,7 @@
 
 \clearpage
 \addcontentsline{toc}{chapter}{References}
-\printbibliography
+\printbibliography%
 
 \clearpage
 \printindex

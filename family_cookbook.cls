@@ -126,9 +126,9 @@
 	\fontsize{9}{11}\selectfont
 }
 \fancyhf{}
-\fancyhead[LE,RO]{\changefont \slshape \rightmark} %section
-\fancyhead[RE,LO]{\changefont \slshape \leftmark} %chapter
-\fancyfoot[C]{\changefont \thepage} %footer
+\fancyhead[LE,RO]{\changefont~\slshape \rightmark}% %section
+\fancyhead[RE,LO]{\changefont~\slshape \leftmark}% %chapter
+\fancyfoot[C]{\changefont~\thepage} %footer
 
 
 % add an ornament to the section numbers
