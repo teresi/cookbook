@@ -2,7 +2,7 @@
 
 Recipes from friends and family.
 
-- [cookbook.pdf (June 2022)](https://github.com/teresi/teresi.github.io/blob/master/cookbook/archive/cookbook_20220620.pdf)
+- [cookbook.pdf (December 2022)](https://github.com/teresi/teresi.github.io/blob/master/cookbook/archive/cookbook_20221222.pdf)
 
 
 ## HOW TO
