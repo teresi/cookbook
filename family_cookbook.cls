@@ -50,8 +50,8 @@
 	twoside,%
 	top=0.65in,%
 	bottom=0.55in,%
-	marginparsep=0.1in,%
-	marginparwidth=0.8in,%
+	marginparsep=0.15in,%
+	marginparwidth=0.75in,%
 	inner=0.85in,%
 	outer=1.15in,%
 	%includeheadfoot,% BUG fixes head/foot sizes but swaps outer/gutter?
@@ -491,17 +491,13 @@
 
 % \stars[<max_stars=5>]{<filled_stars>}
 % star rating using filled/open stars
-% NB line between if and body is required
-% NB the non-breaking space (the tilde) is necessary to align it vertically
-% NOTE \bigstar / \bigwhitestar, from `stix`, work for max 5 stars
-% NOTE \largewhitestar / \largeblackstar, from `fdsymbol`, are bigger but 5 don't fit in margin
+% NB \bigstar / \bigwhitestar, from `stix`, work for max 5 stars
+% NB \largewhitestar / \largeblackstar, from `fdsymbol`, are bigger but 5 don't fit in margin
 % FUTURE the stars appear not to be justified towards the outside of the page,
 %        but the spacing is sensitive, perhaps it can be improved?
+% FUTURE can this be sped up w/ a savebox or case statement?
+% BUG syntax checker recommends not using '\advance'
 \newcommand{\stars}[2][3]{%
-	\stepcounter{pl}\label{pl-\thepl}%
-	\ifthenelse{\isodd{\pageref{pl-\thepl}}}%
-	~
-	\hfill
 	\newcount\loopi\loopi=0
 	\loop\ifnum\loopi<#2
 		\ensuremath{\largeblackstar}\hfill
@@ -511,7 +507,6 @@
 		\ensuremath{\largewhitestar}\hfill
 		\advance\loopi by1
 	\repeat%
-	\hfill
 }
 
 
@@ -519,10 +514,9 @@
 % star rating in the margin
 % respecting ragged left/right
 % NB \noindent is used to prevent a vertical spacing
-\newcommand{\ragStars}[2][3]{
+\newcommand{\ragStars}[2][3]{%
 	\stepcounter{pl}\label{pl-\thepl}%
 	\ifthenelse{\isodd{\pageref{pl-\thepl}}}%
 	{\marginpar{\RaggedLeft\noindent\stars[#1]{#2}}}
 	{\marginpar{\RaggedRight\noindent\stars[#1]{#2}}}
 }
-
