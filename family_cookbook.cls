@@ -358,6 +358,7 @@
 \newcommand\Day{\ensuremath{day}}
 \newcommand\week{\ensuremath{week}}
 \newcommand\Month{\ensuremath{month}}
+\newcommand\Year{\ensuremath{year}}
 
 \newcommand\onehalf{\nicefrac{1}{2}}
 \newcommand\onethird{\nicefrac{1}{3}}
