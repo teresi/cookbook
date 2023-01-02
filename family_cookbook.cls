@@ -278,7 +278,7 @@
 % page as often
 \newenvironment{experiments}%
 {
-	\medbreak
+	\medbreak%
 	\noindent
 	\textbf{EXPERIMENTS}\nopagebreak
 	\smallskip
@@ -296,7 +296,7 @@
 	% compared to \paragraph, as it doesn't move this block to the next
 	% page as often
 	%\pagebreak[2]  % MAGIC NUMBER experimental, [0...4] higher is more insistent
-	\medbreak
+	\medbreak%
 	\noindent
 	\textbf{VARIATIONS}\nopagebreak
 	\smallskip
@@ -319,7 +319,7 @@
 
 % \recipeend
 % add a flourished section break, signifying end of the recipe
-\newcommand{\recipeend}[0]{
+\newcommand{\recipeend}[0]{%
 	%{\centering \pgfornament[scale=0.55]{88} \smallbreak \smallskip}
 	{\centering \usebox{\armOrnament} \medbreak}
 	% NB adding a \pagebreak here appears to mess up the margin notes
@@ -345,7 +345,7 @@
 % reference for a label w/ name, section, page number
 % <title> <section #> <on page...>
 \newcommand\reffull[1]{%
-	\nameref{#1} \vref{#1}%
+	\nameref{#1}~\vref{#1}%
 }
 
 
@@ -384,6 +384,8 @@
 \newcommand\milliliter{\ensuremath{ml}}
 \newcommand\gram{\ensuremath{g}}
 
+% NB have been using '' not " for inch symbol (synatax checker suggested)
+% NOTE when should one use $inch$ and not ''?
 \newcommand\inch{\ensuremath{inch}}
 
 
@@ -454,8 +456,8 @@
 
 % patch multicols to allow for one column
 % SEE https://tex.stackexchange.com/questions/233866/one-column-multicol-environment
-\let\multicolmulticols\multicols
-\let\endmulticolmulticols\endmulticols
+\let\multicolmulticols\multicols%
+\let\endmulticolmulticols\endmulticols%
 \RenewDocumentEnvironment{multicols}{mO{}}
 {%
 	\ifnum#1=1
@@ -467,7 +469,7 @@
 {%
 	\ifnum#1=1
 	\else % More than 1 column
-	\endmulticolmulticols
+	\endmulticolmulticols%
 	\fi
 }
 
@@ -493,6 +495,8 @@
 % NB the non-breaking space (the tilde) is necessary to align it vertically
 % NOTE \bigstar / \bigwhitestar, from `stix`, work for max 5 stars
 % NOTE \largewhitestar / \largeblackstar, from `fdsymbol`, are bigger but 5 don't fit in margin
+% FUTURE the stars appear not to be justified towards the outside of the page,
+%        but the spacing is sensitive, perhaps it can be improved?
 \newcommand{\stars}[2][3]{%
 	\stepcounter{pl}\label{pl-\thepl}%
 	\ifthenelse{\isodd{\pageref{pl-\thepl}}}%
@@ -502,11 +506,11 @@
 	\loop\ifnum\loopi<#2
 		\ensuremath{\largeblackstar}\hfill
 		\advance\loopi by1
-	\repeat
+	\repeat%
 	\loop\ifnum\loopi<#1
 		\ensuremath{\largewhitestar}\hfill
 		\advance\loopi by1
-	\repeat
+	\repeat%
 	\hfill
 }
 
