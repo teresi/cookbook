@@ -44,7 +44,7 @@ e.g. in Ubuntu and etc.:
 2. add the new recipe to the main file
     - find your chapter in `cookbook.tex`, e.g. `\section{Breakfast}`
     - add the new recipe using `\input{}` to said section
-        - `\include{./breakfasts/eggscellent_challenge}  % your new filename (no extension)
+        - `\include{./breakfasts/eggscellent_challenge}  % your new filename (no extension)`
 3. update snippet w/ your recipe, compile
 
 
