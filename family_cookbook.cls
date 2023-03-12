@@ -114,6 +114,7 @@
 % space left, before, after section
 \titlespacing*{\section}{0em}{4ex plus 4ex minus 4ex}{1ex}
 
+\cftsetindents{section}{1em}{3em}  % prevent title from colliding w/ section number in ToC
 
 % NB use `hyperref` flag `pdfa` to stop removal of links after compressing w/ ghostscript
 \RequirePackage[pdfa]{hyperref}    % links etc. (must be the last package)
