@@ -7,8 +7,8 @@
 compression_levels=(/default /printer /prepress /ebook /screen)
 script_path="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
-input_pdf=$script_path/../cookbook.pdf
-output_dir=$script_path/../archive
+_input_pdf=$script_path/../cookbook.pdf
+_output_dir=$(realpath $script_path/../archive)
 level=4
 
 # FUTURE probably should just take output filename to be more generic
@@ -26,7 +26,7 @@ while getopts i:o:l:h option
 do
 case "${option}"
 in
-i) input_pdf=${OPTARG};;
+i) _input_pdf=${OPTARG};;
 o) output_dir=${OPTARG};;
 l) level=${OPTARG};;
 h)
@@ -39,33 +39,36 @@ esac
 done
 
 compression=${compression_levels[$level]}
-filename_in=$(basename -- $input_pdf)
+filename_in=$(basename -- $_input_pdf)
 extension="${filename_in##*.}"
 filename="${filename_in%.*}"
-date=$(date '+%Y%m%d')
-output_pdf=$output_dir/${filename}_${date}.${extension}
+_date=$(date '+%Y%m%d')
+_output_pdf=${filename}_${_date}.${extension}
+_output_path=${_output_dir}/${_output_pdf}
 
 echo ""
 echo "compression:    ${compression}"
-echo "input pdf:      ${input_pdf}"
-echo "output pdf:     ${output_pdf}"
+echo "input pdf:      ${_input_pdf}"
+echo "output pdf:     ${_output_pdf}"
 
-du_in=$(du -hs $input_pdf)
+du_in=$(du -hs $_input_pdf)
 du_arr=(${du_in// / })
 size_in=${du_arr[0]}
 echo "input size:     $size_in"
 
-# INFO dPrinted=false was supposed to keep links after compression
-# but it does not appear to achieve that
+if [ ! -f "$_input_pdf" ]; then
+	echo -e "\e[91mERROR  input file DNE: $_input_pdf \e[39m"
+	exit 1
+fi
 
 gs -sDEVICE=pdfwrite \
    -dCompatibilityLevel=1.4 \
    -dPDFSETTINGS=$compression \
    -dNOPAUSE -dQUIET -dBATCH \
-   -sOutputFile=$output_pdf \
-   $input_pdf
+   -sOutputFile=$_output_path \
+   $_input_pdf
 
-du_out=$(du -hs $output_pdf)
+du_out=$(du -hs $_output_path)
 du_arr=(${du_out// / })
 size_out=${du_arr[0]}
 echo "output size:    $size_out"

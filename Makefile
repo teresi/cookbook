@@ -6,27 +6,36 @@
 #      b/c TeX files need specific make rules (e.g. multiple compile runs etc.)
 # INFO the compress recipe writes a file w/ a suffix of the current date
 # INFO the compress recipe will compress every call, b/c cookbook.pdf is a phony target
+#
+# NB the name of the 'archived' pdf is not computed here b/c the phony recipe will always
+#    recompress it's input, and therefore Make won't know when to not skip re-compilation
 
 
-root_dir := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+_root_dir := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+_cookbook_in := cookbook.tex
+_cookbook_out := cookbook.pdf
+_archive_dir := $(_root_dir)/archive
+_cookbook_pdf := $(_root_dir)/cookbook.pdf
 
-.PHONY: pdf all cookbook.pdf compress clean help
 
-pdf: cookbook.pdf  ## alias to compile to PDF (DEFAULT)
+.PHONY: pdf
+pdf: $(_cookbook_in)  ## alias for the cookbook
+	latexmk -pdf $(_cookbook_in)
 
-all: compress  ## alias to compile and compress
 
-cookbook.pdf:  ## the pdf target
-	latexmk -pdf cookbook.tex
+.PHONY: archive
+archive: | pdf $(_archive_dir) ## alias to compress a copy to the achive folder
+	$(_root_dir)/scripts/compress.bash -l 0 -i $(_cookbook_out) -o $(_archive_dir)
 
-compress: cookbook.pdf  | archive  ## make and compress the PDF
-	$(root_dir)/scripts/compress.bash -l 0 -i cookbook.pdf -o $(root_dir)/archive
 
+.PHONY: clean
 clean:  ## remove temporary files
-	latexmk -C cookbook.tex
+	latexmk -C $(_cookbook_out)
 
-archive:  ## destination for compressed PDFs
-	mkdir -p $(root_dir)/archive
+
+$(_archive_dir):
+	mkdir -p $(_archive_dir)
+
 
 .PHONY: help
 # SEE https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html

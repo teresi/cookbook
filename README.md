@@ -2,13 +2,13 @@
 
 Recipes from friends and family.
 
-- [cookbook.pdf (December 2022)](https://github.com/teresi/teresi.github.io/blob/master/cookbook/archive/cookbook_20221222.pdf)
+- [cookbook.pdf (April 2023)](https://github.com/teresi/teresi.github.io/blob/master/cookbook/archive/cookbook_20230402.pdf)
 
 
 ## HOW TO
 
 ```bash
-$ make cookbook.pdf  # the book
+$ make pdf           # the book
 $ make help          # show usage
 ```
 
@@ -28,7 +28,7 @@ $ make help          # show usage
 ## DEPENDENCIES
 Requires LaTeX and BibTeX.
 
-e.g. in Ubuntu and etc.:
+e.g. in Ubuntu:
 ```bash
 
 # apt install texlive-full               # required
