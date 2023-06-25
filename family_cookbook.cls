@@ -324,6 +324,8 @@
 	%{\centering \pgfornament[scale=0.55]{88} \smallbreak \smallskip}
 	{\centering \usebox{\armOrnament} \medbreak}
 	% NB adding a \pagebreak here appears to mess up the margin notes
+	% FUTURE try a '\filbreak' here? it messes up a few recipes but looks like a good option
+	% see https://tex.stackexchange.com/questions/72782/keep-text-together-with-minipage-leave-space-at-end-of-previous-page/72787#72787
 }
 
 
