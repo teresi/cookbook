@@ -102,6 +102,8 @@
 	urlcolor             = {blue},
 	citecolor            = {cyan},
 	filecolor            = {black},
+	hidelinks            = {true},
+	breaklinks           = {true},
 }
 
 
@@ -111,7 +113,14 @@
 
 \begin{document}
 \frontmatter
+\newgeometry{
+	outer=0.75in,
+	inner=0.875in,
+}
+
 \begin{titlepage}
+
+
 \onecolumn
 \pagestyle{empty}
 %% temporary titles
@@ -121,25 +130,39 @@
 \newcommand\nbstretchyspace{\spaceskip0.5em plus 0.25em minus 0.25em}
 % To improve spacing on titlepages
 \newcommand{\nbtitlestretch}{\spaceskip0.6em}
+
 {%
 	\centering
 	\bfseries
+	\uppercase{%
+		\nbtitlestretch%
+		\large{the}\\ \vspace{1em}
+		\Huge{teresi family cookbook}
+	}
 	\nbvspace[1]
-	\Huge
-	{\nbtitlestretch%
-		TERESI FAMILY COOKERY
-	}\\
+
+%	\nbvspace[1]
+%	\footnotesize
+%	AN ONGOING COLLECTION OF FAVORITES FROM AROUND THE GLOBE\\
+	\large{BY}\\
+	\vspace{1ex}
+	\Large{MICHAEL TERESI}\\
 	\nbvspace[1]
-	\footnotesize
-	AN ONGOING COLLECTION OF FAVORITES FROM AROUND THE GLOBE\\
+	\small{WITH}\\
+	\vspace{1ex}
+	\small{CONTRIBUTIONS FROM FRIENDS AND FAMILY}\\
 	\nbvspace[1]
-	\Large MICHAEL TERESI \\ \small \& COMPANY\\
-	\nbvspace[1]
-	\hspace{1em}  % FUTURE a more legit way of lining it up?
-	\IfFileExists{../stein2.png}{\includegraphics[width=0.33\textwidth]{../stein2}}{}
+
+	\IfFileExists{../grapes-alpha.png}{\includegraphics[clip,trim={3.3cm 2.7cm 3.2cm 2.5cm},width=0.80\textwidth]{../grapes-alpha}}{}
 	\vfill
+
+%	\tikz[overlay,remember picture]
+%		\draw (current page.west) -- (current page.east);
+%	\tikz[overlay,remember picture]
+%		\draw (current page.south) -- (current page.north);
 }
 \end{titlepage}
+\restoregeometry
 
 \dominitoc%  % enable mini table of contents
 \nomtcrule%  % disable horizontal rule lines in minitoc
@@ -222,7 +245,6 @@
 	\input{./drinks/tiki_fire}
 }
 \input{./drinks/cococo_co_cococo}
-\input{./drinks/caipirinha}
 \section{Margarita}
 {%
 	\let\section\subsection%
@@ -232,9 +254,11 @@
 	\input{./drinks/floridita_margarita}
 	\input{./drinks/pineapple_margarita}
 }
-\input{./drinks/flamingo}
+\input{./drinks/caipirinha}
+\input{./drinks/caipirissima}
 \input{./drinks/daiquiri}
 \input{./drinks/hemingway_daiquiri}
+\input{./drinks/flamingo}
 \input{./drinks/tom_collins}
 \input{./drinks/airmail}
 \input{./drinks/pegu_club}
@@ -380,12 +404,14 @@
 \clearpage
 \input{./desserts/basic_pie_pastry}
 \input{./desserts/strawberry_rhubarb_pie}
+%\pagebreak[4] % enforce break w/ pagebreak
 \input{./desserts/lemon_meringue_pie}
 \input{./desserts/chocolate_walnut_pie}
 
 
 \clearpage
 \addcontentsline{toc}{chapter}{References}
+\raggedright% encourage line breaks in urls of citations
 \printbibliography%
 
 \clearpage

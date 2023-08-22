@@ -36,3 +36,7 @@
 **/*.jpg
 **/*.jpeg
 **/*.png
+
+
+# binaries
+cpanm

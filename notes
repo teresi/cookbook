@@ -1,3 +1,10 @@
+# scripts
+
+convert img.jpg img.png  # jpg -> png
+convert img.png -transparent white -fuzz 25% img-alpha.png  # set white as transparent
+
+
+# recipes
 drinks
 
 talent scout

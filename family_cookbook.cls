@@ -46,18 +46,19 @@
 
 
 \RequirePackage[%
-	%showframe,%
+%	showframe,%
 	twoside,%
-	top=0.65in,%
-	bottom=0.55in,%
-	marginparsep=0.15in,%
+	top=0.5in,%
+	bottom=0.5in,%
+	marginparsep=0.1in,%
 	marginparwidth=0.75in,%
-	inner=0.85in,%
-	outer=1.15in,%
+	inner=0.75in,%
+	outer=0.95in,%
 	%includeheadfoot,% BUG fixes head/foot sizes but swaps outer/gutter?
 	papersize={6in,9in},%
 ]{geometry}
 \RequirePackage[T1]{fontenc}             % hypenate accented letters
+\RequirePackage{ae,aecompl}              % handle T1 fonts
 \RequirePackage[backend=bibtex]{biblatex}
     \bibliography{bib}
 \RequirePackage{ragged2e}                % for \justify
@@ -205,7 +206,7 @@
 	\tl_if_blank:nTF {#1}
 	{}  % empty
 	{\textit{#1}\\}  % not empty
-	\setlength{\tabcolsep}{1ex}
+	\setlength{\tabcolsep}{4pt}
 	\begin{tabular}[t]{rl>{\bfseries}l}
 }
 {
