@@ -58,6 +58,7 @@ e.g. in Ubuntu:
 
 - [x] add imposition
 - [x] add book mock-up
+- [ ] refactor drinks w/ sub sections by base ingredient
 - [ ] add book for large format printer
 - [ ] cleanup perl / cpan script, add to makefile if possible
 - [ ] refactor folder structure

@@ -24,6 +24,7 @@ _cookbook_pdf := $(_root_dir)/cookbook.pdf
 pdf: $(_cookbook_out)  ## alias for the cookbook
 
 
+.PHONY: $(_cookbook_out)
 $(_cookbook_out): $(_cookbook_in) family_cookbook.cls
 	latexmk -pdf -time -use-make $(_cookbook_in)
 
