@@ -156,6 +156,7 @@
 	\IfFileExists{../grapes-alpha.png}{\includegraphics[clip,trim={3.3cm 2.7cm 3.2cm 2.5cm},width=0.80\textwidth]{../grapes-alpha}}{}
 	\vfill
 
+	% draw a cross at the midpoints to help visually center the image
 %	\tikz[overlay,remember picture]
 %		\draw (current page.west) -- (current page.east);
 %	\tikz[overlay,remember picture]
@@ -172,7 +173,7 @@
 
 
 \chapter*{Preface}
-\enlargethispage{5\baselineskip}  % help the recipe snippet get onto one page
+%\enlargethispage{5\baselineskip}  % help the recipe snippet get onto one page
 \addcontentsline{toc}{chapter}{Preface}
 \input{preface}
 \input{recipe_snippet}
@@ -187,43 +188,43 @@
 \chapter{Breakfast}
 \minitoc%
 \clearpage
-\input{./entrees/spinach_quiche}
-\input{./breakfasts/overnight_oats}
-\input{./breakfasts/egg_muffins}
-\input{./breakfasts/french_toast_casserole}
-\input{./breakfasts/sausage_casserole}
-\input{./breakfasts/banana_pancakes}
+\input{./src/entrees/spinach_quiche}
+\input{./src/breakfasts/overnight_oats}
+\input{./src/breakfasts/egg_muffins}
+\input{./src/breakfasts/french_toast_casserole}
+\input{./src/breakfasts/sausage_casserole}
+\input{./src/breakfasts/banana_pancakes}
 
 
 \chapter{Sous vide}
 \minitoc%
 \clearpage
-\input{./breakfasts/egg_bites}
-\input{./sous_vide/ribeye}
-\input{./sous_vide/shrimp}
+\input{./src/breakfasts/egg_bites}
+\input{./src/sous_vide/ribeye}
+\input{./src/sous_vide/shrimp}
 
 
 \chapter{Soups \& Stews}
 \minitoc%
 \clearpage
-\input{./soups/gumbo_thanksgiving}
-\input{./soups/cajun_crabmeat_bisque}
-\input{./soups/hearty_italian_sausage}
-\input{./entrees/chili_colorado}
-\input{./entrees/chili_schwarz}
-\input{./soups/liquid_lasagna}
+\input{./src/soups/gumbo_thanksgiving}
+\input{./src/soups/cajun_crabmeat_bisque}
+\input{./src/soups/hearty_italian_sausage}
+\input{./src/entrees/chili_colorado}
+\input{./src/entrees/chili_schwarz}
+\input{./src/soups/liquid_lasagna}
 
 
 \chapter{Sides}
 \minitoc%
 \clearpage
-\input{./vegetables/collards_thanksgiving}
-\input{./sides/mac_and_cheese}
-\input{./sides/mushroom_wellington}
-\input{./sides/giesken_guacamole}
-\input{./sides/frijoles_de_olla}
-\input{./sides/frijoles_refritos}
-\input{./sides/frijoles_con_veneno}
+\input{./src/vegetables/collards_thanksgiving}
+\input{./src/sides/mac_and_cheese}
+\input{./src/sides/mushroom_wellington}
+\input{./src/sides/giesken_guacamole}
+\input{./src/sides/frijoles_de_olla}
+\input{./src/sides/frijoles_refritos}
+\input{./src/sides/frijoles_con_veneno}
 
 
 % TODO add Kevin Kos super syrup https://www.kevinkos.com/post/super-syrup
@@ -235,93 +236,93 @@
 {%
 	\let\section\subsection%
 	\let\subsection\subsubsection%
-	\input{./drinks/simple_syrup}
-	\input{./drinks/rich_syrup}
-	\input{./drinks/demerara_syrup}
-	\input{./drinks/sc_demerara_syrup}
-	\input{./drinks/honey_syrup}
-	\input{./drinks/ginger_syrup}
-	\input{./drinks/passion_fruit_syrup}
-	\input{./drinks/super_joose}
-	\input{./drinks/tiki_fire}
+	\input{./src/drinks/simple_syrup}
+	\input{./src/drinks/rich_syrup}
+	\input{./src/drinks/demerara_syrup}
+	\input{./src/drinks/sc_demerara_syrup}
+	\input{./src/drinks/honey_syrup}
+	\input{./src/drinks/ginger_syrup}
+	\input{./src/drinks/passion_fruit_syrup}
+	\input{./src/drinks/super_joose}
+	\input{./src/drinks/tiki_fire}
 }
-\input{./drinks/cococo_co_cococo}
+\input{./src/drinks/cococo_co_cococo}
 \section{Margarita}
 {%
 	\let\section\subsection%
 	\let\subsection\subsubsection%
-	\input{./drinks/margarita}
-	\input{./drinks/margarita_joy_of_cooking}
-	\input{./drinks/floridita_margarita}
-	\input{./drinks/pineapple_margarita}
+	\input{./src/drinks/margarita}
+	\input{./src/drinks/margarita_joy_of_cooking}
+	\input{./src/drinks/floridita_margarita}
+	\input{./src/drinks/pineapple_margarita}
 }
-\input{./drinks/caipirinha}
-\input{./drinks/caipirissima}
-\input{./drinks/daiquiri}
-\input{./drinks/hemingway_daiquiri}
-\input{./drinks/flamingo}
-\input{./drinks/tom_collins}
-\input{./drinks/airmail}
-\input{./drinks/pegu_club}
-\input{./drinks/jungle_bird}
-\input{./drinks/giuseppe_jungle_bird}
-\input{./drinks/halekulani}
-\input{./drinks/halekulani_smugglers}
-\input{./drinks/brown_derby_2}
-\input{./drinks/mai_tai}
+\input{./src/drinks/caipirinha}
+\input{./src/drinks/caipirissima}
+\input{./src/drinks/daiquiri}
+\input{./src/drinks/hemingway_daiquiri}
+\input{./src/drinks/flamingo}
+\input{./src/drinks/tom_collins}
+\input{./src/drinks/airmail}
+\input{./src/drinks/pegu_club}
+\input{./src/drinks/jungle_bird}
+\input{./src/drinks/giuseppe_jungle_bird}
+\input{./src/drinks/halekulani}
+\input{./src/drinks/halekulani_smugglers}
+\input{./src/drinks/brown_derby_2}
+\input{./src/drinks/mai_tai}
 % TODO try out Smuggler's Cove Mai Tai / orgeat / Mai Tai Syrup
-\input{./drinks/aperol_spritz}
-\input{./drinks/pacific_sunshine}
-\input{./drinks/whiskey_sour}
-\input{./drinks/bourbon_renewal}
-\input{./drinks/hotel_nacional_special}
-\input{./drinks/apricot_sour}
-\input{./drinks/surf_liner}
-\input{./drinks/anejo_highball}
-\input{./drinks/kir}
-\input{./drinks/hurricane_sc}
-\input{./drinks/aku_aku}
-\input{./drinks/sidewinders_fang}
-\input{./drinks/demerara_dry_float}
-\input{./drinks/barbados_rum_punch}
-\input{./drinks/mexican_el_diablo}
-\input{./drinks/top_notch_volcano}
-\input{./drinks/tequila_sunrise}
+\input{./src/drinks/aperol_spritz}
+\input{./src/drinks/pacific_sunshine}
+\input{./src/drinks/whiskey_sour}
+\input{./src/drinks/bourbon_renewal}
+\input{./src/drinks/hotel_nacional_special}
+\input{./src/drinks/apricot_sour}
+\input{./src/drinks/surf_liner}
+\input{./src/drinks/anejo_highball}
+\input{./src/drinks/kir}
+\input{./src/drinks/hurricane_sc}
+\input{./src/drinks/aku_aku}
+\input{./src/drinks/sidewinders_fang}
+\input{./src/drinks/demerara_dry_float}
+\input{./src/drinks/barbados_rum_punch}
+\input{./src/drinks/mexican_el_diablo}
+\input{./src/drinks/top_notch_volcano}
+\input{./src/drinks/tequila_sunrise}
 
 \chapter{Beverages}
 \minitoc%
 \clearpage
-\input{./beverages/frozen_limeade}
+\input{./src/beverages/frozen_limeade}
 
 
 \chapter{Entr\`{e}es}
 \minitoc%
 \clearpage
-\input{./entrees/mexican_beef_bowl}
-\input{./entrees/fettuccine_alfredo}
-\input{./entrees/rib_roast_christmas}
-\input{./entrees/argentine_steak}
-\input{./entrees/lasagna}
-\input{./entrees/pork_al_pastor}
-\input{./entrees/honey_soy_chicken}
-\input{./entrees/venison_tenderloin}
-\input{./entrees/summer_pork_chops}
+\input{./src/entrees/mexican_beef_bowl}
+\input{./src/entrees/fettuccine_alfredo}
+\input{./src/entrees/rib_roast_christmas}
+\input{./src/entrees/argentine_steak}
+\input{./src/entrees/lasagna}
+\input{./src/entrees/pork_al_pastor}
+\input{./src/entrees/honey_soy_chicken}
+\input{./src/entrees/venison_tenderloin}
+\input{./src/entrees/summer_pork_chops}
 
 
 \chapter{Bread}
 \minitoc%
 \clearpage
-\input{./bread/focaccia}
-\input{./bread/soft_pretzels}
-\input{./bread/biscuits_josh}
+\input{./src/bread/focaccia}
+\input{./src/bread/soft_pretzels}
+\input{./src/bread/biscuits_josh}
 % TODO biscuits from book Ratio
 
 
 \chapter{Sandwiches}
 \minitoc%
 \clearpage
-\input{./sandwich/fantastic_frank.tex}
-\input{./sandwich/chicken_salad.tex}
+\input{./src/sandwich/fantastic_frank.tex}
+\input{./src/sandwich/chicken_salad.tex}
 % TODO work sandwiches
 
 
@@ -332,84 +333,84 @@
 % TODO chicken soup
 % TODO barley gruel
 % TODO cabbage and keilbasa
-\input{./bachelor_chow/curry_rice.tex}
-\input{./entrees/hoola_poola}
+\input{./src/bachelor_chow/curry_rice.tex}
+\input{./src/entrees/hoola_poola}
 
 
 \chapter{Crock Pot}
 \minitoc%
 \clearpage
-\input{./crockpot/beef_sandwiches.tex}
+\input{./src/crockpot/beef_sandwiches.tex}
 
 
 \chapter{Hot Sauce}
 \minitoc%
 \clearpage
 {%
-\input{./hot_sauce/base_lacto_brine}
+\input{./src/hot_sauce/base_lacto_brine}
 	\section[Red Hot Sauce]{Fermented Red Hot Sauce}
 	\let\section\subsection%
 	\let\subsection\subsubsection%
 	% use \input (not \include) to remove page breaks
-	\input{./hot_sauce/red_03}
-	\input{./hot_sauce/red_04}
+	\input{./src/hot_sauce/red_03}
+	\input{./src/hot_sauce/red_04}
 }
 
 \chapter{Marinades \& etc.}
 \minitoc%
 \clearpage
-\input{./marinades/achiote_paste}
-\input{./marinades/al_pastor_marinade}
-\input{./marinades/ancho_chicken_rub}
-\input{./marinades/ham_honey_mustard}
-\input{./marinades/double_duece}
+\input{./src/marinades/achiote_paste}
+\input{./src/marinades/al_pastor_marinade}
+\input{./src/marinades/ancho_chicken_rub}
+\input{./src/marinades/ham_honey_mustard}
+\input{./src/marinades/double_duece}
 
 
 \chapter{Pickles}
 \minitoc%
 \clearpage
-\input{./pickles/quick_pickles}
+\input{./src/pickles/quick_pickles}
 {%
 	\let\section\subsection%
 	\let\subsection\subsubsection%
-	\input{./pickles/quick_red_onion}
-	\input{./pickles/quick_jalepenos}
-	\input{./pickles/quick_radishes}
+	\input{./src/pickles/quick_red_onion}
+	\input{./src/pickles/quick_jalepenos}
+	\input{./src/pickles/quick_radishes}
 }
 
 
 \chapter{Ice Cream}
 \minitoc%
 \clearpage
-\input{./icecream/chocolate_icecream_joc}
+\input{./src/icecream/chocolate_icecream_joc}
 
 
 \chapter{Cakes}
 \minitoc%
 \clearpage
-\input{./desserts/italian_tricolor}
-\input{./desserts/SchwarzWeissGebacks}
-\input{./desserts/peppermint_fudge}
-\input{./desserts/seven_layer_brownies}
-\input{./desserts/elegant_wine_cake}
-\input{./desserts/midnight_cookies}
-\input{./desserts/frankie_deluxe}
-\input{./desserts/frankie_brownies}
-\input{./desserts/chocolate_cake}
-%\input{./desserts/almond_spekulatius}
-\input{./desserts/real_deal_banana_bread.tex}
-\input{./bread/banana_bread}
-\input{./bread/moms_banana_bread}
+\input{./src/desserts/italian_tricolor}
+\input{./src/desserts/SchwarzWeissGebacks}
+\input{./src/desserts/peppermint_fudge}
+\input{./src/desserts/seven_layer_brownies}
+\input{./src/desserts/elegant_wine_cake}
+\input{./src/desserts/midnight_cookies}
+\input{./src/desserts/frankie_deluxe}
+\input{./src/desserts/frankie_brownies}
+\input{./src/desserts/chocolate_cake}
+%\input{./src/desserts/almond_spekulatius}
+\input{./src/desserts/real_deal_banana_bread.tex}
+\input{./src/bread/banana_bread}
+\input{./src/bread/moms_banana_bread}
 
 
 \chapter{Pie}
 \minitoc%
 \clearpage
-\input{./desserts/basic_pie_pastry}
-\input{./desserts/strawberry_rhubarb_pie}
+\input{./src/desserts/basic_pie_pastry}
+\input{./src/desserts/strawberry_rhubarb_pie}
 %\pagebreak[4] % enforce break w/ pagebreak
-\input{./desserts/lemon_meringue_pie}
-\input{./desserts/chocolate_walnut_pie}
+\input{./src/desserts/lemon_meringue_pie}
+\input{./src/desserts/chocolate_walnut_pie}
 
 
 \clearpage
