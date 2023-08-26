@@ -72,9 +72,34 @@ cookbook-imp.pdf: rescaled.pdf
 	@# TODO need install script for cpan (?)
 	@# SEE http://www.cpan.org/modules/INSTALL.html
 	pdf-impose.pl rescaled.pdf --schema 2up --paper 8.5in:11in --signature 16 cookbook-imp.pdf
+	@# TODO see if this can be replaced with pdfpages https://mirror2.sandyriver.net/pub/ctan/macros/latex/contrib/pdfpages/pdfpages.pdf
 
 
-book.pdf: cookbook-imp.pdf
+book.pdf: cookbook-imp.pdf  ## cookbook as a mock-up for printing on letter paper
 	@# TODO is there a better way to get these margins rather than trial/error?
 	@# NB the margins are in points, though there _should_ be 72 pt / inch
 	pdfcrop --margins '-41 -41 -41 -41' cookbook-imp.pdf book.pdf
+
+
+.PHONY: uploads            # PNGs for use in the readme, via teresi.github.io
+uploads: ./githubio/title.png ./githubio/preface.png
+
+
+./githubio:
+	mkdir -p ./githubio
+
+
+./githubio/title.png: cookbook.pdf | githubio
+	pdfjam cookbook.pdf 1 --fitpaper true -o ./githubio/title.pdf
+	#pdfseparate cookbook.pdf -f 1 -l 1 ./archive/title.pdf 2>/dev/null
+	pdftoppm -gray -png -singlefile -r 75 ./githubio/title.pdf ./githubio/title && rm ./githubio/title.pdf
+	-cp ./githubio/title.png ../teresi.github.io/
+
+
+./githubio/preface.png: cookbook.pdf | githubio
+	@# NB the page number will need manual updating when the ToC changes
+	@# the preface could be compiled on it's own to simplify this
+	pdfjam cookbook.pdf 6 --fitpaper true -o ./githubio/preface.pdf
+	#pdfseparate cookbook.pdf -f 6 -l 6 ./archive/preface.pdf 2>/dev/null
+	pdftoppm -gray -png -singlefile -r 75 ./githubio/preface.pdf ./githubio/preface && rm ./githubio/preface.pdf
+	-cp ./githubio/preface.png ../teresi.github.io/

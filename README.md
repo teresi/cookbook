@@ -1,7 +1,5 @@
 # TERESI FAMILY COOKBOOK
 
-Recipes from friends and family.
-
 - [cookbook.pdf (April 2023)](https://github.com/teresi/teresi.github.io/blob/master/cookbook/archive/cookbook_20230402.pdf)
 
 
@@ -13,6 +11,7 @@ $ make help          # usage
 $ make book          # printing mockup
 ```
 
+![title](https://github.com/teresi/teresi.github.io/blob/master/title.png)
 ![preface](https://github.com/teresi/teresi.github.io/blob/master/preface.png)
 
 
@@ -58,7 +57,7 @@ e.g. in Ubuntu:
 
 - [x] add imposition
 - [x] add book mock-up
-- [ ] refactor drinks w/ sub sections by base ingredient
+- [x] refactor drinks w/ sub sections by base ingredient
 - [ ] add book for large format printer
 - [ ] cleanup perl / cpan script, add to makefile if possible
 - [ ] refactor folder structure

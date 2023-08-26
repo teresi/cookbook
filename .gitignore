@@ -1,9 +1,11 @@
+# compiled
 **/*.aux
 **/*.log
 **/*.out
 **/*.synctex.gz
 **/*.toc
 **/*.pdf
+**/*.ppm
 **.*~
 **.*~*
 **.*dvi
@@ -40,3 +42,7 @@
 
 # binaries
 cpanm
+
+
+# files to upload to githubio
+githubio
