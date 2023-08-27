@@ -1,0 +1,32 @@
+% mockup for printing on a standard 8.5x11 inch printer
+% shrink 6x9 --> 5.5x8.5 prior to impositioning
+
+\documentclass{article}
+\usepackage{pdfpages}
+\usepackage[
+	paperheight=5.5001in,
+	paperwidth=8.5001in
+]{geometry}
+
+\pagenumbering{gobble}  % no page numbers
+
+
+\begin{document}
+
+%% frontispiece
+%\begin{center}
+%	\makebox[\textwidth]{\includegraphics[width=0.8\paperwidth]{../exlibris}}
+%\end{center}
+%\pagebreak
+
+
+\includepdf[
+	frame,
+	signature=16,
+	nup=2x1,
+	pages=-,
+	openright=false,
+]{cookbook.pdf}
+
+
+\end{document}
