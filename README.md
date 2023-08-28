@@ -7,8 +7,9 @@
 
 ```bash
 $ make pdf           # cook book pdf
-$ make help          # usage
 $ make book          # printing mockup
+$ make submodules    # download submodules
+$ make help          # usage
 ```
 
 ![title](https://github.com/teresi/teresi.github.io/blob/master/title.png)
@@ -19,12 +20,9 @@ $ make book          # printing mockup
 - minimal style
 - black and white
 - 6x9" book trim, single column
-- provides environments and commands for formatting
+- minimal graphics to simplify printing
+- provides environments / commands
     - SEE `./recipe_snippet.tex`
-- no images of the committed to this repo
-    - to save space
-    - to simplify printing
-    - possible exceptions for graphics wrt title / chapters / etc
 
 
 ## DEPENDENCIES
@@ -40,6 +38,7 @@ e.g. in Ubuntu:
 # apt install make latexmk               # optional, build tools
 # apt install ghostscript                # optional, pdf compression
 # apt install perl                       # optional, for printing
+# apt install git-lfs                    # optional, for imagery
 ```
 
 ## CONTRIBUTING
@@ -67,5 +66,5 @@ e.g. in Ubuntu:
 - [ ] fix spacing for 1 col ingredients (before/after)
 - [ ] fleshout index by ingredient or keywords etc.
 - [ ] find a way to reduce size of dependencies? (maybe use `tlmgr`?)
-- [ ] refactor frontispiece / title graphics, commit images somewhere
+- [x] refactor frontispiece / title graphics, commit images somewhere
 - [ ] automate hiding hyper ref links between pdf / book

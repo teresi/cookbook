@@ -86,6 +86,9 @@
 \usepackage[acronym]{glossaries}
 \usepackage{booktabs}           % tables
 \usepackage{siunitx}            % numbers in tables
+\graphicspath{
+	{./images/cookbook_assets/assets/}
+}
 
 \hypersetup{%
 	pdfauthor            = {Michael Teresi},
@@ -153,8 +156,10 @@
 	\small{CONTRIBUTIONS FROM FRIENDS AND FAMILY}\\
 	\nbvspace[1]
 
-	\IfFileExists{../grapes-alpha.png}{\includegraphics[clip,trim={3.3cm 2.7cm 3.2cm 2.5cm},width=0.80\textwidth]{../grapes-alpha}}{}
+	\includegraphics[width=0.45\paperwidth]{grapes}
 	\vfill
+
+	% TODO add location as if it was the publisher
 
 	% draw a cross at the midpoints to help visually center the image
 %	\tikz[overlay,remember picture]

@@ -26,6 +26,7 @@ pdf: $(_cookbook_out)  ## alias for the cookbook
 
 .PHONY: $(_cookbook_out)
 $(_cookbook_out): $(_cookbook_in) family_cookbook.cls
+	$(MAKE) -ik -C ./images/cookbook_assets
 	latexmk -pdf -time -use-make $(_cookbook_in)
 
 
@@ -41,6 +42,11 @@ clean:  ## remove temporary files
 	latexmk -C rescaled.pdf
 	latexmk -C book.pdf
 	latexmk -C cookbook-imp.pdf
+
+
+.PHONY: submodules
+submodules:    ## initialize the submodules
+	git submodule update --init --recursive
 
 
 $(_archive_dir):

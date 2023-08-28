@@ -1,0 +1,3 @@
+[submodule "images/cookbook_assets"]
+	path = images/cookbook_assets
+	url = https://github.com/teresi/cookbook_assets.git

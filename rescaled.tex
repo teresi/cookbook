@@ -6,15 +6,26 @@
 \usepackage[paperheight=8.5in,paperwidth=5.5in]{geometry}
 \pagenumbering{gobble}  % no page numbers
 
+\graphicspath{
+	{./images/cookbook_assets/assets/}
+}
+
+
 \begin{document}
 
 
+% need an empty page on page 1 b/c the book opens right
+% and the empty page will get pasted over by the end paper
+\null\newpage
+
 % frontispiece
+% FUTURE add the frontispiece to the base book?
+% then update the githubio rule w/ the right page indices
 \begin{center}
-	\makebox[\textwidth]{\includegraphics[width=0.8\paperwidth]{../exlibris}}
+	\makebox[\textwidth]{\includegraphics[width=0.99\textwidth]{ex_libris_encourage_beautiful}}
+	\vfill
 \end{center}
 \pagebreak
-
 
 \includepdf[pages=-,fitpaper=true,templatesize={5.5in}{8.5in}]{cookbook.pdf}
 
