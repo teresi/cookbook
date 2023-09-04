@@ -53,7 +53,7 @@
 	marginparsep=0.1in,%
 	marginparwidth=0.75in,%
 	inner=0.75in,%
-	outer=0.95in,%
+	outer=1.0in,%
 	%includeheadfoot,% BUG fixes head/foot sizes but swaps outer/gutter?
 	papersize={6in,9in},%
 ]{geometry}
