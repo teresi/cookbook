@@ -233,6 +233,7 @@
 	\setlength\columnsep{0.5ex}
 	% NOTE is there a better way to fix the spacing?
 	% The 1col ingredientcolumns has weird spacing so add a skip
+	% try using a \bigskip before each col?
 	\ifthenelse{\equal{#1}{1}}{\vskip1ex}{}
 	\centering
 	\begin{multicols}{#1}
