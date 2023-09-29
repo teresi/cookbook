@@ -388,6 +388,7 @@
 \newcommand\Fahrenheit{\ensuremath{F^\circ}}
 
 \newcommand\milliliter{\ensuremath{ml}}
+\newcommand\ml{\ensuremath{ml}}
 \newcommand\gram{\ensuremath{g}}
 
 % NB have been using '' not " for inch symbol (synatax checker suggested)
