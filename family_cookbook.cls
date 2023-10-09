@@ -45,15 +45,17 @@
 \let\cleardoublepage=\clearpage % stop chapters/titles having extra blank page
 
 
+% NB keep at >=0.25" of space on outer (i.e. outer - marginsep - marginparwidth)
+% to prevent cutoff of marginnotes due to printer margins
 \RequirePackage[%
-%	showframe,%
+	showframe,%
 	twoside,%
 	top=0.5in,%
 	bottom=0.5in,%
-	marginparsep=0.1in,%
-	marginparwidth=0.75in,%
 	inner=0.75in,%
 	outer=1.0in,%
+	marginparsep=0.1in,%
+	marginparwidth=0.75in,%
 	%includeheadfoot,% BUG fixes head/foot sizes but swaps outer/gutter?
 	papersize={6in,9in},%
 ]{geometry}
