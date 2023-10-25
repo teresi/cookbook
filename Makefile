@@ -38,10 +38,11 @@ help:  ## show usage
 
 .PHONY: clean
 clean:  ## remove temporary files
-	latexmk -C $(_cookbook_out)
-	latexmk -C rescaled.pdf
-	latexmk -C book.pdf
-	latexmk -C cookbook-imp.pdf
+	latexmk -f -C $(_cookbook_out)
+	latexmk -f -C rescaled.pdf
+	latexmk -f -C book.pdf
+	latexmk -f -C cookbook-imp.pdf
+	$(MAKE) -ik -C $(_root_dir)/images/cookbook_assets/ clean
 
 
 .PHONY: submodules
