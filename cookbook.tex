@@ -38,14 +38,10 @@
 % [ ] coffee / nutella icecream
 % [ ] lucky pork for new years
 
+
 % Future:
-% [ ] move all recipes to a top level recipes folder, clean up directories
-% [ ] add 'nationality' to index for each recipe
 % [ ] add function for formatted citation (<recipe> <page>)
-% [ ] move drinks to subsections by spirit or style (e.g. rum / punch ...)
 % [ ] add a legend for abbreviations
-% [ ] add subchapters for drinks by type of alcohol
-% [ ] add function to add section to index w/o having to specify section in command
 % [ ] add version or hash to an info page (in preface?)
 % [ ] add support for vertical spacing to \ragmarpar (e.g \marginnote[horz]{text}[vert]
 % [ ] add section in back to explain units (tsp, etc.)
@@ -53,16 +49,10 @@
 % [ ] add section in preface on abbreviations used (e.g. Tbs/tsp, min/hr...)
 % [ ] add temperature command w/ compile time switch between Fahrenheit / Centigrade
 % [ ] add a new package and move environments there?
-% [ ] add a compile time toggle for adding images
-% [ ] add a matrix of images for multiple recipes
 % [ ] add tessalation for page backround artwork
 %     (SEE http://tex.my/creating-tiled-background-patterns/)
 % [ ] add a flag for changing justification on the margin paragraphs (e.g. use justify, use ragged)
 % [ ] update `recipeabstract` to just `abstract`
-% [ ] don't use clearpage after chapter, or, add something to the cleared page?
-%     the clearpages use a lot of space but the recipes get split less?
-% [ ] replace minitoc w/ title https://tex.stackexchange.com/questions/65412/minitoc-with-two-column-content
-% [ ] get `webomints` symbols working
 % [ ] standardize spacing on NxYxZ etc, see makecookbook
 
 
@@ -441,6 +431,7 @@
 \minitoc%
 \clearpage
 \input{./src/icecream/chocolate_icecream_joc}
+\input{./src/icecream/cranberry_sorbet}
 
 
 \chapter{Cakes}
