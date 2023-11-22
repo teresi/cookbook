@@ -1,3 +1,9 @@
+
+cpan stuff is incomplete
+need to call cpan PDF::Impose to install pdf-impose.pl to path
+
+
+
 # scripts
 
 convert img.jpg img.png  # jpg -> png
