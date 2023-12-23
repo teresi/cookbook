@@ -50,12 +50,12 @@
 \RequirePackage[%
 %	showframe,%
 	twoside,%
-	top=0.5in,%
+	top=0.6in,%
 	bottom=0.5in,%
 	inner=0.75in,%
 	outer=1.0in,%
 	marginparsep=0.1in,%
-	marginparwidth=0.75in,%
+	marginparwidth=0.70in,%
 	%includeheadfoot,% BUG fixes head/foot sizes but swaps outer/gutter?
 	papersize={6in,9in},%
 ]{geometry}

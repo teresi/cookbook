@@ -27,7 +27,8 @@ pdf: $(_cookbook_out)  ## alias for the cookbook
 .PHONY: $(_cookbook_out)
 $(_cookbook_out): $(_cookbook_in) family_cookbook.cls
 	$(MAKE) -ik -C ./images/cookbook_assets
-	latexmk -pdf -time -use-make $(_cookbook_in)
+	max_print_line=96 \
+		latexmk -pdf -time -use-make $(_cookbook_in)
 
 
 .PHONY: help
