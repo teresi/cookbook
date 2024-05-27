@@ -1,4 +1,41 @@
+# texlive install
 
+https://www.tug.org/texlive/doc/install-tl.html
+https://en.wikibooks.org/wiki/LaTeX/Installation
+https://tug.org/texlive/doc/texlive-en/texlive-en.html#x1-50001.3
+https://wiki.debian.org/TeXLive
+
+
+
+curl -L -o install-tl-unx.tar.gz https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+curl -L -o install-tl-unx.tar.gz https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz.sha512
+
+# scheme-medium
+# scheme-small
+# scheme-basic
+perl install-tl \
+    -gui text \
+    --paper=letter \
+    --texdir $HOME/.texlive2024 \
+    --scheme scheme-small \
+    -no-interaction
+
+
+use symlinks? or setup env:
+see  3.4.1 Environment variables for Unix  https://tug.org/texlive/doc/texlive-en/texlive-en.html#x1-50001.3
+
+
+tlmgr init-usertree
+tlmgr install latex latex-bin latexconfig
+tlmgr install biber biblatex
+tlmgr install latex-fonts collection-fontsrecommended
+tlmgr install pgf xcolor tikzfill tikzpagenodes tcolorbox pgfornament adforn
+tlmgr install amsmath babel carlisle ec geometry graphics hyperref lm  marvosym oberdiek parskip graphics-def url
+tlmgr update --self --all
+
+
+
+# perl
 cpan stuff is incomplete
 need to call cpan PDF::Impose to install pdf-impose.pl to path
 
