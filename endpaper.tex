@@ -1,0 +1,65 @@
+\documentclass[letterpaper]{book}
+
+% decorative endpaper
+
+% tesselation using the adforn symbols and tkzfill
+% for an 8.5 x 11" page sheet, folded in half
+
+% SEE
+% https://ctan.org/pkg/tikzfill
+% https://tex.my/2020/05/24/creating-tiled-background-patterns/
+
+
+\usepackage{tikz}
+\usepackage{tikzpagenodes}
+\usepackage{adforn}
+\usepackage{fancyhdr}
+\usepackage{tikzpagenodes}
+\usepackage{tikzfill}
+\usepackage{tcolorbox}
+
+
+% a tile of the center symbol, and the second symbol in the corners
+\newsavebox{\tileone}
+\sbox{\tileone}{%
+  \begin{tikzpicture}[x=1cm,y=1cm]
+  \clip (0,0) rectangle (2,2);
+  \foreach \x in {0,1} {
+    \foreach \y in {0,1} {
+       \node[font=\Huge,text=gray]
+         at (2*\x, 2*\y) {\adforn{11}};
+       % rotate to line up the symbol based on the direction the endpaper would be glued in
+       \node[font=\Huge,rotate=90,text=gray]
+         at (2*\x+1, 2*\y+1) {\adforn{33}};
+     }
+  }
+  \begin{scope}[dashed]
+    \draw plot (\x,\x-1);
+    \draw plot (\x,\x+1);
+    \draw plot (\x,-\x+1);
+    \draw plot (\x,-\x+3);
+  \end{scope}
+  \end{tikzpicture}%
+}
+
+
+% replicate the tile over the background of the page
+\fancyhf{}
+\renewcommand{\headrule}{}
+\fancyhead[L]{%
+\begin{tikzpicture}[overlay,remember picture]
+  \path[draw,fill tile picture={%
+    \node[inner sep=0pt,outer sep=0pt] {\usebox{\tileone}};
+  }] (current page.south east) rectangle (current page.north west);
+\end{tikzpicture}
+}
+
+
+\begin{document}
+
+\newpage
+\thispagestyle{fancy}
+\mbox{}
+\clearpage
+
+\end{document}
