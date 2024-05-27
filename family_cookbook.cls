@@ -163,11 +163,11 @@
 		\tl_if_empty:NTF \l_mymodule_preptime_tl
 		{& &}
 		{\Gloves & \l_mymodule_preptime_tl &}
-		
+
 		\tl_if_empty:NTF \l_mymodule_bakingtime_tl
 		{& &}
 		{\oven & \l_mymodule_bakingtime_tl &}
-		
+
 		\tl_if_empty:NTF \l_mymodule_source_tl
 		{& \\}
 		{\PaperLandscape & \l_mymodule_source_tl \\}
@@ -175,7 +175,7 @@
 		\tl_if_empty:NTF \l_mymodule_servings_tl
 		{& &}
 		{\Dish & \l_mymodule_servings_tl &}
-		
+
 		\tl_if_empty:NTF \l_mymodule_inactivetime_tl
 		{& &}
 		{\faClockO & \l_mymodule_inactivetime_tl &}
@@ -351,6 +351,7 @@
 
 % reference for a label w/ name, section, page number
 % <title> <section #> <on page...>
+% NOTE use ~page~\pageref{#1} instead of ~\vref{#1}?
 \newcommand\reffull[1]{%
 	\nameref{#1}~\vref{#1}%
 }
