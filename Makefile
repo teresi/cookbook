@@ -17,7 +17,6 @@ _root_dir := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 _cookbook_in := cookbook.tex
 _cookbook_out := cookbook.pdf
 _archive_dir := $(_root_dir)/archive
-_cookbook_pdf := $(_root_dir)/cookbook.pdf
 
 
 .PHONY: pdf

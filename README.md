@@ -6,10 +6,10 @@
 ## HOW TO
 
 ```bash
-$ make pdf           # cook book pdf
-$ make book          # printing mockup
-$ make submodules    # download submodules
+$ make               # cookbook.pdf
 $ make help          # usage
+$ make submodules    # download submodules
+$ make book          # mockup
 ```
 
 ![title](https://github.com/teresi/teresi.github.io/blob/master/title.png)
@@ -17,28 +17,29 @@ $ make help          # usage
 
 
 ## DESIGN
-- minimal style
 - black and white
-- 6x9" book trim, single column
-- minimal graphics to simplify printing
-- provides environments / commands
-    - SEE `./recipe_snippet.tex`
+- 6x9" trim
+- simple graphics
+- commands in `family_cookbook.cls`
+- example in `./recipe_snippet.tex`
 
 
 ## DEPENDENCIES
-Requires LaTeX and BibTeX.
-
-Optionally requires `make`, `latexmk`, `ghostscript`, `perl`
+Requires LaTeX 2024 or later.
 
 e.g. in Ubuntu:
 ```bash
+# apt install make curl perl coreutils   # build tools
+$ make install -C texlive                # TeX Live 2024, see https://www.tug.org/texlive/
+$ source ~/.bashrc                       # update your PATH for 2024
+$ tlmgr install `cat requirements.txt`   # TeX Live packages
+```
 
-# apt install texlive-full               # required
-# apt install texlive-bibtex-extra       # required
-# apt install make latexmk               # optional, build tools
-# apt install ghostscript                # optional, pdf compression
-# apt install perl                       # optional, for printing
-# apt install git-lfs                    # optional, for imagery
+recommended:
+```bash
+# apt install ghostscript                # compression
+# apt install perl                       # printing
+# apt install git-lfs wget imagemagick   # images
 ```
 
 ## CONTRIBUTING
@@ -59,12 +60,12 @@ e.g. in Ubuntu:
 - [x] refactor drinks w/ sub sections by base ingredient
 - [ ] add book for large format printer
 - [ ] cleanup perl / cpan script, add to makefile if possible
-- [ ] refactor folder structure
+- [x] refactor folder structure
 - [ ] refactor `cls` out of this project
 - [ ] add license
 - [ ] add front matter according to the [novel package](https://mirror2.sandyriver.net/pub/ctan/macros/luatex/latex/novel/doc/novel-documentation.html) docs?
 - [ ] fix spacing for 1 col ingredients (before/after)
 - [ ] fleshout index by ingredient or keywords etc.
-- [ ] find a way to reduce size of dependencies? (maybe use `tlmgr`?)
+- [x] find a way to reduce size of dependencies? (maybe use `tlmgr`?)
 - [x] refactor frontispiece / title graphics, commit images somewhere
 - [ ] automate hiding hyper ref links between pdf / book
