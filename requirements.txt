@@ -404,6 +404,7 @@ endiagram
 engtlc
 enigma
 enumitem
+environ
 eolang
 eolang.x86_64-linux
 epigram
@@ -616,6 +617,7 @@ ibrackets
 ideavault
 iexec
 ifis-macros
+ifoddpage
 ifplatform
 ifsym
 iftex
@@ -1224,6 +1226,7 @@ tabto-generic
 tabvar
 tamethebeast
 tap
+tcolorbox
 tds
 tdsfrmath
 templates-fenn
@@ -1319,6 +1322,8 @@ thumbpdf
 thumbpdf.x86_64-linux
 tie
 tie.x86_64-linux
+tikzfill
+tikzpagenodes
 tikzsymbols
 times
 timetable
@@ -1355,6 +1360,7 @@ translator
 transparent-io
 treetex
 trigonometry
+trimspaces
 truthtable
 tsvtemplate
 ttfutils

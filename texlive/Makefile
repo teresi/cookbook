@@ -18,7 +18,7 @@
 # NOTE required packages
 #	tlmgr install biblatex marginnote ifsym cookingsymbols tikzsymbols fontawesome \
 #	adforn fdsymbol paralist pgfornament enumitem minitoc imakeidx sectsty tocloft titlesec lipsum glossaries
-
+#	tikzpagenodes tikzfill tcolorbox
 
 
 TEXDIR ?= $(HOME)/.texlive2024

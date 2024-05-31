@@ -42,6 +42,7 @@ clean:  ## remove temporary files
 	latexmk -f -C rescaled.pdf
 	latexmk -f -C book.pdf
 	latexmk -f -C cookbook-imp.pdf
+	latexmk -f -C endpaper.pdf
 	$(MAKE) -ik -C $(_root_dir)/images/cookbook_assets/ clean
 
 
@@ -60,7 +61,12 @@ archive: | pdf $(_archive_dir) ## alias to compress a copy to the achive folder
 
 
 .PHONY: book
-book: book.pdf  ## alias for the book formatted for printing
+book: book.pdf endpaper.pdf  ## alias for the book formatted for printing
+
+
+endpaper.pdf: endpaper.tex
+	max_print_line=96 \
+		latexmk -pdf -time -use-make $(endpaper.tex)
 
 
 .PHONY: rescaled.pdf
