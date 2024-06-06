@@ -41,15 +41,18 @@
 
 
 % NOTE starting chapters on left might improve printed copy
-% can we add cleardoublepage back w/o messing up front matter?
-\let\cleardoublepage=\clearpage % stop chapters/titles having extra blank page
+% NB this breaks margin notes, b/c a new section restarts the even/odd pages (or something)
+% resulting in the margin notes getting moved to the gutter if a section starts on the left!
+% so don't run w/ this monkeypatch!
+%\let\cleardoublepage=\clearpage % stop chapters/titles having extra blank page
 
 
 % NB keep at >=0.25" of space on outer (i.e. outer - marginsep - marginparwidth)
 % to prevent cutoff of marginnotes due to printer margins
 \RequirePackage[%
-%	showframe,%
+	showframe,%
 	twoside,%
+%	bindingoffset=0.2in,%
 	top=0.6in,%
 	bottom=0.5in,%
 	inner=0.75in,%

@@ -72,7 +72,6 @@
 \pdfcompresslevel=0     % faster compile w/o compress, use ghostscript to compress after
 \pdfobjcompresslevel=0  % faster compile w/o compress, use ghostscript to compress after
 
-
 \usepackage{lipsum}             % dummy text
 %\usepackage[cam,letter,center]{crop} % show trim lines
 \usepackage[acronym]{glossaries}
@@ -396,13 +395,13 @@
 {%
 \input{./src/hot_sauce/triple_pepper}
 	% TODO add 'canning basics' pg 196, Better Homes & Gardens
-	\section[Red Hot Sauce]{Fermented Red Hot Sauce}
-	\let\section\subsection%
-	\let\subsection\subsubsection%
-	\input{./src/hot_sauce/base_lacto_brine}
-	% use \input (not \include) to remove page breaks
-	\input{./src/hot_sauce/red_03}
-	\input{./src/hot_sauce/red_04}
+%	\section[Red Hot Sauce]{Fermented Red Hot Sauce}
+%	\let\section\subsection%
+%	\let\subsection\subsubsection%
+%	\input{./src/hot_sauce/base_lacto_brine}
+%	% use \input (not \include) to remove page breaks
+%	\input{./src/hot_sauce/red_03}
+%	\input{./src/hot_sauce/red_04}
 }
 
 \chapter{Marinades \& etc.}
@@ -488,8 +487,8 @@
 \clearpage
 \printindex
 
-\addcontentsline{toc}{chapter}{Acronyms}
-\printglossary[type=\acronymtype]
+%\addcontentsline{toc}{chapter}{Acronyms}
+%\printglossary[type=\acronymtype]
 
 
 \end{document}
