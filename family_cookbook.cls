@@ -34,33 +34,26 @@
 % FUTURE add options (DeclareOption)
 
 
-\LoadClass[10pt]{book}
+\LoadClass[10pt,openany]{book}
 \frenchspacing                  % one space after period
 \righthyphenmin=3               % don't hyphenate unless N letters after hyphen
 \lefthyphenmin=4                % don't hyphenate unless N letters before hyphen
 
 
-% NOTE starting chapters on left might improve printed copy
-% NB this breaks margin notes, b/c a new section restarts the even/odd pages (or something)
-% resulting in the margin notes getting moved to the gutter if a section starts on the left!
-% so don't run w/ this monkeypatch!
-%\let\cleardoublepage=\clearpage % stop chapters/titles having extra blank page
-
-
-% NB keep at >=0.25" of space on outer (i.e. outer - marginsep - marginparwidth)
-% to prevent cutoff of marginnotes due to printer margins
+% MAGIC using 6x9 as that's a common format
+% these are context dependent and I recommend you tailor it to your needs
 \RequirePackage[%
-	showframe,%
+	papersize={6in,9in},%
 	twoside,%
-%	bindingoffset=0.2in,%
-	top=0.6in,%
-	bottom=0.5in,%
-	inner=0.75in,%
+	top=0.5in,%
+	bottom=0.4in,%
+	inner=0.50in,%
 	outer=1.0in,%
 	marginparsep=0.1in,%
 	marginparwidth=0.70in,%
 	%includeheadfoot,% BUG fixes head/foot sizes but swaps outer/gutter?
-	papersize={6in,9in},%
+	headsep=0.2in,%
+	footskip=0.2in,%
 ]{geometry}
 \RequirePackage[T1]{fontenc}             % hypenate accented letters
 \RequirePackage{ae,aecompl}              % handle T1 fonts
@@ -116,7 +109,9 @@
 % interacts poorly with the double column ingredients and titlespacing
 \RequirePackage[nobottomtitles*]{titlesec}  % better section placement
 % space at bottom to move titles to next page
-\renewcommand{\bottomtitlespace}{0.3\textheight}  % MAGIC, experimental, default 0.2\textheight
+% MAGIC, experimental, default 0.2\textheight
+%        the two column ingredients get cutoff sometimes, so this helps prevent that
+\renewcommand{\bottomtitlespace}{0.32\textheight}
 % space left, before, after section
 \titlespacing*{\section}{0em}{4ex plus 4ex minus 4ex}{1ex}
 

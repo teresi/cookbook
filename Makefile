@@ -71,11 +71,7 @@ endpaper.pdf: endpaper.tex
 
 .PHONY: rescaled.pdf
 rescaled.pdf: $(_cookbook_out) rescaled.tex
-	@# NB we rescale from 6x9 to 5.5x8.5 b/c we want to print a mock-up on an 8.5x11 printer
-	@# and we need to have 5.5x8.5 to fit two pages per sheet of letter paper
-	@# but printing it natively to 5.5x8.5 doesn't fit the recipes to the pages well,
-	@# so the slight change in aspect ratio & size is a good trade-off for the mock-up
-	@# TODO have a mockup rule and a book rule (book print would be 11x17 for pro printers?)
+	# TODO rename; this is no longer a rescale, but a way to add the frontispiece
 	latexmk -pdf -time -use-make rescaled.tex
 
 
@@ -84,6 +80,8 @@ cookbook-imp.pdf: rescaled.pdf
 	@# TODO need install script for PDF-Imposition
 	@# TODO need install script for cpan (?)
 	@# SEE http://www.cpan.org/modules/INSTALL.html
+	@# NOTE previously I had a rescale rule to go from 6x9 to 5.5x11, but
+	@# working directly in the 8.5x11 format was easier to handle the spacing for
 	pdf-impose.pl rescaled.pdf --schema 2up --paper 8.5in:11in --signature 16 cookbook-imp.pdf
 	@# TODO see if this can be replaced with pdfpages https://mirror2.sandyriver.net/pub/ctan/macros/latex/contrib/pdfpages/pdfpages.pdf
 

@@ -81,6 +81,28 @@
 	{./images/cookbook_assets/assets/}
 }
 
+% NB keep >=0.25" of space on outer (i.e. outer - marginsep - marginparwidth)
+%     so that it doesn't go outside of the printable area
+%     (esp important for laser printers that can't print up to the page edge)
+% MAGIC using 5.5x8.5 b/c I'm printing & binding this myself
+%     using via folios in the imposition step (i.e. 4 pages per sheet, fold in half)
+%     also planning on a coptic sitch, so the book should lay flat
+\geometry{%
+	papersize={5.5in,8.5in},%
+	showframe,%
+	twoside,%
+	bindingoffset=0.1in,%
+	top=0.5in,%
+	bottom=0.4in,%
+	inner=0.60in,%
+	outer=1.0in,%
+	marginparsep=0.1in,%
+	marginparwidth=0.70in,%
+	%includeheadfoot,% BUG fixes head/foot sizes but swaps outer/gutter?
+	headsep=0.2in,%
+	footskip=0.2in,%
+}
+
 \hypersetup{%
 	pdfauthor            = {Michael Teresi},
 	pdftitle             = {Teresi Family Cookbook},
@@ -106,12 +128,12 @@
 \newacronym{MSG}{MSG}{Monosodium Glutamate}
 
 \begin{document}
+
 \frontmatter
 \newgeometry{
 	outer=0.75in,
 	inner=0.875in,
 }
-
 \begin{titlepage}
 
 

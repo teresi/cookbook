@@ -6,10 +6,11 @@
 ## HOW TO
 
 ```bash
-$ make               # cookbook.pdf
-$ make help          # usage
-$ make submodules    # download submodules
-$ make book          # mockup
+$ make                     # cookbook.pdf
+$ make help                # usage
+$ make submodules          # download submodules
+$ make book                # book.pdf (mockup)
+$ less recipe_snippet.tex  # example recipe
 ```
 
 ![title](https://github.com/teresi/teresi.github.io/blob/master/title.png)
@@ -17,17 +18,22 @@ $ make book          # mockup
 
 
 ## DESIGN
-- black and white
-- 6x9" trim
-- simple graphics
-- commands in `family_cookbook.cls`
-- example in `./recipe_snippet.tex`
+- top level input: `cookbook.tex`
+    + recipes in `./src/*`
+    + class definition: `family_cookbook.cls`
+- print on a standard printer
+    + black and white
+    + 5.5 x 8.5" trim
+    + 2-page imposition (folio)
+- long term project
+    + simple graphics
+    + space for notes in margin
 
 
 ## DEPENDENCIES
 Requires LaTeX 2024 or later.
 
-e.g. in Ubuntu:
+e.g. on Ubuntu:
 ```bash
 # apt install make curl perl coreutils   # build tools
 $ make install -C texlive                # TeX Live 2024, see https://www.tug.org/texlive/
@@ -55,17 +61,17 @@ recommended:
 
 ## TODO
 
-- [x] add imposition
-- [x] add book mock-up
-- [x] refactor drinks w/ sub sections by base ingredient
-- [ ] add book for large format printer
-- [ ] cleanup perl / cpan script, add to makefile if possible
-- [x] refactor folder structure
-- [ ] refactor `cls` out of this project
+- [x] simplify folder structure
+- [x] organize drinks into sub sections
+- [x] add imposition for printing
+- [x] add book output for printing
+- [x] find a good resolution for printing
+- [x] find a way to reduce size of LaTeX dependencies
+- [x] refactor frontispiece / title graphics, commit images somewhere
+- [ ] fleshout index by ingredient or keywords etc.
 - [ ] add license
+- [ ] cleanup perl / cpan script, add to makefile
+- [ ] try using \includepdf for imposition instead of perl to reduce dependencies
+- [ ] refactor `cls` out of this project
 - [ ] add front matter according to the [novel package](https://mirror2.sandyriver.net/pub/ctan/macros/luatex/latex/novel/doc/novel-documentation.html) docs?
 - [ ] fix spacing for 1 col ingredients (before/after)
-- [ ] fleshout index by ingredient or keywords etc.
-- [x] find a way to reduce size of dependencies? (maybe use `tlmgr`?)
-- [x] refactor frontispiece / title graphics, commit images somewhere
-- [ ] automate hiding hyper ref links between pdf / book
