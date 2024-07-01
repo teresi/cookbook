@@ -28,7 +28,7 @@ SCHEME ?= scheme-medium
 BASHRC ?= $(HOME)/.bashrc
 
 _root_dir := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
-_tar_url := https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+_tar_url := https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 _tar := install-tl-unx.tar.gz
 _installer := install-tl-20240529
 _sig_url := https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz.sha512
