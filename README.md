@@ -38,14 +38,15 @@ e.g. on Ubuntu:
 # apt install make curl perl coreutils   # build tools
 $ make install -C texlive                # TeX Live 2024, see https://www.tug.org/texlive/
 $ source ~/.bashrc                       # update your PATH for 2024
-$ tlmgr install `cat requirements.txt`   # TeX Live packages
+$ tlmgr init-usertree                    # initialize directories
+$ tlmgr install `cat requirements.txt`   # install TeX packages
+$ make clean                             # clean old builds if upgrading TeX
 ```
 
 recommended:
 ```bash
-# apt install ghostscript                # compression
-# apt install perl                       # printing
-# apt install git-lfs wget imagemagick   # images
+# apt install ghostscript                # compress pdf
+# apt install git-lfs wget imagemagick   # create images
 ```
 
 ## CONTRIBUTING

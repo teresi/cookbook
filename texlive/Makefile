@@ -23,14 +23,14 @@
 
 TEXDIR ?= $(HOME)/.texlive2024
 PAPER ?= letter
-#SCHEME ?= scheme-small
-SCHEME ?= scheme-medium
+SCHEME ?= scheme-small
+#SCHEME ?= scheme-medium
 BASHRC ?= $(HOME)/.bashrc
 
 _root_dir := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 _tar_url := https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 _tar := install-tl-unx.tar.gz
-_installer := install-tl-20240529
+_installer := install-tl-2024
 _sig_url := https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz.sha512
 _sig := install-tl-unx.tar.gz.sha512
 _texlive_bin := $(TEXDIR)/bin
@@ -66,6 +66,7 @@ install: $(_texlive_bin) $(_bashrc_tex)
 uninstall:
 	rm -rf $(TEXDIR)
 	rm -f $(_bashrc_tex)
+	rm -rf $(_texlive_bin)
 
 
 $(_sig):
@@ -78,13 +79,14 @@ $(_tar):
 
 $(_installer): $(_tar) $(_sig)
 	@# touch the decompressed file b/c it's timestamp is not it's decompress time
-	sha512sum -c $(_sig) && (tar -xvzf $(_tar) && touch $(_installer)) \
+	sha512sum -c $(_sig) && (mkdir -p $(_installer) && tar -xvzf $(_tar) -C $(_installer) && touch $(_installer)) \
 		|| (echo "could not validate checksum! $(_sig)"; exit 1)
 
 
 $(_texlive_bin): $(_installer)
 	$(info updating $@...)
-	cd $(_installer) && \
+	@# cd into install-tl* b/c there is a sub dir starting with install-tl-2024* that is unkown
+	cd $(_installer) && cd install-tl-* && \
 		perl install-tl \
 		-gui text \
 		--paper=$(PAPER) \
