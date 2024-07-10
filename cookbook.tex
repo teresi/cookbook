@@ -87,6 +87,7 @@
 % MAGIC using 5.5x8.5 b/c I'm printing & binding this myself
 %     using via folios in the imposition step (i.e. 4 pages per sheet, fold in half)
 %     also planning on a coptic sitch, so the book should lay flat
+% NB this should match the backmatter at end of this file!
 \geometry{%
 	papersize={5.5in,8.5in},%
 %	showframe,%
@@ -477,7 +478,7 @@
 \minitoc%
 \clearpage
 \input{./src/desserts/italian_tricolor}
-\input{./src/desserts/SchwarzWeissGebacks}
+\input{./src/desserts/schwarz_weiss_gebacks}
 \input{./src/desserts/peppermint_fudge}
 \input{./src/desserts/seven_layer_brownies}
 \input{./src/desserts/elegant_wine_cake}
@@ -504,7 +505,23 @@
 
 
 \clearpage
+% NB this should match the definiution at beginning of this file,
+% except fo the margin path and outer, which is used to make it more compact
+\newgeometry{%
+	twoside,%
+	bindingoffset=0.1in,%
+	top=0.5in,%
+	bottom=0.4in,%
+	inner=0.60in,%
+	outer=0.5in,%
+	marginparsep=0.0in,%
+	marginparwidth=0.00in,%
+	%includeheadfoot,% BUG fixes head/foot sizes but swaps outer/gutter?
+	headsep=0.2in,%
+	footskip=0.2in,%
+}
 \addcontentsline{toc}{chapter}{References}
+
 \raggedright% encourage line breaks in urls of citations
 \printbibliography%
 
