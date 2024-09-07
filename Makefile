@@ -75,6 +75,7 @@ rescaled.pdf: $(_cookbook_out) rescaled.tex
 	latexmk -pdf -time -use-make rescaled.tex
 
 
+# TODO rename rescaled.tex to book.tex, b/c we aren't rescaling anymore
 cookbook-imp.pdf: rescaled.pdf
 	@# SEE https://metacpan.org/dist/PDF-Imposition/view/bin/pdf-impose.pl
 	@# TODO need install script for PDF-Imposition
