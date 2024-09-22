@@ -1,6 +1,6 @@
 # TERESI FAMILY COOKBOOK
 
-- [cookbook.pdf (Nov 2023)](https://github.com/teresi/teresi.github.io/blob/master/cookbook/archive/cookbook_20231121.pdf)
+- [cookbook.pdf (Sept 2024)](https://github.com/teresi/teresi.github.io/blob/master/cookbook/archive/cookbook_20240922.pdf)
 
 
 ## HOW TO
