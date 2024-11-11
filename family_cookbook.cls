@@ -34,7 +34,7 @@
 % FUTURE add options (DeclareOption)
 
 
-\LoadClass[10pt,openany]{book}
+\LoadClass[10pt]{book}          % openany to not force chapter open on rhs
 \frenchspacing                  % one space after period
 \righthyphenmin=3               % don't hyphenate unless N letters after hyphen
 \lefthyphenmin=4                % don't hyphenate unless N letters before hyphen
