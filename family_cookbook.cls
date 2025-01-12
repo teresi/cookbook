@@ -76,7 +76,7 @@
 \RequirePackage{longtable}               % column break table
 \RequirePackage{multicol}                % multiple columns
 \RequirePackage{tabularx}                % tabular w/ more features
-\RequirePackage{nicefrac}                % typeset fractions
+\RequirePackage{xfrac}                   % typeset fractions
 \RequirePackage{paralist}                % in-text enums
 \RequirePackage{xparse}                  % positional arg defaults
 \RequirePackage{pgfornament}             % symbols
@@ -367,17 +367,17 @@
 \newcommand\Month{\ensuremath{month}}
 \newcommand\Year{\ensuremath{year}}
 
-\newcommand\onehalf{\nicefrac{1}{2}}
-\newcommand\onethird{\nicefrac{1}{3}}
-\newcommand\onefourth{\nicefrac{1}{4}}
-\newcommand\oneeighth{\nicefrac{1}{8}}
-\newcommand\onetenth{\nicefrac{1}{10}}
+\newcommand\onehalf{\sfrac{1}{2}}
+\newcommand\onethird{\sfrac{1}{3}}
+\newcommand\onefourth{\sfrac{1}{4}}
+\newcommand\oneeighth{\sfrac{1}{8}}
+\newcommand\onetenth{\sfrac{1}{10}}
 
-\newcommand\twothird{\nicefrac{2}{3}}
+\newcommand\twothird{\sfrac{2}{3}}
 
-\newcommand\threehalf{\nicefrac{3}{2}}
-\newcommand\threefourth{\nicefrac{3}{4}}
-\newcommand\threeeighth{\nicefrac{3}{8}}
+\newcommand\threehalf{\sfrac{3}{2}}
+\newcommand\threefourth{\sfrac{3}{4}}
+\newcommand\threeeighth{\sfrac{3}{8}}
 
 \newcommand\Tablespoon{\ensuremath{Tbs}}
 \newcommand\teaspoon{\ensuremath{tsp}}

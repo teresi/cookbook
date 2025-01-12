@@ -7,9 +7,10 @@
 
 ```bash
 $ make                     # cookbook.pdf
-$ make help                # usage
-$ make submodules          # download submodules
 $ make book                # book.pdf (mockup)
+$ make help                # usage
+$ make install             # install packages from CTAN (tlmgr)
+$ make submodules          # download submodules (git)
 $ less recipe_snippet.tex  # example recipe
 ```
 
@@ -31,23 +32,23 @@ $ less recipe_snippet.tex  # example recipe
 
 
 ## DEPENDENCIES
-Requires LaTeX 2024 or later.
 
-e.g. on Ubuntu:
-```bash
-# apt install make curl perl coreutils   # build tools
-$ make install -C texlive                # TeX Live 2024, see https://www.tug.org/texlive/
-$ source ~/.bashrc                       # update your PATH for 2024
-$ tlmgr init-usertree                    # initialize directories
-$ tlmgr install `cat requirements.txt`   # install TeX packages
-$ make clean                             # clean old builds if upgrading TeX
+Basic dependencies:
+```
+bash make perl coreutils latexmk
+git git-lfs curl wget
+imagemagick                  # image processing
+ghostcript                   # pdf compression
 ```
 
-recommended:
+Tested on TeX Live 2024, see `https://www.tug.org/texlive/`.
 ```bash
-# apt install ghostscript                # compress pdf
-# apt install git-lfs wget imagemagick   # create images
+make install -C texlive      # installs texlive, scheme-basic
+source ~/.bashrc             # update your PATH
+tlmgr init-usertree          # initialize directories
+make install                 # install packages from CTAN
 ```
+
 
 ## CONTRIBUTING
 
@@ -69,10 +70,14 @@ recommended:
 - [x] find a good resolution for printing
 - [x] find a way to reduce size of LaTeX dependencies
 - [x] refactor frontispiece / title graphics, commit images somewhere
+- [x] reduce requirements list
+- [x] upgrade from nicefrac to xfrac
+- [ ] warning on minitoc: you have used minitoc but not tableofcontents
 - [ ] fleshout index by ingredient or keywords etc.
+- [ ] move family_cookbook.cls to another repo
+- [ ] remove texlive installer
 - [ ] add license
 - [ ] cleanup perl / cpan script, add to makefile
 - [ ] try using \includepdf for imposition instead of perl to reduce dependencies
-- [ ] refactor `cls` out of this project
 - [ ] add front matter according to the [novel package](https://mirror2.sandyriver.net/pub/ctan/macros/luatex/latex/novel/doc/novel-documentation.html) docs?
 - [ ] fix spacing for 1 col ingredients (before/after)

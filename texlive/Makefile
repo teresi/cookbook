@@ -23,7 +23,7 @@
 
 TEXDIR ?= $(HOME)/.texlive2024
 PAPER ?= letter
-SCHEME ?= scheme-small
+SCHEME ?= scheme-basic
 #SCHEME ?= scheme-medium
 BASHRC ?= $(HOME)/.bashrc
 

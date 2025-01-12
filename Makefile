@@ -19,10 +19,18 @@ _cookbook_out := cookbook.pdf
 _archive_dir := $(_root_dir)/archive
 
 
-.PHONY: pdf
-pdf: $(_cookbook_out)  ## alias for the cookbook
+.PHONY: all
+all: $(_cookbook_out)  ## the cookbook
 
 
+.PHONY: install
+install: SHELL:=/usr/bin/env bash
+install:               ## install LaTeX dependencies w/ tlmgr
+	tlmgr install $$(<requirements.txt)
+
+
+# using phony b/c latexmk handles rebuilds
+# FUTURE remove phony, add dependency on image files
 .PHONY: $(_cookbook_out)
 $(_cookbook_out): $(_cookbook_in) family_cookbook.cls
 	$(MAKE) -ik -C ./images/cookbook_assets
@@ -61,7 +69,7 @@ archive: | pdf $(_archive_dir) ## alias to compress a copy to the achive folder
 
 
 .PHONY: book
-book: book.pdf endpaper.pdf  ## alias for the book formatted for printing
+book: book.pdf                 ## alias for the book formatted for printing
 
 
 endpaper.pdf: endpaper.tex
