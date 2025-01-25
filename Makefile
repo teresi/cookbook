@@ -35,7 +35,7 @@ install:               ## install LaTeX dependencies w/ tlmgr
 $(_cookbook_out): $(_cookbook_in) family_cookbook.cls
 	$(MAKE) -ik -C ./images/cookbook_assets
 	max_print_line=96 \
-		latexmk -pdf -time -use-make $(_cookbook_in)
+		latexmk -bibtex -pdf -time -use-make $(_cookbook_in)
 
 
 .PHONY: help

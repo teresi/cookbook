@@ -112,7 +112,7 @@
 % space at bottom to move titles to next page
 % MAGIC, experimental, default 0.2\textheight
 %        the two column ingredients get cutoff sometimes, so this helps prevent that
-\renewcommand{\bottomtitlespace}{0.32\textheight}
+\renewcommand{\bottomtitlespace}{0.36\textheight}
 % space left, before, after section
 \titlespacing*{\section}{0em}{4ex plus 4ex minus 4ex}{1ex}
 
