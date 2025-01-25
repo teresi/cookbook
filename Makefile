@@ -1,4 +1,4 @@
-#!/usr/bin/make -f
+#!/usr/bin/env -S make -f
 
 # creates the cookbook PDF
 
