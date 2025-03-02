@@ -64,7 +64,7 @@ $(_archive_dir):
 
 
 .PHONY: archive
-archive: | pdf $(_archive_dir) ## alias to compress a copy to the achive folder
+archive: | $(_cookbook_out) $(_archive_dir) ## alias to compress a copy to the achive folder
 	$(_root_dir)/scripts/compress.bash -l 0 -i $(_cookbook_out) -o $(_archive_dir)
 
 

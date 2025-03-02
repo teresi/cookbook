@@ -111,10 +111,15 @@
 \RequirePackage[nobottomtitles*]{titlesec}  % better section placement
 % space at bottom to move titles to next page
 % MAGIC, experimental, default 0.2\textheight
-%        the two column ingredients get cutoff sometimes, so this helps prevent that
-\renewcommand{\bottomtitlespace}{0.36\textheight}
+%	the two column ingredients sometimes don't get rendered
+%	in the correct column when at the bottom of a page,
+%	so this helps prevent that.
+%	using a pagebreak often spreads a chunk of text across a page
+%	so a larger value here is better to use than pagebreak
+\renewcommand{\bottomtitlespace}{0.38\textheight}
+
 % space left, before, after section
-\titlespacing*{\section}{0em}{4ex plus 4ex minus 4ex}{1ex}
+\titlespacing*{\section}{0em}{4ex plus 4ex minus 2ex}{1ex}
 
 \cftsetindents{section}{1em}{3em}  % prevent title from colliding w/ section number in ToC
 
