@@ -55,12 +55,12 @@
 	headsep=0.2in,%
 	footskip=0.2in,%
 ]{geometry}
-\RequirePackage[T1]{fontenc}             % hypenate accented letters
-\RequirePackage{ae,aecompl}              % handle T1 fonts
-\RequirePackage[backend=bibtex]{biblatex}
+\RequirePackage[T1]{fontenc}               % hypenate accented letters
+\RequirePackage{ae,aecompl}                % handle T1 fonts
+\RequirePackage[backend=bibtex]{biblatex}  % bibliography
     \bibliography{bib}
-\RequirePackage{ragged2e}                % for \justify
-\RequirePackage[fulladjust]{marginnote}  % notes in the margins
+\RequirePackage{ragged2e}                  % for \justify
+\RequirePackage[fulladjust]{marginnote}    % notes in the margins
 \RequirePackage{fancyhdr}                % header / footers
 \RequirePackage{lmodern}                 % change font
 \RequirePackage[clock, misc]{ifsym}      % symbols
@@ -68,7 +68,6 @@
 \RequirePackage{tikzsymbols}             % symbols
 \RequirePackage{fontawesome}             % symbols (e.g. \faLeaf)
 \RequirePackage{adforn}                  % symbols (fleurons / flowers)
-%\RequirePackage{stix}                    % symbols (e.g. \bigstar, \bigwhitestar}
 \RequirePackage{fdsymbol}                % symbols (e.g. \largeblackstar, \largewhitestar}
 \RequirePackage{xkeyval}                 % commands w/ key/value
 \RequirePackage{varioref}                % references decorated w/ page numbers
@@ -134,14 +133,14 @@
 	\fontsize{9}{11}\selectfont
 }
 \fancyhf{}
-\fancyhead[LE,RO]{\changefont~\slshape \rightmark}% %section
-\fancyhead[RE,LO]{\changefont~\slshape \leftmark}% %chapter
+\fancyhead[LE,RO]{\changefont~\slshape \rightmark}% section
+\fancyhead[RE,LO]{\changefont~\slshape \leftmark}% chapter
 \fancyfoot[C]{\changefont~\thepage} %footer
 
 
 % add an ornament to the section numbers
 \makeatletter
-\def\@seccntformat#1{\adforn{33} \csname the#1\endcsname\quad}
+\def\@seccntformat#1{\adforn{33} \csname the#1\endcsname\quad}%
 \makeatother
 
 
@@ -164,7 +163,7 @@
 	% FUTURE using a multicols may be preferred so that missing icons aren't just blank cells?
 	% but that would change the order...
 	\begin{tabular}{clclcl}
-		\tl_if_empty:NTF \l_mymodule_preptime_tl
+		\tl_if_empty:NTF \l_mymodule_preptime_tl%
 		{& &}
 		{\Gloves & \l_mymodule_preptime_tl &}
 
@@ -477,14 +476,14 @@
 	\ifnum#1=1
 	#2%
 	\else % More than 1 column
-	\multicolmulticols{#1}[#2]
-	\fi
+	\multicolmulticols{#1}[#2]%
+	\fi%
 }
 {%
-	\ifnum#1=1
-	\else % More than 1 column
+	\ifnum#1=1%
+	\else% More than 1 column
 	\endmulticolmulticols%
-	\fi
+	\fi%
 }
 
 
