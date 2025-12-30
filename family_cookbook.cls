@@ -55,21 +55,20 @@
 	headsep=0.2in,%
 	footskip=0.2in,%
 ]{geometry}
-\RequirePackage[T1]{fontenc}               % hypenate accented letters
-\RequirePackage{ae,aecompl}                % handle T1 fonts
-\RequirePackage[backend=bibtex]{biblatex}  % bibliography
+\RequirePackage[T1]{fontenc}             % hypenate accented letters
+\RequirePackage{ae,aecompl}              % handle T1 fonts
+\RequirePackage{lmodern}                 % use when using fontenc
+\RequirePackage[backend=bibtex]{biblatex}% bibliography
     \bibliography{bib}
-\RequirePackage{ragged2e}                  % for \justify
-\RequirePackage[fulladjust]{marginnote}    % notes in the margins
+\RequirePackage{ragged2e}                % for \RaggedRight, \RaggedLeft
+\RequirePackage[fulladjust]{marginnote}  % notes in the margins
 \RequirePackage{fancyhdr}                % header / footers
-\RequirePackage{lmodern}                 % change font
 \RequirePackage[clock, misc]{ifsym}      % symbols
 \RequirePackage{cookingsymbols}          % symbols
 \RequirePackage{tikzsymbols}             % symbols
 \RequirePackage{fontawesome}             % symbols (e.g. \faLeaf)
 \RequirePackage{adforn}                  % symbols (fleurons / flowers)
 \RequirePackage{fdsymbol}                % symbols (e.g. \largeblackstar, \largewhitestar}
-\RequirePackage{xkeyval}                 % commands w/ key/value
 \RequirePackage{varioref}                % references decorated w/ page numbers
 \RequirePackage{ifthen}                  % if statements
 \RequirePackage{longtable}               % column break table
@@ -115,7 +114,7 @@
 %	so this helps prevent that.
 %	using a pagebreak often spreads a chunk of text across a page
 %	so a larger value here is better to use than pagebreak
-\renewcommand{\bottomtitlespace}{0.38\textheight}
+\renewcommand{\bottomtitlespace}{0.39\textheight}
 
 % space left, before, after section
 \titlespacing*{\section}{0em}{4ex plus 4ex minus 2ex}{1ex}
@@ -374,6 +373,8 @@
 \newcommand\onehalf{\sfrac{1}{2}}
 \newcommand\onethird{\sfrac{1}{3}}
 \newcommand\onefourth{\sfrac{1}{4}}
+\newcommand\onefifth{\sfrac{1}{5}}
+\newcommand\onesixth{\sfrac{1}{6}}
 \newcommand\oneeighth{\sfrac{1}{8}}
 \newcommand\onetenth{\sfrac{1}{10}}
 
