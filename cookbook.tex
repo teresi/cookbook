@@ -1,9 +1,7 @@
 % The Teresi family cookbook
 %
-% Collection of favorites from family / friends / the interwebz
 %
 % Design:
-% - targets a book with a 6x9" trim
 % - uses outer marginnotes and single column
 %   (worked out better than both inner/outer notes for 6x9)
 %   (worked out better than twocolumn for 6x9)
@@ -12,6 +10,7 @@
 %   abstract, ingredients (1 | 2 col), steps, variations
 % - images not included in this git repository for space
 %
+
 % Future recipes:
 % [ ] chorizo chickpea lunch
 % [ ] barbeque rubs
@@ -495,10 +494,19 @@
 \chapter{Ice Cream}
 \minitoc%
 \clearpage
+\section{Syrups \& etc.}
+{%
+	\let\section\subsection%
+	\let\subsection\subsubsection%
+    \input{./src/icecream/roasted_cherries.tex}
+    \input{./src/icecream/crisp_struesel.tex}
+}
 \input{./src/icecream/chocolate_icecream_joc}
 \input{./src/icecream/coffee_icecream}
 \input{./src/icecream/cranberry_sorbet}
 \input{./src/icecream/blackberry_sorbet}
+\input{./src/icecream/berry_crisp_icecream.tex}
+\input{./src/icecream/buckeye_icecream.tex}
 
 
 \chapter{Confections}

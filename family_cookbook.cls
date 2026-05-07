@@ -384,12 +384,16 @@
 \newcommand\threefourth{\sfrac{3}{4}}
 \newcommand\threeeighth{\sfrac{3}{8}}
 
+\newcommand\ounce{\ensuremath{oz}}
+\newcommand\pound{\ensuremath{lb}}
+
 \newcommand\Tablespoon{\ensuremath{Tbs}}
 \newcommand\teaspoon{\ensuremath{tsp}}
-\newcommand\ounce{\ensuremath{oz}}
+
 \newcommand\fluidounce{\ensuremath{fl\;oz}}
-\newcommand\quart{\ensuremath{quart}}
-\newcommand\pound{\ensuremath{lb}}
+\newcommand\pint{\ensuremath{pint}}      %  16 fl oz
+\newcommand\quart{\ensuremath{quart}}    %  32 fl oz
+\newcommand\gallon{\ensuremath{gallon}}  % 128 fl oz
 
 \newcommand\Celsius{\ensuremath{C^\circ}}
 \newcommand\Fahrenheit{\ensuremath{F^\circ}}
