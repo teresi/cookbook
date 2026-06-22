@@ -39,7 +39,6 @@
 % [ ] coffee / nutella icecream
 % [ ] lucky pork for new years
 
-
 % Future:
 % [ ] add function for formatted citation (<recipe> <page>)
 % [ ] add a legend for abbreviations
@@ -52,10 +51,10 @@
 % [ ] add a new package and move environments there?
 % [ ] add tessalation for page backround artwork
 %     (SEE http://tex.my/creating-tiled-background-patterns/)
-% [ ] add a flag for changing justification on the margin paragraphs (e.g. use justify, use ragged)
+% [ ] add a flag for changing justification on the margin paragraphs (e.g.
+% use justify, use ragged)
 % [ ] update `recipeabstract` to just `abstract`
 % [ ] standardize spacing on NxYxZ etc, see makecookbook
-
 
 % Bugs:
 % [ ] index calls should be on the same line as the section to maintain page references
@@ -63,9 +62,12 @@
 %      b/c former is plural latter is singular
 % [ ] there may be a line skip on the ingredient tables (on top)
 %     when using multicols (sort of addressed by adding small spaces if using one col?)
-% [ ] marginnote used the wrong side of the page, possibly after the preface was added? had to use marginpar (maybe don't bother with a larger format 2 column, the 6x9" works pretty well and the auto column break in the ingredients appears to be a difficult issue to solve)
-% [ ] titlesec / nobottomtitles moves the variation/experiments (paragaphs) to the next page too much (can we make it not apply to paragraphs?)
-
+% [ ] marginnote used the wrong side of the page, possibly after the preface
+% was added? had to use marginpar (maybe don't bother with a larger format 2
+% column, the 6x9" works pretty well and the auto column break in the
+% ingredients appears to be a difficult issue to solve)
+% [ ] titlesec / nobottomtitles moves the variation/experiments (paragaphs)
+% to the next page too much (can we make it not apply to paragraphs?)
 
 \documentclass{family_cookbook}
 \pdfcompresslevel=0     % faster compile w/o compress, use ghostscript to compress after
@@ -78,7 +80,7 @@
 \usepackage{siunitx}            % numbers in tables
 \usepackage{multirow}
 \graphicspath{
-	{./images/cookbook_assets/assets/}
+    {./images/cookbook_assets/assets/}
 }
 
 % NB keep >=0.25" of space on outer (i.e. outer - marginsep - marginparwidth)
@@ -89,40 +91,39 @@
 %     also planning on a coptic sitch, so the book should lay flat
 % NB this should match the backmatter at end of this file!
 \geometry{%
-	papersize={5.5in,8.5in},%
-%	showframe,%
-	twoside,%
-	bindingoffset=0.1in,%
-	top=0.5in,%
-	bottom=0.4in,%
-	inner=0.60in,%
-	outer=1.0in,%
-	marginparsep=0.1in,%
-	marginparwidth=0.70in,%
-	%includeheadfoot,% BUG fixes head/foot sizes but swaps outer/gutter?
-	headsep=0.2in,%
-	footskip=0.2in,%
+    papersize={5.5in,8.5in},%
+    %    showframe,%
+    twoside,%
+    bindingoffset=0.1in,%
+    top=0.5in,%
+    bottom=0.4in,%
+    inner=0.60in,%
+    outer=1.0in,%
+    marginparsep=0.1in,%
+    marginparwidth=0.70in,%
+    %includeheadfoot,% BUG fixes head/foot sizes but swaps outer/gutter?
+    headsep=0.2in,%
+    footskip=0.2in,%
 }
 
 \hypersetup{%
-	pdfauthor            = {Michael Teresi},
-	pdftitle             = {Teresi Family Cookbook},
-	pdfsubject           = {Recipes},
-	pdfkeywords          = {recipes, recipe, cookbook, Teresi},
-	pdfstartview         = {FitV},
-	pdfview              = {FitH},
-	pdfpagemode          = {UseNone}, % Options; UseNone, UseOutlines
-	bookmarksopen        = {true},
-	pdfpagetransition    = {Glitter},
-	colorlinks           = {true},
-	linkcolor            = {magenta},
-	urlcolor             = {blue},
-	citecolor            = {cyan},
-	filecolor            = {black},
-	breaklinks           = {true},
-	hidelinks,
+    pdfauthor            = {Michael Teresi},
+    pdftitle             = {Teresi Family Cookbook},
+    pdfsubject           = {Recipes},
+    pdfkeywords          = {recipes, recipe, cookbook, Teresi},
+    pdfstartview         = {FitV},
+    pdfview              = {FitH},
+    pdfpagemode          = {UseNone}, % Options; UseNone, UseOutlines
+    bookmarksopen        = {true},
+    pdfpagetransition    = {Glitter},
+    colorlinks           = {true},
+    linkcolor            = {magenta},
+    urlcolor             = {blue},
+    citecolor            = {cyan},
+    filecolor            = {black},
+    breaklinks           = {true},
+    hidelinks,
 }
-
 
 \makeglossaries%
 \newacronym{NCS}{NCS}{Non-Centrifugal Cane Sugar}
@@ -132,64 +133,61 @@
 
 \frontmatter
 \newgeometry{
-	outer=0.75in,
-	inner=0.875in,
+    outer=0.75in,
+    inner=0.875in,
 }
 \begin{titlepage}
 
+    \onecolumn
+    \pagestyle{empty}
+    %% temporary titles
+    % command to provide stretchy vertical space in proportion
+    \newcommand\nbvspace[1][3]{\vspace*{\stretch{#1}}}
+    % allow some slack to avoid under/overfull boxes
+    \newcommand\nbstretchyspace{\spaceskip0.5em plus 0.25em minus 0.25em}
+    % To improve spacing on titlepages
+    \newcommand{\nbtitlestretch}{\spaceskip0.6em}
 
-\onecolumn
-\pagestyle{empty}
-%% temporary titles
-% command to provide stretchy vertical space in proportion
-\newcommand\nbvspace[1][3]{\vspace*{\stretch{#1}}}
-% allow some slack to avoid under/overfull boxes
-\newcommand\nbstretchyspace{\spaceskip0.5em plus 0.25em minus 0.25em}
-% To improve spacing on titlepages
-\newcommand{\nbtitlestretch}{\spaceskip0.6em}
+    {%
+        \centering
+        \bfseries
+        \uppercase{%
+            \nbtitlestretch%
+            \Huge{teresi family cookbook}
+        }
+        \nbvspace[1]
 
-{%
-	\centering
-	\bfseries
-	\uppercase{%
-		\nbtitlestretch%
-		\Huge{teresi family cookbook}
-	}
-	\nbvspace[1]
+        %    \nbvspace[1]
+        %    \footnotesize
+        %    AN ONGOING COLLECTION OF FAVORITES FROM AROUND THE GLOBE\\
+        \Large{By MICHAEL TERESI}\\
+        \nbvspace[1]
+        \small{WITH}\\
+        \vspace{1ex}
+        \small{CONTRIBUTIONS FROM FRIENDS AND FAMILY}\\
+        \nbvspace[1]
+        \includegraphics[width=0.5\paperwidth]{grapes}
+        \vfill
 
-%	\nbvspace[1]
-%	\footnotesize
-%	AN ONGOING COLLECTION OF FAVORITES FROM AROUND THE GLOBE\\
-	\Large{By MICHAEL TERESI}\\
-	\nbvspace[1]
-	\small{WITH}\\
-	\vspace{1ex}
-	\small{CONTRIBUTIONS FROM FRIENDS AND FAMILY}\\
-	\nbvspace[1]
-	\includegraphics[width=0.5\paperwidth]{grapes}
-	\vfill
+        \noindent\rule{0.8\textwidth}{0.5pt}\\
+        \smallskip
+        \today
 
-	\noindent\rule{0.8\textwidth}{0.5pt}\\
-	\smallskip
-	\today
+        % TODO add location as if it was the publisher
 
-	% TODO add location as if it was the publisher
-
-	% draw a cross at the midpoints to help visually center the image
-%	\tikz[overlay,remember picture]
-%		\draw (current page.west) -- (current page.east);
-%	\tikz[overlay,remember picture]
-%		\draw (current page.south) -- (current page.north);
-}
+        % draw a cross at the midpoints to help visually center the image
+        %    \tikz[overlay,remember picture]
+        %        \draw (current page.west) -- (current page.east);
+        %    \tikz[overlay,remember picture]
+        %        \draw (current page.south) -- (current page.north);
+    }
 \end{titlepage}
 \restoregeometry
 
 \dominitoc%  % enable mini table of contents
 \nomtcrule%  % disable horizontal rule lines in minitoc
 
-
 \tableofcontents
-
 
 \chapter*{Preface}
 %\enlargethispage{5\baselineskip}  % help the recipe snippet get onto one page
@@ -198,9 +196,7 @@
 \input{recipe_snippet}
 \clearpage
 
-
 \mainmatter%
-
 
 \setcounter{mtc}{0}  % minitoc, reset to first chapter
 \mtcaddchapter%      % minitoc, required at first chapter
@@ -216,14 +212,12 @@
 \newpage  % temporary fix to stop ingredients from breaking poorly
 \input{./src/breakfasts/cinnamon_rolls}
 
-
 \chapter{Sous vide}
 \minitoc%
 \clearpage
 \input{./src/breakfasts/egg_bites}
 \input{./src/sous_vide/ribeye}
 \input{./src/sous_vide/shrimp}
-
 
 \chapter{Soups \& Stews}
 \minitoc%
@@ -236,7 +230,6 @@
 \input{./src/entrees/chili_schwarz}
 \input{./src/soups/liquid_lasagna}
 \input{./src/soups/cioppino}
-
 
 \chapter{Sides}
 \minitoc%
@@ -259,7 +252,6 @@
 \input{./src/sides/boiled_eggs.tex}
 \input{./src/sides/ajitama.tex}
 
-
 % TODO add Kevin Kos super syrup https://www.kevinkos.com/post/super-syrup
 % TODO reorganize into sections, e.g. by base spirit, or type
 \chapter{Drinks}
@@ -268,104 +260,104 @@
 
 \section{Syrups \& etc.}
 {%
-	\let\section\subsection%
-	\let\subsection\subsubsection%
-	\input{./src/drinks/simple_syrup}
-	\input{./src/drinks/rich_syrup}
-	\input{./src/drinks/demerara_syrup}
-	\input{./src/drinks/sc_demerara_syrup}
-	\input{./src/drinks/honey_syrup}
-	\input{./src/drinks/ginger_syrup}
-	\input{./src/drinks/passion_fruit_syrup}
-	\input{./src/drinks/super_joose}
-	\input{./src/drinks/tiki_fire}
-	\input{./src/drinks/sc_hibiscus_infusion}
-	\input{./src/drinks/sc_hibiscus_liqueur}
+    \let\section\subsection%
+    \let\subsection\subsubsection%
+    \input{./src/drinks/simple_syrup}
+    \input{./src/drinks/rich_syrup}
+    \input{./src/drinks/demerara_syrup}
+    \input{./src/drinks/sc_demerara_syrup}
+    \input{./src/drinks/honey_syrup}
+    \input{./src/drinks/ginger_syrup}
+    \input{./src/drinks/passion_fruit_syrup}
+    \input{./src/drinks/super_joose}
+    \input{./src/drinks/tiki_fire}
+    \input{./src/drinks/sc_hibiscus_infusion}
+    \input{./src/drinks/sc_hibiscus_liqueur}
 }
 
 \section{Rum \& Cacha\c{c}a}
 {%
-	\let\section\subsection%
-	\let\subsection\subsubsection%
-	\input{./src/drinks/cococo_co_cococo}
-	\input{./src/drinks/caipirinha}
-	\input{./src/drinks/caipirissima}
-	\input{./src/drinks/daiquiri}
-	\input{./src/drinks/hemingway_daiquiri}
-	\input{./src/drinks/flamingo}
-	\input{./src/drinks/airmail}
-	\input{./src/drinks/jungle_bird}
-	\input{./src/drinks/giuseppe_jungle_bird}
-	\input{./src/drinks/mai_tai}
-	% TODO try out Smuggler's Cove Mai Tai / orgeat / Mai Tai Syrup
-	\input{./src/drinks/anejo_highball}
-	\input{./src/drinks/hurricane_sc}
-	\input{./src/drinks/aku_aku}
-	\input{./src/drinks/sidewinders_fang}
-	\input{./src/drinks/demerara_dry_float}
-	\input{./src/drinks/barbados_rum_punch}
-	\input{./src/drinks/top_notch_volcano}
-	\input{./src/drinks/spiked_sangria}
-	\input{./src/drinks/hibiscus_fizz}
-	\input{./src/drinks/flamingosis}
-	\input{./src/drinks/painkiller}
-	% TODO https://imbibemagazine.com/recipe/port-city-rum-old-fashioned/
-	% TODO https://imbibemagazine.com/recipe/saturn-cocktail/
-	% TODO https://iba-world.com/planters-punch/
+    \let\section\subsection%
+    \let\subsection\subsubsection%
+    \input{./src/drinks/cococo_co_cococo}
+    \input{./src/drinks/caipirinha}
+    \input{./src/drinks/caipirissima}
+    \input{./src/drinks/daiquiri}
+    \input{./src/drinks/hemingway_daiquiri}
+    \input{./src/drinks/flamingo}
+    \input{./src/drinks/airmail}
+    \input{./src/drinks/jungle_bird}
+    \input{./src/drinks/giuseppe_jungle_bird}
+    \input{./src/drinks/mai_tai}
+    % TODO try out Smuggler's Cove Mai Tai / orgeat / Mai Tai Syrup
+    \input{./src/drinks/anejo_highball}
+    \input{./src/drinks/hurricane_sc}
+    \input{./src/drinks/aku_aku}
+    \input{./src/drinks/sidewinders_fang}
+    \input{./src/drinks/demerara_dry_float}
+    \input{./src/drinks/barbados_rum_punch}
+    \input{./src/drinks/top_notch_volcano}
+    \input{./src/drinks/spiked_sangria}
+    \input{./src/drinks/hibiscus_fizz}
+    \input{./src/drinks/flamingosis}
+    \input{./src/drinks/painkiller}
+    % TODO https://imbibemagazine.com/recipe/port-city-rum-old-fashioned/
+    % TODO https://imbibemagazine.com/recipe/saturn-cocktail/
+    % TODO https://iba-world.com/planters-punch/
 }
 
 \section{Tequila}
 {%
-	\let\section\subsection%
-	\let\subsection\subsubsection%
-	\input{./src/drinks/margarita}
-	\input{./src/drinks/margarita_joy_of_cooking}
-	\input{./src/drinks/floridita_margarita}
-	\input{./src/drinks/pineapple_margarita}
-	\input{./src/drinks/pacific_sunshine}
-	\input{./src/drinks/hotel_nacional_special}
-	\input{./src/drinks/mexican_el_diablo}
-	\input{./src/drinks/tequila_sunrise}
-	% TODO add 1930's tequila sunris
-	% TODO https://www.liquor.com/recipes/tequila-daisy/
+    \let\section\subsection%
+    \let\subsection\subsubsection%
+    \input{./src/drinks/margarita}
+    \input{./src/drinks/margarita_joy_of_cooking}
+    \input{./src/drinks/floridita_margarita}
+    \input{./src/drinks/pineapple_margarita}
+    \input{./src/drinks/pacific_sunshine}
+    \input{./src/drinks/hotel_nacional_special}
+    \input{./src/drinks/mexican_el_diablo}
+    \input{./src/drinks/tequila_sunrise}
+    % TODO add 1930's tequila sunris
+    % TODO https://www.liquor.com/recipes/tequila-daisy/
 }
 
 \section{Whiskey \& Whisky}
 {%
-	\let\section\subsection%
-	\let\subsection\subsubsection%
-	\input{./src/drinks/halekulani}
-	\input{./src/drinks/halekulani_smugglers}
-	\input{./src/drinks/brown_derby_2}
-	\input{./src/drinks/whiskey_sour}
-	\input{./src/drinks/old_fashioned}
-	\input{./src/drinks/bourbon_renewal}
-	\input{./src/drinks/surf_liner}
-	% TODO https://imbibemagazine.com/recipe/fighting-joe-hooker-blueberry-whiskey-cocktail/
-	% TODO add cafe royal
+    \let\section\subsection%
+    \let\subsection\subsubsection%
+    \input{./src/drinks/halekulani}
+    \input{./src/drinks/halekulani_smugglers}
+    \input{./src/drinks/brown_derby_2}
+    \input{./src/drinks/whiskey_sour}
+    \input{./src/drinks/old_fashioned}
+    \input{./src/drinks/bourbon_renewal}
+    \input{./src/drinks/surf_liner}
+    % TODO
+    % https://imbibemagazine.com/recipe/fighting-joe-hooker-blueberry-whiskey-cocktail/
+    % TODO add cafe royal
 }
 
 \section{Gin \& Vodka}
 {%
-	\let\section\subsection%
-	\let\subsection\subsubsection%
-	\input{./src/drinks/tom_collins}
-	\input{./src/drinks/pegu_club}
-	\input{./src/drinks/tiddly}
-	\input{./src/drinks/basil_gimlet}
+    \let\section\subsection%
+    \let\subsection\subsubsection%
+    \input{./src/drinks/tom_collins}
+    \input{./src/drinks/pegu_club}
+    \input{./src/drinks/tiddly}
+    \input{./src/drinks/basil_gimlet}
 }
 
 \section{Liqueur}
 {%
-	\let\section\subsection%
-	\let\subsection\subsubsection%
-	\input{./src/drinks/aperol_spritz}
-	\input{./src/drinks/apricot_sour}
-	\input{./src/drinks/kir}
-	% TODO add Negroni
-	% TODO https://www.liquor.com/campari-spritz-cocktail-recipe-7377084
+    \let\section\subsection%
+    \let\subsection\subsubsection%
+    \input{./src/drinks/aperol_spritz}
+    \input{./src/drinks/apricot_sour}
+    \input{./src/drinks/kir}
+    % TODO add Negroni
+    % TODO https://www.liquor.com/campari-spritz-cocktail-recipe-7377084
 }
-
 
 \chapter{Beverages}
 \minitoc%
@@ -373,7 +365,6 @@
 \input{./src/beverages/frozen_limeade}
 \input{./src/beverages/lemonade_punch}
 \input{./src/beverages/watermelon_agua_fresca}
-
 
 \chapter{Entr\`{e}es}
 \minitoc%
@@ -394,7 +385,6 @@
 \input{./src/entrees/kraut_runza}
 \input{./src/entrees/runza}
 
-
 \chapter{Bread}
 \minitoc%
 \clearpage
@@ -405,7 +395,6 @@
 \input{./src/bread/flour_tortillas}
 % TODO biscuits from book Ratio
 
-
 \chapter{Sandwiches}
 \minitoc%
 \clearpage
@@ -414,7 +403,6 @@
 \input{./src/sandwich/vegemite_cheese_toastie}
 \input{./src/sandwich/choripan}
 % TODO work sandwiches
-
 
 \chapter{Bachelor Chow}
 \minitoc%
@@ -428,25 +416,23 @@
 \input{./src/bachelor_chow/stuffed_shells}
 \input{./src/entrees/hoola_poola}
 
-
 \chapter{Crock Pot}
 \minitoc%
 \clearpage
 \input{./src/crockpot/beef_sandwiches.tex}
 
-
 %\chapter{Hot Sauce}
 %\minitoc%
 %\clearpage
 {%
-	% TODO add 'canning basics' pg 196, Better Homes & Gardens
-%	\section[Red Hot Sauce]{Fermented Red Hot Sauce}
-%	\let\section\subsection%
-%	\let\subsection\subsubsection%
-%	\input{./src/hot_sauce/base_lacto_brine}
-%	% use \input (not \include) to remove page breaks
-%	\input{./src/hot_sauce/red_03}
-%	\input{./src/hot_sauce/red_04}
+    % TODO add 'canning basics' pg 196, Better Homes & Gardens
+    %    \section[Red Hot Sauce]{Fermented Red Hot Sauce}
+    %    \let\section\subsection%
+    %    \let\subsection\subsubsection%
+    %    \input{./src/hot_sauce/base_lacto_brine}
+    %    % use \input (not \include) to remove page breaks
+    %    \input{./src/hot_sauce/red_03}
+    %    \input{./src/hot_sauce/red_04}
 }
 
 \chapter{Marinades \& etc.}
@@ -466,7 +452,6 @@
 \input{./src/marinades/turkey_injection}
 \input{./src/marinades/steves_onion_gravy}
 
-
 \chapter{Barbeque \& Grill}
 \minitoc%
 \clearpage
@@ -477,27 +462,25 @@
 \input{./src/barbeque/carnitas}
 \input{./src/barbeque/genes_mop_sauce.tex}
 
-
 \chapter{Pickles}
 \minitoc%
 \clearpage
 \input{./src/pickles/quick_pickles}
 {%
-	\let\section\subsection%
-	\let\subsection\subsubsection%
-	\input{./src/pickles/quick_red_onion}
-	\input{./src/pickles/quick_jalepenos}
-	\input{./src/pickles/quick_radishes}
+    \let\section\subsection%
+    \let\subsection\subsubsection%
+    \input{./src/pickles/quick_red_onion}
+    \input{./src/pickles/quick_jalepenos}
+    \input{./src/pickles/quick_radishes}
 }
-
 
 \chapter{Ice Cream}
 \minitoc%
 \clearpage
 \section{Syrups \& etc.}
 {%
-	\let\section\subsection%
-	\let\subsection\subsubsection%
+    \let\section\subsection%
+    \let\subsection\subsubsection%
     \input{./src/icecream/roasted_cherries.tex}
     \input{./src/icecream/crisp_struesel.tex}
 }
@@ -507,7 +490,6 @@
 \input{./src/icecream/blackberry_sorbet}
 \input{./src/icecream/berry_crisp_icecream.tex}
 \input{./src/icecream/buckeye_icecream.tex}
-
 
 \chapter{Confections}
 \minitoc%
@@ -529,7 +511,6 @@
 \input{./src/desserts/ginger_cake_with_lingonberries}
 \input{./src/desserts/buckeyes}
 
-
 \chapter{Pie}
 \minitoc%
 \clearpage
@@ -540,22 +521,21 @@
 \input{./src/desserts/chocolate_walnut_pie}
 \input{./src/desserts/dutch_apple}
 
-
 \clearpage
 % NB this should match the definiution at beginning of this file,
 % except fo the margin path and outer, which is used to make it more compact
 \newgeometry{%
-	twoside,%
-	bindingoffset=0.1in,%
-	top=0.5in,%
-	bottom=0.4in,%
-	inner=0.60in,%
-	outer=0.5in,%
-	marginparsep=0.0in,%
-	marginparwidth=0.00in,%
-	%includeheadfoot,% BUG fixes head/foot sizes but swaps outer/gutter?
-	headsep=0.2in,%
-	footskip=0.2in,%
+    twoside,%
+    bindingoffset=0.1in,%
+    top=0.5in,%
+    bottom=0.4in,%
+    inner=0.60in,%
+    outer=0.5in,%
+    marginparsep=0.0in,%
+    marginparwidth=0.00in,%
+    %includeheadfoot,% BUG fixes head/foot sizes but swaps outer/gutter?
+    headsep=0.2in,%
+    footskip=0.2in,%
 }
 \addcontentsline{toc}{chapter}{References}
 
@@ -567,6 +547,5 @@
 
 %\addcontentsline{toc}{chapter}{Acronyms}
 %\printglossary[type=\acronymtype]
-
 
 \end{document}

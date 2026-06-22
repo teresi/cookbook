@@ -2,51 +2,63 @@
 
 # creates the cookbook PDF
 
-# INFO cookbook.pdf is a phony target in order to have Make delegate to latexmk
-#      b/c TeX files need specific make rules (e.g. multiple compile runs etc.)
-# INFO the compress recipe writes a file w/ a suffix of the current date
-# INFO the compress recipe will compress every call, b/c cookbook.pdf is a phony target
-#
 # NB the name of the 'archived' pdf is not computed here b/c the phony recipe will always
 #    recompress it's input, and therefore Make won't know when to not skip re-compilation
 
 
 MAKEFLAGS += --no-print-directory
-
+LATEXFLAGS = -bibtex -pdf -time -use-make
 _root_dir := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
-_cookbook_in := cookbook.tex
-_cookbook_out := cookbook.pdf
+
+SRC := cookbook.tex
+OBJ := cookbook.pdf
+
+# FUTURE: move class file to it's own repo
+SRC += family_cookbook.cls
+# recipes are in ./src/
+SRC += $(shell find ./src -name "*.tex" -type f)
+
+OBJ_ARCHIVE := cookbook_$(shell date +"%Y%m%d").pdf
 _archive_dir := $(_root_dir)/archive
 
 
+
 .PHONY: all
-all: $(_cookbook_out)  ## the cookbook
+all: images cookbook.pdf  ## alias for the cookbook
+
+
+.PHONY: images
+images:                   ## alias for image dependencies
+	$(MAKE) -ik -C ./images/cookbook_assets
+
+
+.PHONY: help
+help:                     ## show usage
+	@# SEE: https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
+	@grep -E '^[a-zA-Z^.(]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+
+
+# dummy dependency to force gnu make to delegate to latexmk
+FORCE_MAKE:
+
+
+%.pdf: %.tex FORCE_MAKE
+	max_print_line=96 latexmk $(LATEXFLAGS) $<
+
+
+.PHONY: book
+book: book.pdf            ## alias for the cookbook with imposition
 
 
 .PHONY: install
 install: SHELL:=/usr/bin/env bash
-install:               ## install LaTeX dependencies w/ tlmgr
+install:                  ## install LaTeX dependencies w/ tlmgr
 	tlmgr install $$(<requirements.txt)
-
-
-# using phony b/c latexmk handles rebuilds
-# FUTURE remove phony, add dependency on image files
-.PHONY: $(_cookbook_out)
-$(_cookbook_out): $(_cookbook_in) family_cookbook.cls
-	$(MAKE) -ik -C ./images/cookbook_assets
-	max_print_line=96 \
-		latexmk -bibtex -pdf -time -use-make $(_cookbook_in)
-
-
-.PHONY: help
-# SEE https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
-help:  ## show usage
-	@grep -E '^[a-zA-Z^.(]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 
 .PHONY: clean
 clean:  ## remove temporary files
-	latexmk -f -C $(_cookbook_out)
+	latexmk -f -C cookbook.pdf
 	latexmk -f -C rescaled.pdf
 	latexmk -f -C book.pdf
 	latexmk -f -C cookbook-imp.pdf
@@ -55,7 +67,7 @@ clean:  ## remove temporary files
 
 
 .PHONY: submodules
-submodules:    ## initialize the submodules
+submodules:               ## initialize the submodules
 	git submodule update --init --recursive
 
 
@@ -64,22 +76,19 @@ $(_archive_dir):
 
 
 .PHONY: archive
-archive: | $(_cookbook_out) $(_archive_dir) ## alias to compress a copy to the achive folder
-	$(_root_dir)/scripts/compress.bash -l 0 -i $(_cookbook_out) -o $(_archive_dir)
+archive: $(OBJ_ARCHIVE)   ## alias to compress a copy to the achive folder
 
 
-.PHONY: book
-book: book.pdf                 ## alias for the book formatted for printing
+$(OBJ_ARCHIVE): cookbook.pdf $(_archive_dir)
+	$(_root_dir)/scripts/compress.bash -l 0 -i cookbook.pdf -o $(_archive_dir)
 
 
 endpaper.pdf: endpaper.tex
-	max_print_line=96 \
-		latexmk -pdf -time -use-make $(endpaper.tex)
 
 
 .PHONY: rescaled.pdf
-rescaled.pdf: $(_cookbook_out) rescaled.tex
-	# TODO rename; this is no longer a rescale, but a way to add the frontispiece
+rescaled.pdf: rescaled.tex cookbook.pdf
+	# TODO: rename; this is no longer a rescale, but a way to add the frontispiece
 	latexmk -pdf -time -use-make rescaled.tex
 
 

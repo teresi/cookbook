@@ -1,0 +1,10 @@
+check = false
+print = false
+wrap = true
+wraplen = 88
+tabsize = 4
+tabchar = "space"
+stdin = false
+verbosity = "warn"
+lists = []
+no-indent-envs = []

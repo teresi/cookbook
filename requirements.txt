@@ -42,6 +42,7 @@ fancyhdr
 fdsymbol
 firstaid
 fix2col
+fixtounicode
 fontawesome
 fp
 geometry
