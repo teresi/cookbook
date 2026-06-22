@@ -24,7 +24,7 @@ _archive_dir := $(_root_dir)/archive
 
 
 .PHONY: all
-all: images cookbook.pdf  ## alias for the cookbook
+all: cookbook.pdf         ## alias for the cookbook
 
 
 .PHONY: images
@@ -48,6 +48,9 @@ FORCE_MAKE:
 
 .PHONY: book
 book: book.pdf            ## alias for the cookbook with imposition
+
+
+cookbook.pdf : cookbook.tex $(SRC) images
 
 
 .PHONY: install
