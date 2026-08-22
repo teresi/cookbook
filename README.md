@@ -7,6 +7,10 @@
 
 ```bash
 $ make                     # cookbook.pdf
+```
+
+also:
+```bash
 $ make book                # book.pdf (mockup)
 $ make help                # usage
 $ make install             # install packages from CTAN (tlmgr)
@@ -33,22 +37,31 @@ $ less recipe_snippet.tex  # example recipe
 
 ## DEPENDENCIES
 
-Basic dependencies:
+Requires LaTeX:
+- see https://www.tug.org/texlive/
+- see https://github.com/teresi/dotfiles/blob/master/latex/Makefile
 ```
-bash make perl coreutils latexmk
-git git-lfs curl wget
-imagemagick                  # image processing
-ghostcript                   # pdf compression
-```
-
-Tested on TeX Live 2024, see `https://www.tug.org/texlive/`.
-```bash
-make install -C texlive      # installs texlive, scheme-basic
-source ~/.bashrc             # update your PATH
-tlmgr init-usertree          # initialize directories
-make install                 # install packages from CTAN
+latexmk                      # runs LaTeX
+tlmgr                        # install tex packages
 ```
 
+TeX packages:
+```
+less requirements.txt        # list of tex packages
+```
+
+Also:
+```
+bash
+perl
+make
+git
+git-lfs
+curl
+wget
+imagemagick
+ghostcript
+```
 
 ## CONTRIBUTING
 

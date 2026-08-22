@@ -5,10 +5,14 @@
 # NB the name of the 'archived' pdf is not computed here b/c the phony recipe will always
 #    recompress it's input, and therefore Make won't know when to not skip re-compilation
 
+_root_dir := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+_build_dir := $(_root_dir)/build
+_archive_dir := $(_root_dir)/archive
+
 
 MAKEFLAGS += --no-print-directory
-LATEXFLAGS = -bibtex -pdf -time -use-make
-_root_dir := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+LATEXFLAGS = -bibtex -pdf -time -use-make -auxdir=$(_build_dir)
+
 
 SRC := cookbook.tex
 OBJ := cookbook.pdf
@@ -19,12 +23,17 @@ SRC += family_cookbook.cls
 SRC += $(shell find ./src -name "*.tex" -type f)
 
 OBJ_ARCHIVE := cookbook_$(shell date +"%Y%m%d").pdf
-_archive_dir := $(_root_dir)/archive
-
 
 
 .PHONY: all
 all: cookbook.pdf         ## alias for the cookbook
+
+
+cookbook.pdf : cookbook.tex $(SRC) images
+
+
+.PHONY: book
+book: book.pdf            ## alias for the cookbook with imposition
 
 
 .PHONY: images
@@ -42,15 +51,12 @@ help:                     ## show usage
 FORCE_MAKE:
 
 
-%.pdf: %.tex FORCE_MAKE
+%.pdf: %.tex FORCE_MAKE | $(_build_dir)
 	max_print_line=96 latexmk $(LATEXFLAGS) $<
 
 
-.PHONY: book
-book: book.pdf            ## alias for the cookbook with imposition
-
-
-cookbook.pdf : cookbook.tex $(SRC) images
+$(_build_dir):
+	mkdir $(_build_dir)
 
 
 .PHONY: install
@@ -61,11 +67,13 @@ install:                  ## install LaTeX dependencies w/ tlmgr
 
 .PHONY: clean
 clean:  ## remove temporary files
-	latexmk -f -C cookbook.pdf
-	latexmk -f -C rescaled.pdf
-	latexmk -f -C book.pdf
-	latexmk -f -C cookbook-imp.pdf
-	latexmk -f -C endpaper.pdf
+	latexmk $(LATEXFLAGS) -f -C cookbook.tex
+	latexmk $(LATEXFLAGS) -f -C rescaled.tex
+	latexmk $(LATEXFLAGS) -f -C book.tex
+	latexmk $(LATEXFLAGS) -f -C cookbook-imp.tex
+	latexmk $(LATEXFLAGS) -f -C endpaper.tex
+	latexmk $(LATEXFLAGS) -f -C preface.tex
+	latexmk $(LATEXFLAGS) -f -C recipe_snippet.tex
 	$(MAKE) -ik -C $(_root_dir)/images/cookbook_assets/ clean
 
 
@@ -92,7 +100,7 @@ endpaper.pdf: endpaper.tex
 .PHONY: rescaled.pdf
 rescaled.pdf: rescaled.tex cookbook.pdf
 	# TODO: rename; this is no longer a rescale, but a way to add the frontispiece
-	latexmk -pdf -time -use-make rescaled.tex
+	latexmk $(LATEXFLAGS) rescaled.tex
 
 
 # TODO rename rescaled.tex to book.tex, b/c we aren't rescaling anymore
