@@ -58,8 +58,8 @@
 \RequirePackage[T1]{fontenc}             % hypenate accented letters
 \RequirePackage{ae,aecompl}              % handle T1 fonts
 \RequirePackage{lmodern}                 % use when using fontenc
+% TODO: move to bibtex for speed?
 \RequirePackage[backend=bibtex]{biblatex}% bibliography
-    \bibliography{bib}
 \RequirePackage{ragged2e}                % for \RaggedRight, \RaggedLeft
 \RequirePackage[fulladjust]{marginnote}  % notes in the margins
 \RequirePackage{fancyhdr}                % header / footers

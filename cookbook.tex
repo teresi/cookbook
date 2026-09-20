@@ -79,9 +79,11 @@
 \usepackage{booktabs}           % tables
 \usepackage{siunitx}            % numbers in tables
 \usepackage{multirow}
+\usepackage{subfiles}
 \graphicspath{
     {./images/cookbook_assets/assets/}
 }
+\addbibresource{bib.bib}
 
 % NB keep >=0.25" of space on outer (i.e. outer - marginsep - marginparwidth)
 %     so that it doesn't go outside of the printable area
@@ -197,25 +199,15 @@
 \clearpage
 
 \mainmatter%
-
 \setcounter{mtc}{0}  % minitoc, reset to first chapter
 \mtcaddchapter%      % minitoc, required at first chapter
-\chapter{Breakfast}
-\minitoc%
-\clearpage
-\input{./src/entrees/spinach_quiche}
-\input{./src/breakfasts/overnight_oats}
-\input{./src/breakfasts/egg_muffins}
-\input{./src/breakfasts/french_toast_casserole}
-\input{./src/breakfasts/sausage_casserole}
-\input{./src/breakfasts/banana_pancakes}
-\newpage  % temporary fix to stop ingredients from breaking poorly
-\input{./src/breakfasts/cinnamon_rolls}
+
+\subfile{./src/breakfast/chapter}
 
 \chapter{Sous vide}
 \minitoc%
 \clearpage
-\input{./src/breakfasts/egg_bites}
+\input{./src/sous_vide/egg_bites}
 \input{./src/sous_vide/ribeye}
 \input{./src/sous_vide/shrimp}
 

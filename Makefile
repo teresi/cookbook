@@ -9,13 +9,12 @@ _root_dir := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 _build_dir := $(_root_dir)/build
 _archive_dir := $(_root_dir)/archive
 
-
 MAKEFLAGS += --no-print-directory
-LATEXFLAGS = -bibtex -pdf -time -use-make -auxdir=$(_build_dir)
-
+LATEXFLAGS = -bibtex -pdf -time -use-make -auxdir=build
 
 SRC := cookbook.tex
 OBJ := cookbook.pdf
+CHAPTERS := $(notdir $(wildcard src/*))
 
 # FUTURE: move class file to it's own repo
 SRC += family_cookbook.cls
@@ -29,7 +28,7 @@ OBJ_ARCHIVE := cookbook_$(shell date +"%Y%m%d").pdf
 all: cookbook.pdf         ## alias for the cookbook
 
 
-cookbook.pdf : cookbook.tex $(SRC) images
+cookbook.pdf: images family_cookbook.cls cookbook.tex
 
 
 .PHONY: book
@@ -38,7 +37,7 @@ book: book.pdf            ## alias for the cookbook with imposition
 
 .PHONY: images
 images:                   ## alias for image dependencies
-	$(MAKE) -ik -C ./images/cookbook_assets
+	$(MAKE) -C ./images/cookbook_assets
 
 
 .PHONY: help
@@ -51,12 +50,17 @@ help:                     ## show usage
 FORCE_MAKE:
 
 
-%.pdf: %.tex FORCE_MAKE | $(_build_dir)
+%.pdf: %.tex FORCE_MAKE
 	max_print_line=96 latexmk $(LATEXFLAGS) $<
 
 
 $(_build_dir):
 	mkdir $(_build_dir)
+
+
+.PHONY: $(CHAPTERS)
+$(CHAPTERS):
+	latexmk $(LATEXFLAGS) -cd src/$@/chapter.tex
 
 
 .PHONY: install
