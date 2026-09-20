@@ -75,7 +75,6 @@ kpathsea
 kvdefinekeys
 kvoptions
 kvsetkeys
-l3backend
 l3kernel
 l3packages
 latex
@@ -133,6 +132,7 @@ scheme-minimal
 sectsty
 siunitx
 stringenc
+subfiles
 substr
 svn-prov
 symbol
