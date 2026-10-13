@@ -1,0 +1,17 @@
+\documentclass[../../cookbook.tex]{subfiles}
+
+\begin{document}
+
+\chapter{Pickles}
+\minitoc%
+\clearpage
+\input{./src/pickles/quick_pickles}
+{%
+    \let\section\subsection%
+    \let\subsection\subsubsection%
+    \input{./src/pickles/quick_red_onion}
+    \input{./src/pickles/quick_jalepenos}
+    \input{./src/pickles/quick_radishes}
+}
+
+\end{document}
